@@ -9,7 +9,7 @@ SRCs = src/philo/pl_new.c \
 		src/utils/pl_utl_lst_foreach.c \
 		src/utils/pl_utl_error.c \
 		src/philosopher.c \
-		src/main.c
+		src/launcher.c
 OBJs = $(SRCs:.c=.o)
 LIBs = -lpthread
 
