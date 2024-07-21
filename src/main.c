@@ -6,13 +6,12 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 17:12:57 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:46:58 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "pl_utils.h"
-#include "librj.h"
 #include <stdlib.h>
 
 static t_philo	**pl_lst_init(int size, int *times)
@@ -33,13 +32,23 @@ static t_philo	**pl_lst_init(int size, int *times)
 	return (pls);
 }
 
-int	main(int argc, t_str argv[])
+static int	is_arg_correct(int argc, const char **argv)
+{
+	(void)(argv);
+	if (argc < 5)
+		return (pl_utl_error("Error:\n > Too few argument.\n", 0));
+	return (1);
+}
+
+int	main(int argc, const char **argv)
 {
 	t_philo	**philos;
 	int		times[3];
 	int		size;
 	int		i;
 
+	if (!is_arg_correct(argc, argv))
+		return (1);
 	size = pl_utl_atoi(argv[1]);
 	times[0] = pl_utl_atoi(argv[2]);
 	times[1] = pl_utl_atoi(argv[3]);

@@ -6,11 +6,10 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:56:41 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 19:43:17 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:25:16 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "librj.h"
 #include <unistd.h>
 
 int	pl_utl_error(char *msg, int code)

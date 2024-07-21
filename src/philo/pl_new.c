@@ -6,12 +6,11 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 17:47:01 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:44:43 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "librj.h"
 #include <stdlib.h>
 
 static void	ft_run(void *self)
@@ -39,6 +38,5 @@ t_philo	*pl_new(int rank, int *times)
 	ret->max_eat = 0;
 	ret->state = PHILO_SLEEPING;
 	ret->run = ft_run;
-	to_obj(ret)->destroy = pl_destroy;
 	return (ret);
 }

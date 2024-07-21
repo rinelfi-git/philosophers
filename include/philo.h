@@ -6,14 +6,13 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 17:45:20 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:44:18 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 # include <pthread.h>
-# include "librj.h"
 # include <stdio.h>
 
 typedef enum e_pl_state
@@ -24,7 +23,6 @@ typedef enum e_pl_state
 }	t_pl_state;
 typedef struct s_philo
 {
-	t_obj		o;
 	pthread_t	pt;
 	void		(*run)(void *);
 	void		(*stop)(void *);

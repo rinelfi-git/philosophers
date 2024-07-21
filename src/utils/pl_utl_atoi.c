@@ -6,11 +6,9 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:40:06 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 17:09:39 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 20:46:17 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "librj.h"
 
 static int	char_to_digit(char c)
 {
@@ -19,7 +17,7 @@ static int	char_to_digit(char c)
 	return (-1);
 }
 
-int	pl_utl_atoi(t_str str)
+int	pl_utl_atoi(const char *str)
 {
 	int	ret;
 	int	sign;
