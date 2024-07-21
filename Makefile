@@ -1,7 +1,7 @@
 NAME = philo
 CC = gcc
 CARG = -Werror -Wextra -Wall
-INCs = -Iinclude
+INCs = -Iinclude -Ilib/librj/include
 SRCs = src/philo/pl_new.c \
 		src/philo/to_philo.c \
 		src/philo/to_thread.c \
@@ -10,19 +10,27 @@ SRCs = src/philo/pl_new.c \
 		src/philosopher.c \
 		src/main.c
 OBJs = $(SRCs:.c=.o)
-LIBs = -lpthread
+LIBs = -lpthread \
+		-Llib/librj -lrj
+LIBRJ = lib/librj/librj.a
 
 all: $(NAME)
 
 $(NAME) : $(OBJs)
 	$(CC) $(CARG) $(OBJs) -o $@
+
 clean :
 	rm -rf $(OBJs)
+	make -C lib/librj $@
 
 fclean : clean
 	rm -rf $(NAME)
+	make -C lib/librj $@
 
 re : fclean all
 
-%.o : %.c
+%.o : %.c $(LIBRJ)
 	$(CC) $(CARG) $(INCs) $(LIBs) -c $< -o $@
+
+$(LIBRJ) :
+	make -C lib/librj all

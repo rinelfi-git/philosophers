@@ -6,12 +6,13 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 16:52:20 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 17:12:57 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include "pl_utils.h"
+#include "librj.h"
 #include <stdlib.h>
 
 static t_philo	**pl_lst_init(int size, int *times)
@@ -32,7 +33,7 @@ static t_philo	**pl_lst_init(int size, int *times)
 	return (pls);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, t_str argv[])
 {
 	t_philo	**philos;
 	int		times[3];
