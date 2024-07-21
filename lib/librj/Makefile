@@ -5,7 +5,6 @@ CARG = -Werror -Wextra -Wall
 INCs = -Iinclude
 SRCs = src/to_obj.c
 OBJs = $(SRCs:.c=.o)
-LIBs = \
 
 all: $(NAME)
 
@@ -20,4 +19,4 @@ fclean : clean
 re : fclean all
 
 %.o : %.c
-	$(CC) $(CARG) $(INCs) $(LIBs) -c $< -o $@
+	$(CC) $(CARG) $(INCs) -c $< -o $@

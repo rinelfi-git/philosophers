@@ -16,7 +16,7 @@ LIBRJ = lib/librj/librj.a
 
 all: $(NAME)
 
-$(NAME) : $(OBJs)
+$(NAME) : $(OBJs) $(LIBRJ)
 	$(CC) $(CARG) $(OBJs) -o $@
 
 clean :
@@ -29,8 +29,8 @@ fclean : clean
 
 re : fclean all
 
-%.o : %.c $(LIBRJ)
+%.o : %.c
 	$(CC) $(CARG) $(INCs) $(LIBs) -c $< -o $@
 
 $(LIBRJ) :
-	make -C lib/librj all
+	make -C lib/librj
