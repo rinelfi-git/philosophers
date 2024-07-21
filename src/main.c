@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 15:58:21 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:34:29 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 #include "pl_utils.h"
 #include <stdlib.h>
 
-static t_philo	**pl_lst_init(int size)
+static t_philo	**pl_lst_init(int size, int *times)
 {
 	t_philo	**pls;
 	int		i;
+	int		times[3];
 
 	pls = (t_philo **)malloc(sizeof(t_philo *) * (size + 1));
 	if (!pls)
@@ -25,30 +26,29 @@ static t_philo	**pl_lst_init(int size)
 	i = 0;
 	while (i < size)
 	{
-		pls[i] = pl_new(i + 1);
+		pls[i] = pl_new(i + 1, times);
 		i++;
 	}
 	pls[i] = 0;
 	return (pls);
 }
 
-
-
 int	main(int argc, char **argv)
 {
 	t_philo	**philos;
+	int		times[3];
 	int		size;
 	int		i;
 
-	(void)(argc);
-	printf("INIT\n");
-	size = pl_atoi(argv[1]);
-	printf("INIT %d\n", size);
-	philos = pl_lst_init(size);
+	size = pl_utl_atoi(argv[1]);
+	times[0] = pl_utl_atoi(argv[2]);
+	times[1] = pl_utl_atoi(argv[3]);
+	times[2] = pl_utl_atoi(argv[4]);
+	philos = pl_lst_init(size, times);
 	i = 0;
-	while (philos[i])
+	while (philos[i] && (i + 5) < argc)
 	{
-		printf("Rank is %d.\n", philos[i]->rank);
+		philos[i]->max_eat = pl_utl_atoi(argv[i + 5]);
 		i++;
 	}
 	return (0);

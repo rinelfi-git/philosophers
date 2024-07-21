@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pl_utils.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:49:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 15:50:57 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:23:49 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PL_UTILS_H
 # define PL_UTILS_H
 
-int	pl_atoi(char *str);
+int	pl_utl_atoi(char *str);
 #endif

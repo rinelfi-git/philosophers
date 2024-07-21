@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_atoi.c                                          :+:      :+:    :+:   */
+/*   pl_utl_atoi.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:40:06 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 15:58:36 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:24:31 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	pl_char_to_digit(char c)
+static int	char_to_digit(char c)
 {
 	if (c >= '0' && c <= '9')
 		return (c - '0');
 	return (-1);
 }
 
-int	pl_atoi(char *str)
+int	pl_utl_atoi(char *str)
 {
 	int	ret;
 	int	sign;
@@ -29,10 +29,10 @@ int	pl_atoi(char *str)
 		str++;
 		sign = -1;
 	}
-	while (pl_char_to_digit(*str) >= 0)
+	while (char_to_digit(*str) >= 0)
 	{
 		ret = ret * 10;
-		ret += pl_char_to_digit(*(str++));
+		ret += char_to_digit(*(str++));
 	}
 	return (ret * sign);
 }

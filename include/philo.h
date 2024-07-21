@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
+/*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 16:16:00 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:31:26 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ typedef struct s_philo
 	int			tt_die;
 	int			tt_eat;
 	int			tt_sleep;
+	int			max_eat;
 }	t_philo;
-t_philo		*pl_new(int rank);
+t_philo		*pl_new(int rank, int *times);
 t_philo		*to_philo(void *obj);
 pthread_t	*to_thread(void *obj);
 #endif
