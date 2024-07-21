@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cast.c                                          :+:      :+:    :+:   */
+/*   pl_new.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 14:23:18 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/19 14:24:02 by erijania         ###   ########.fr       */
+/*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
+/*   Updated: 2024/07/21 15:11:10 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <stdlib.h>
 
-t_philo	*to_philo(void *v)
+static void	ft_run(void *phylo)
 {
-	return ((t_philo *)v);
+	printf("PHILO %d is ON\n", to_philo(phylo)->rank);
+}
+
+t_philo	*pl_new(int rank)
+{
+	t_philo	*ft;
+
+	ft = (t_philo *)malloc(sizeof(t_philo));
+	if (!ft)
+		exit(1);
+	ft->rank = rank;
+	ft->state = PHILO_SLEEPING;
+	ft->run = ft_run;
+	return (ft);
 }
