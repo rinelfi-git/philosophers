@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   pl_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 15:37:38 by erijania         ###   ########.fr       */
+/*   Created: 2024/07/21 15:40:06 by erijania          #+#    #+#             */
+/*   Updated: 2024/07/21 15:58:36 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
+static int	pl_char_to_digit(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (c - '0');
+	return (-1);
+}
 
-typedef enum e_pl_state
+int	pl_atoi(char *str)
 {
-	PHILO_THINKING,
-	PHILO_EATING,
-	PHILO_SLEEPING
-}	t_pl_state;
-typedef struct s_philo
-{
-	pthread_t	thread;
-	void		(*run)(void *);
-	void		(*stop)(void *);
-	int			rank;
-	t_pl_state	state;
-}	t_philo;
-t_philo		*pl_new(int rank);
-t_philo		*to_philo(void *obj);
-pthread_t	*to_thread(void *obj);
-#endif
+	int	ret;
+	int	sign;
+
+	sign = 1;
+	ret = 0;
+	if (*str == '-')
+	{
+		str++;
+		sign = -1;
+	}
+	while (pl_char_to_digit(*str) >= 0)
+	{
+		ret = ret * 10;
+		ret += pl_char_to_digit(*(str++));
+	}
+	return (ret * sign);
+}

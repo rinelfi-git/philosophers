@@ -1,35 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   pl_utils.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 15:37:38 by erijania         ###   ########.fr       */
+/*   Created: 2024/07/21 15:49:22 by erijania          #+#    #+#             */
+/*   Updated: 2024/07/21 15:50:57 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-# include <pthread.h>
-# include <stdio.h>
+#ifndef PL_UTILS_H
+# define PL_UTILS_H
 
-typedef enum e_pl_state
-{
-	PHILO_THINKING,
-	PHILO_EATING,
-	PHILO_SLEEPING
-}	t_pl_state;
-typedef struct s_philo
-{
-	pthread_t	thread;
-	void		(*run)(void *);
-	void		(*stop)(void *);
-	int			rank;
-	t_pl_state	state;
-}	t_philo;
-t_philo		*pl_new(int rank);
-t_philo		*to_philo(void *obj);
-pthread_t	*to_thread(void *obj);
+int	pl_atoi(char *str);
 #endif

@@ -1,11 +1,14 @@
-NAME = philosopher
+NAME = philo
 CC = gcc
 CARG = -Werror -Wextra -Wall
-INCLUDE = -Iinclude
-SRCs = src/philo/ft_new.c \
-		src/philo/ft_cast.c \
+INCs = -Iinclude
+SRCs = src/philo/pl_new.c \
+		src/philo/to_philo.c \
+		src/philo/to_thread.c \
+		src/utils/pl_atoi.c \
 		src/main.c
 OBJs = $(SRCs:.c=.o)
+LIBs = -lpthread
 
 all: $(NAME)
 
@@ -20,4 +23,4 @@ fclean : clean
 re : fclean all
 
 %.o : %.c
-	$(CC) $(CARG) $(INCLUDE) -c $< -o $@
+	$(CC) $(CARG) $(INCs) $(LIBs) -c $< -o $@
