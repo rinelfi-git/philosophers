@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 16:34:29 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:52:20 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static t_philo	**pl_lst_init(int size, int *times)
 {
 	t_philo	**pls;
 	int		i;
-	int		times[3];
 
 	pls = (t_philo **)malloc(sizeof(t_philo *) * (size + 1));
 	if (!pls)
@@ -51,5 +50,5 @@ int	main(int argc, char **argv)
 		philos[i]->max_eat = pl_utl_atoi(argv[i + 5]);
 		i++;
 	}
-	return (0);
+	return (philosopher(philos));
 }

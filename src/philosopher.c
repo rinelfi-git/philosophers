@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_utils.h                                         :+:      :+:    :+:   */
+/*   philosopher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 15:49:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 16:46:14 by erijania         ###   ########.fr       */
+/*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
+/*   Updated: 2024/07/21 16:56:45 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PL_UTILS_H
-# define PL_UTILS_H
-# include "philo.h"
+#include "pl_utils.h"
 
-int		pl_utl_atoi(char *str);
-void	pl_utl_lst_foreach(t_philo **lst, void (*call)());
-#endif
+static void	print_philo(t_philo *philo)
+{
+	printf("PHILO %d, TIMES[%d, %d, %d] MAX %d\n", philo->rank, philo->tt_die, philo->tt_eat, philo->tt_sleep, philo->max_eat);
+}
+
+int	philosopher(t_philo **lst)
+{
+	pl_utl_lst_foreach(lst, print_philo);
+	return (0);
+}

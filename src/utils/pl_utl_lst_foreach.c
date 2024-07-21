@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_utils.h                                         :+:      :+:    :+:   */
+/*   pl_utl_lst_foreach.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 15:49:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 16:46:14 by erijania         ###   ########.fr       */
+/*   Created: 2024/07/21 16:38:08 by erijania          #+#    #+#             */
+/*   Updated: 2024/07/21 16:53:32 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PL_UTILS_H
-# define PL_UTILS_H
-# include "philo.h"
+#include "philo.h"
 
-int		pl_utl_atoi(char *str);
-void	pl_utl_lst_foreach(t_philo **lst, void (*call)());
-#endif
+void	pl_utl_lst_foreach(t_philo **lst, void (*call)())
+{
+	unsigned int	i;
+
+	if (!lst)
+		return ;
+	i = 0;
+	while (lst[i])
+	{
+		call(lst[i], i);
+		i++;
+	}
+}

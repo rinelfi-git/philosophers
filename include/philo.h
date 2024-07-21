@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 16:31:26 by erijania         ###   ########.fr       */
+/*   Updated: 2024/07/21 16:45:43 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ typedef struct s_philo
 t_philo		*pl_new(int rank, int *times);
 t_philo		*to_philo(void *obj);
 pthread_t	*to_thread(void *obj);
+int			philosopher(t_philo **lst);
 #endif
