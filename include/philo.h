@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 20:44:18 by erijania         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:12:02 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_philo
 	void		(*run)(void *);
 	void		(*stop)(void *);
 	t_pl_state	state;
+	int			is_running;
 	int			rank;
-	int			fork;
 	int			tt_die;
 	int			tt_eat;
 	int			tt_sleep;

@@ -5,6 +5,7 @@ INCs = -Iinclude
 SRCs = src/philo/pl_new.c \
 		src/philo/to_philo.c \
 		src/philo/to_thread.c \
+		src/utils/pl_utl_timestamp.c \
 		src/utils/pl_utl_atoi.c \
 		src/utils/pl_utl_lst_foreach.c \
 		src/utils/pl_utl_error.c \

@@ -6,21 +6,54 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 20:44:43 by erijania         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:20:40 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include "pl_utils.h"
 #include <stdlib.h>
+#include <unistd.h>
 
-static void	ft_run(void *self)
+static char	*pl_state_to_string(t_pl_state state)
 {
-	printf("PHILO %d is ON\n", to_philo(self)->rank);
+	if (state == PHILO_EATING)
+		return ("is eating");
+	if (state == PHILO_SLEEPING)
+		return ("is sleeping");
+	if (state == PHILO_THINKING)
+		return ("is thinking");
+	return ("has taken a fork");
 }
 
-void	pl_destroy(void	*self)
+static void	*pl_thread_exec(void *self)
 {
-	free(self);
+	t_philo		*philo;
+	t_pl_state	curr_state;
+
+	philo = to_philo(self);
+	curr_state = philo->state;
+	printf("%ld %d %s\n", pl_utl_timestamp(), philo->rank,
+		pl_state_to_string(curr_state));
+	while (1)
+	{
+		if (curr_state != philo->state)
+			printf("%ld %d %s\n", pl_utl_timestamp(), philo->rank,
+				pl_state_to_string(curr_state));
+		philo->tt_die--;
+		philo->tt_eat--;
+		usleep(1000);
+	}
+	return (0);
+}
+
+static void	pl_run(void *self)
+{
+	t_philo	*philo;
+
+	philo = to_philo(self);
+	pthread_create(&philo->pt, 0, pl_thread_exec, philo);
+	philo->is_running = 1;
 }
 
 t_philo	*pl_new(int rank, int *times)
@@ -31,12 +64,12 @@ t_philo	*pl_new(int rank, int *times)
 	if (!ret)
 		exit(1);
 	ret->rank = rank;
-	ret->fork = 1;
 	ret->tt_die = times[0];
 	ret->tt_eat = times[1];
 	ret->tt_sleep = times[2];
 	ret->max_eat = 0;
 	ret->state = PHILO_SLEEPING;
-	ret->run = ft_run;
+	ret->is_running = 0;
+	ret->run = pl_run;
 	return (ret);
 }
