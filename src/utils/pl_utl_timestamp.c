@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:09:39 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 14:37:04 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 20:40:30 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 long	pl_utl_time(void)
 {
 	long			timestamp;
-	long			multiplier;
 	struct timeval	time;
 
 	gettimeofday(&time, 0);
-	multiplier = 1;
 	timestamp = time.tv_usec / 1000;
 	timestamp = time.tv_sec * 1000 + timestamp;
 	return (timestamp);
