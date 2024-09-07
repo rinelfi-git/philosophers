@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 16:24:40 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:52:28 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,16 @@ void	pl_take_fork(t_philo *pl)
 	int		i;
 	int		jump;
 
+	if (pl->seat->length < 2)
+		return ;
 	forks[0] = pl->seat->forks[pl->rank];
 	jump = (pl->rank - 1) % pl->seat->length;
 	if (jump < 0)
 		jump = (jump + pl->seat->length) % pl->seat->length;
 	forks[1] = pl->seat->forks[jump];
-	i = 0;
 	if (forks[0]->user || forks[1]->user)
 		return ;
+	i = 0;
 	while (i < 2)
 	{
 		pthread_mutex_lock(&forks[i]->locker);
