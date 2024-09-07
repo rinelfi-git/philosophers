@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_table.h                                         :+:      :+:    :+:   */
+/*   eat.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 10:18:04 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/07 09:51:53 by erijania          #+#    #+#             */
+/*   Updated: 2024/09/07 10:33:25 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PL_TABLE_H
-# define PL_TABLE_H
-# include "pl_philo.h"
-# include "pl_fork.h"
+#include "pl_philo.h"
 
-typedef struct s_table
+void	pl_eat(t_philo *pl)
 {
-	t_fork	**forks;
-	t_philo	**philos;
-	int		length;
-}	t_table;
-t_table	*tab_new(int length);
-#endif
+	unsigned int	remaining;
+
+	remaining = pl->tt_eat;
+	while (remaining)
+	{
+		remaining--;
+	}
+	pl_free_fork(pl);
+}
