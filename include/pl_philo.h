@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 13:04:27 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 15:17:16 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_philo
 	void		(*run)(void *);
 	void		(*stop)(void *);
 	t_pl_state	state;
-	t_fork		*forks[2];
+	void		*forks[2];
 	int			is_running;
 	int			rank;
 	t_times		tt;
@@ -52,4 +52,6 @@ void		pl_eat(t_philo *pl, t_times *tt);
 void		pl_sleep(t_philo *pl, t_times *tt);
 void		pl_think(t_philo *pl, t_times *tt);
 void		pl_set_times(void *pl, int *times);
+void		pl_check_state(t_philo *pl, t_times *tt);
+void		*pl_exec(void *self);
 #endif

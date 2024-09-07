@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   think.c                                            :+:      :+:    :+:   */
+/*   check_state.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 11:58:29 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 14:57:01 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
+/*   Updated: 2024/09/07 15:03:19 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_philo.h"
 
-void	pl_think(t_philo *pl, t_times *tt)
+void	pl_check_state(t_philo *pl, t_times *tt)
 {
-	pl->state = PHILO_THINKING;
-	tt->eat = pl->tt.eat;
-	tt->sleep = pl->tt.sleep;
-	tt->die--;
+	if (tt->eat && pl->state == PHILO_EATING)
+		pl_eat(pl, tt);
+	else if (tt->sleep && pl->state == PHILO_SLEEPING)
+		pl_sleep(pl, tt);
+	else
+		pl_think(pl, tt);
 }

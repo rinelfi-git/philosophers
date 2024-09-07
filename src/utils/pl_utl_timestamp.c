@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:09:39 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 11:33:23 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 14:37:04 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ long	pl_utl_time(void)
 	gettimeofday(&time, 0);
 	multiplier = 1;
 	timestamp = time.tv_usec / 1000;
-	while (timestamp / multiplier > 0)
-		multiplier *= 10;
-	timestamp = time.tv_sec * multiplier + timestamp;
+	timestamp = time.tv_sec * 1000 + timestamp;
 	return (timestamp);
 }

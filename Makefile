@@ -3,6 +3,8 @@ CC = cc
 CARG = -Werror -Wextra -Wall
 INCs = -Iinclude
 SRCs = src/fork/new.c \
+		src/fork/to_fork.c \
+		src/philo/check_state.c \
 		src/philo/eat.c \
 		src/philo/free_fork.c \
 		src/philo/new.c \
@@ -13,6 +15,7 @@ SRCs = src/fork/new.c \
 		src/philo/to_philo.c \
 		src/philo/to_thread.c \
 		src/table/init_times.c \
+		src/table/free.c \
 		src/table/new.c \
 		src/utils/pl_utl_atoi.c \
 		src/utils/pl_utl_error.c \
