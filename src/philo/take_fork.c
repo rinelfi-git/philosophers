@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 14:46:35 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 15:39:10 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	pl_take_fork(t_philo *pl)
 		return ;
 	while (i < 2)
 	{
-		pthread_mutex_lock(&forks[i]->mt);
+		pthread_mutex_lock(&forks[i]->locker);
 		forks[i]->user = pl;
 		pl->forks[i] = forks[i];
 		i++;

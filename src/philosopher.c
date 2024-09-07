@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 11:15:14 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 15:29:29 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	pl_start(void *self)
 
 	philo = to_philo(self);
 	philo->run(philo);
-	philo->is_running = 1;
 }
 
 static void	pl_join(void *self)

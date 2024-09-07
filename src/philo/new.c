@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 15:25:35 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 15:29:58 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_philo	*new_philo(int rank)
 	ret->forks[1] = 0;
 	ret->max_eat = 0;
 	ret->state = PHILO_THINKING;
-	ret->is_running = 0;
 	ret->seat = 0;
 	ret->run = pl_run;
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 15:24:01 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 15:29:46 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*pl_exec(void *self)
 	pl = to_philo(self);
 	curr_state = PHILO_SLEEPING;
 	tt = pl->tt;
-	while (tt.die && pl->is_running)
+	while (tt.die)
 	{
 		if (curr_state != pl->state)
 			pl_refresh_state(pl, &curr_state);
