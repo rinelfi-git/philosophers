@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   stop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 15:10:33 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 16:03:33 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
+/*   Updated: 2024/09/07 16:10:10 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_table.h"
 #include "pl_philo.h"
-#include "pl_fork.h"
-#include <stdlib.h>
 
-void	pl_free(void *tab)
+int	pl_stop(t_table *tab)
 {
-	t_fork	*fork;
-	int		i;
+	int	i;
 
-	tab = to_table(tab);
 	i = 0;
-	while (i < to_table(tab)->length)
-	{
-		fork = to_table(tab)->forks[i++];
-		pthread_mutex_unlock(&fork->locker);
-		pthread_mutex_destroy(&fork->locker);
-		free(fork);
-	}
-	i = 0;
-	while (i < to_table(tab)->length)
-		to_philo(to_table(tab)->philos[i++])->is_running = 0;
-	free(to_table(tab)->forks);
-	free(to_table(tab)->philos);
-	free(tab);
+	while (i < tab->length)
+		to_philo(tab->philos[i++])->is_running = 0;
+	return (0);
 }

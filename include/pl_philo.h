@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 15:29:27 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 15:54:39 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ typedef struct s_times
 typedef struct s_philo
 {
 	pthread_t	pt;
-	void		(*run)(void *);
-	void		(*stop)(void *);
-	t_pl_state	state;
-	void		*forks[2];
 	int			rank;
+	int			is_running;
+	void		(*run)(void *);
+	void		*forks[2];
+	t_pl_state	state;
 	t_times		tt;
-	int			max_eat;
 	t_table		*seat;
 }	t_philo;
 t_philo		*new_philo(int rank);

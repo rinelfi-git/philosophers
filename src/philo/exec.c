@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 15:29:46 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:10:02 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*pl_exec(void *self)
 	pl = to_philo(self);
 	curr_state = PHILO_SLEEPING;
 	tt = pl->tt;
-	while (tt.die)
+	while (tt.die && pl->is_running)
 	{
 		if (curr_state != pl->state)
 			pl_refresh_state(pl, &curr_state);
@@ -54,10 +54,6 @@ void	*pl_exec(void *self)
 		usleep(1000);
 	}
 	if (!tt.die)
-	{
-		printf("%ld %d died\n", pl_utl_time(), pl->rank + 1);
-		pl_free(pl);
-	}
-	exit(0);
-	return (0);
+		pl_refresh_state(pl, &curr_state);
+	return (pl_stop(pl->seat));
 }
