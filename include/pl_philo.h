@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 15:17:16 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 15:20:57 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef enum e_pl_state
 {
 	PHILO_THINKING,
 	PHILO_EATING,
+	PHILO_DEAD,
 	PHILO_SLEEPING
 }	t_pl_state;
 typedef struct s_times

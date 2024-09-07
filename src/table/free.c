@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:10:33 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 15:14:55 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 15:23:42 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "pl_philo.h"
 #include <stdlib.h>
 
-void	pl_free(t_philo *pl)
+void	pl_free(void *pl)
 {
 	t_table	*tab;
 	int		i;
 
-	tab = pl->seat;
+	tab = to_philo(pl)->seat;
 	i = 0;
 	while (i < tab->length)
 		free(tab->forks[i++]);

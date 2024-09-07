@@ -6,6 +6,7 @@ SRCs = src/fork/new.c \
 		src/fork/to_fork.c \
 		src/philo/check_state.c \
 		src/philo/eat.c \
+		src/philo/exec.c \
 		src/philo/free_fork.c \
 		src/philo/new.c \
 		src/philo/set_time.c \

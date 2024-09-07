@@ -6,11 +6,15 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 15:17:46 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 15:24:01 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_philo.h"
+#include "pl_utils.h"
+#include "pl_table.h"
+#include <unistd.h>
+#include <stdlib.h>
 
 static char	*pl_str_state(t_pl_state state)
 {
@@ -20,7 +24,7 @@ static char	*pl_str_state(t_pl_state state)
 		return ("is sleeping");
 	if (state == PHILO_THINKING)
 		return ("is thinking");
-	return ("has taken a fork");
+	return ("is dead");
 }
 
 static void	pl_refresh_state(t_philo *pl, t_pl_state *curr)
