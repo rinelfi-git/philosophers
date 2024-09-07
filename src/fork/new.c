@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_fork.h                                          :+:      :+:    :+:   */
+/*   new.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 09:34:42 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 09:36:55 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/07 09:37:13 by erijania          #+#    #+#             */
+/*   Updated: 2024/09/07 09:40:27 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PL_FORK_H
-# define PL_FORK_H
-# include "pl_philo.h"
-# include <pthread.h>
+#include "pl_fork.h"
+#include <stdlib.h>
 
-typedef struct s_fork
+t_fork	*new_fork(void)
 {
-	pthread_mutex_t	mt;
-	t_philo			*user;
-}	t_fork;
-t_fork	*new_fork(void);
-#endif
+	t_fork	*new;
+
+	new = (t_fork *)malloc(sizeof(t_fork));
+	if (!new)
+		exit(1);
+	pthread_mutex_init(&new->mt, 0);
+	new->user = 0;
+	return (new);
+}

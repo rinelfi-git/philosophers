@@ -2,7 +2,8 @@ NAME = philo
 CC = gcc
 CARG = -Werror -Wextra -Wall
 INCs = -Iinclude
-SRCs = src/philo/pl_new.c \
+SRCs = src/fork/new.c \
+		src/philo/new.c \
 		src/philo/to_philo.c \
 		src/philo/to_thread.c \
 		src/utils/pl_utl_timestamp.c \

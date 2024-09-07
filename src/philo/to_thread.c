@@ -6,11 +6,11 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:17:40 by erijania          #+#    #+#             */
-/*   Updated: 2024/07/21 16:20:16 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 09:43:38 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "pl_philo.h"
 
 pthread_t	*to_thread(void *obj)
 {
