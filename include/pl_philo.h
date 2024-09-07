@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 10:30:09 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 10:58:30 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ typedef struct s_philo
 	int			tt_sleep;
 	int			max_eat;
 }	t_philo;
-t_philo		*pl_new(int rank, int *times);
+t_philo		*new_philo(int rank);
 t_philo		*to_philo(void *obj);
 pthread_t	*to_thread(void *obj);
 int			philosopher(t_philo **lst);
 void		pl_take_fork(t_philo *pl, t_table *tab);
 void		pl_free_fork(t_philo *pl);
 void		pl_eat(t_philo *pl);
+void		pl_set_times(t_philo *pl, int tt_die, int tt_eat, int tt_sleep);
 #endif
