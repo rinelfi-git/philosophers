@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 17:12:57 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 21:28:00 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,6 @@ static int	is_arg_correct(int ac, const char **av)
 	return (1);
 }
 
-static void	pl_extra_params(t_table *tab, int ac, const char **av)
-{
-	int	i;
-
-	i = -1;
-	while (++i < ac && i < tab->length)
-		to_philo(tab->philos[i])->tt.eat = pl_utl_atoi(av[i]);
-}
-
 int	main(int ac, const char **av)
 {
 	t_table	*tab;
@@ -55,7 +46,7 @@ int	main(int ac, const char **av)
 	times[2] = pl_utl_atoi(av[4]);
 	tab = new_table(size);
 	pl_lst_init(tab, times);
-	if (ac > 5)
-		pl_extra_params(tab, ac - 5, av + 5);
+	if (ac == 6)
+		tab->max_eat = pl_utl_atoi(av[5]);
 	return (philosopher(tab));
 }

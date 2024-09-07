@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 13:49:19 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 21:24:02 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	init_vars(t_table *tab)
 	{
 		tab->forks[i] = new_fork();
 		tab->philos[i] = new_philo(i);
+		tab->max_eat = 0;
 		to_philo(tab->philos[i])->seat = tab;
 		i++;
 	}

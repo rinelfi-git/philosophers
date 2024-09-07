@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 16:52:28 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 23:26:01 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ void	pl_take_fork(t_philo *pl)
 		i++;
 	}
 	pl->state = PHILO_EATING;
+	if (pl->seat->max_eat)
+		pl->max_eat++;
 	printf("%ld %d has taken a fork\n", pl_utl_time(), pl->rank + 1);
 }

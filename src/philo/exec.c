@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 16:52:32 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 00:13:41 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,39 @@ static void	pl_refresh_state(t_philo *pl, t_pl_state *curr)
 	*curr = pl->state;
 }
 
+static void	init_counter(t_times *out, t_times *in)
+{
+	long	time;
+
+	time = pl_utl_time();
+	out->die = in->die + time;
+	out->eat = in->eat + time;
+	out->sleep = in->sleep + time;
+}
+
 void	*pl_exec(void *self)
 {
 	t_philo		*pl;
 	t_pl_state	state;
 	t_times		tt;
+	long		time;
 
 	pl = to_philo(self);
 	state = PHILO_SLEEPING;
-	tt = pl->tt;
-	while (tt.die && pl->is_running)
+	init_counter(&tt, &pl->tt);
+	while (pl->is_running)
 	{
-		pl_check_state(pl, &tt);
+		time = pl_utl_time();
+		pl_check_state(pl, &tt, time);
 		if (pl->state == PHILO_THINKING)
 			pl_take_fork(pl);
-		else if (tt.eat <= 0)
+		else if (tt.eat <= time)
 			pl_free_fork(pl);
-		usleep(1000);
-		if (!tt.die)
+		if (tt.die <= time)
 			pl->state = PHILO_DEAD;
 		if (state != pl->state)
 			pl_refresh_state(pl, &state);
+		usleep(1000);
 	}
 	pl_stop(pl->seat);
 	return (0);
