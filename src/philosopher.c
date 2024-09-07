@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 15:29:29 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:19:28 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	philosopher(t_table *tab)
 {
 	pl_utl_lst_foreach(tab, pl_start);
 	pl_utl_lst_foreach(tab, pl_join);
-	printf("Hello manarakaraka\n");
+	pl_free(tab);
 	return (0);
 }

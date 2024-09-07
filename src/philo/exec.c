@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 16:10:02 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:17:35 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ static void	pl_refresh_state(t_philo *pl, t_pl_state *curr)
 void	*pl_exec(void *self)
 {
 	t_philo		*pl;
-	t_pl_state	curr_state;
+	t_pl_state	state;
 	t_times		tt;
 
 	pl = to_philo(self);
-	curr_state = PHILO_SLEEPING;
+	state = PHILO_SLEEPING;
 	tt = pl->tt;
 	while (tt.die && pl->is_running)
 	{
-		if (curr_state != pl->state)
-			pl_refresh_state(pl, &curr_state);
+		if (state != pl->state)
+			pl_refresh_state(pl, &state);
 		pl_check_state(pl, &tt);
 		if (pl->state == PHILO_THINKING)
 			pl_take_fork(pl);
@@ -54,6 +54,7 @@ void	*pl_exec(void *self)
 		usleep(1000);
 	}
 	if (!tt.die)
-		pl_refresh_state(pl, &curr_state);
-	return (pl_stop(pl->seat));
+		pl_refresh_state(pl, &state);
+	pl_stop(pl->seat);
+	return (0);
 }

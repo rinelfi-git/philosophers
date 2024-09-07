@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 16:08:57 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:16:17 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ t_table	*new_table(int length);
 void	pl_init_times(t_table *tab, int *times);
 void	pl_free(void *pl);
 t_table	*to_table(void *obj);
-int		pl_stop(t_table *tab);
+void	pl_stop(t_table *tab);
 #endif

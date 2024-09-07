@@ -18,6 +18,7 @@ SRCs = src/fork/new.c \
 		src/table/init_times.c \
 		src/table/free.c \
 		src/table/new.c \
+		src/table/stop.c \
 		src/table/to_table.c \
 		src/utils/pl_utl_atoi.c \
 		src/utils/pl_utl_error.c \
