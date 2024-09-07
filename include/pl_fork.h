@@ -6,14 +6,14 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:34:42 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 09:36:55 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 12:30:56 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PL_FORK_H
 # define PL_FORK_H
-# include "pl_philo.h"
 # include <pthread.h>
+# include "pl_philo.h"
 
 typedef struct s_fork
 {

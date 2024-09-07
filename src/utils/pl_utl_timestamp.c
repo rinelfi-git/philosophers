@@ -6,13 +6,13 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:09:39 by erijania          #+#    #+#             */
-/*   Updated: 2024/08/15 17:16:41 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:33:23 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
 
-long	pl_utl_timestamp(void)
+long	pl_utl_time(void)
 {
 	long			timestamp;
 	long			multiplier;

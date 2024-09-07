@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 10:56:57 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:06:50 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,6 @@ int	main(int argc, const char **argv)
 	times[1] = pl_utl_atoi(argv[3]);
 	times[2] = pl_utl_atoi(argv[4]);
 	tab = new_tab(size);
-	pl_lst_init(size, times);
-	i = 0;
-	while (philos[i] && (i + 5) < argc)
-	{
-		philos[i]->max_eat = pl_utl_atoi(argv[i + 5]);
-		i++;
-	}
+	pl_init_times(tab, times);
 	return (philosopher(philos));
 }

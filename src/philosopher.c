@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/08/15 17:21:30 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 11:15:14 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static void	pl_join(void *self)
 	pthread_join(to_philo(self)->pt, 0);
 }
 
-int	philosopher(t_philo **philos)
+int	philosopher(t_table *tab)
 {
-	pl_utl_lst_foreach(philos, pl_start);
-	pl_utl_lst_foreach(philos, pl_join);
+	pl_utl_lst_foreach(tab, pl_start);
+	pl_utl_lst_foreach(tab, pl_join);
 	printf("Hello manarakaraka\n");
 	return (0);
 }

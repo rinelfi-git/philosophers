@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 10:58:30 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 12:46:52 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ typedef enum e_pl_state
 	PHILO_EATING,
 	PHILO_SLEEPING
 }	t_pl_state;
+typedef struct s_times
+{
+	int	die;
+	int	eat;
+	int	sleep;
+}	t_times;
 typedef struct s_philo
 {
 	pthread_t	pt;
@@ -32,17 +38,18 @@ typedef struct s_philo
 	t_fork		*forks[2];
 	int			is_running;
 	int			rank;
-	int			tt_die;
-	int			tt_eat;
-	int			tt_sleep;
+	t_times		tt;
 	int			max_eat;
+	t_table		*seat;
 }	t_philo;
 t_philo		*new_philo(int rank);
 t_philo		*to_philo(void *obj);
 pthread_t	*to_thread(void *obj);
-int			philosopher(t_philo **lst);
-void		pl_take_fork(t_philo *pl, t_table *tab);
+int			philosopher(t_table *tab);
+void		pl_take_fork(t_philo *pl);
 void		pl_free_fork(t_philo *pl);
-void		pl_eat(t_philo *pl);
-void		pl_set_times(t_philo *pl, int tt_die, int tt_eat, int tt_sleep);
+void		pl_eat(t_philo *pl, t_times *tt);
+void		pl_sleep(t_philo *pl, t_times *tt);
+void		pl_think(t_philo *pl);
+void		pl_set_times(t_philo *pl, int *times);
 #endif

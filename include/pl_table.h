@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 10:55:45 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 12:22:17 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ typedef struct s_table
 	int		length;
 }	t_table;
 t_table	*new_table(int length);
+void	pl_init_times(t_table *tab, int *times);
 #endif
