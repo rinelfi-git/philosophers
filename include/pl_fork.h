@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_utl_lst_foreach.c                               :+:      :+:    :+:   */
+/*   pl_fork.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 16:38:08 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/06 09:54:41 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/06 09:34:42 by erijania          #+#    #+#             */
+/*   Updated: 2024/09/06 09:55:28 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_philo.h"
+#ifndef PL_FORK_H
+# define PL_FORK_H
 
-void	pl_utl_lst_foreach(t_philo **lst, void (*call)())
+typedef struct s_fork
 {
-	unsigned int	i;
 
-	if (!lst)
-		return ;
-	i = 0;
-	while (lst[i])
-	{
-		call(lst[i], i);
-		i++;
-	}
 }
+#endif

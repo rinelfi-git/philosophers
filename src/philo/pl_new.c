@@ -6,11 +6,11 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/08/15 17:20:40 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/06 09:54:43 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "pl_philo.h"
 #include "pl_utils.h"
 #include <stdlib.h>
 #include <unistd.h>
