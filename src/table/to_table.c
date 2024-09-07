@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_table.h                                         :+:      :+:    :+:   */
+/*   to_table.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 16:02:04 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/07 16:01:13 by erijania          #+#    #+#             */
+/*   Updated: 2024/09/07 16:01:54 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PL_TABLE_H
-# define PL_TABLE_H
+#include "pl_table.h"
 
-typedef struct s_table
+t_table	*to_table(void *obj)
 {
-	void	**forks;
-	void	**philos;
-	int		length;
-}	t_table;
-t_table	*new_table(int length);
-void	pl_init_times(t_table *tab, int *times);
-void	pl_free(void *pl);
-t_table	*to_table(void *obj);
-#endif
+	return ((t_table *) obj);
+}
