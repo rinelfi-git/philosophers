@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 17:08:54 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 17:12:57 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	pl_extra_params(t_table *tab, int ac, const char **av)
 	int	i;
 
 	i = -1;
-	while (++i < ac)
+	while (++i < ac && i < tab->length)
 		to_philo(tab->philos[i])->tt.eat = pl_utl_atoi(av[i]);
 }
 
