@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 11:06:50 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 13:03:08 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	pl_lst_init(t_table *tab, int *times)
 
 	i = 0;
 	while (i < tab->length)
-		pl_set_times(tab->philos[i++], times[0], times[1], times[2]);
+		pl_set_times(tab->philos[i++], times);
 }
 
 static int	is_arg_correct(int argc, const char **argv)
@@ -35,10 +35,8 @@ static int	is_arg_correct(int argc, const char **argv)
 int	main(int argc, const char **argv)
 {
 	t_table	*tab;
-	t_philo	**philos;
 	int		times[3];
 	int		size;
-	int		i;
 
 	if (!is_arg_correct(argc, argv))
 		return (1);
@@ -46,7 +44,7 @@ int	main(int argc, const char **argv)
 	times[0] = pl_utl_atoi(argv[2]);
 	times[1] = pl_utl_atoi(argv[3]);
 	times[2] = pl_utl_atoi(argv[4]);
-	tab = new_tab(size);
-	pl_init_times(tab, times);
-	return (philosopher(philos));
+	tab = new_table(size);
+	pl_lst_init(tab, times);
+	return (philosopher(tab));
 }

@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_table.h                                         :+:      :+:    :+:   */
+/*   to_fork.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 12:52:14 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/07 12:50:52 by erijania          #+#    #+#             */
+/*   Updated: 2024/09/07 12:51:55 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PL_TABLE_H
-# define PL_TABLE_H
+#include "pl_fork.h"
 
-typedef struct s_table
+t_fork	*to_fork(void *obj)
 {
-	void	**forks;
-	void	**philos;
-	int		length;
-}	t_table;
-t_table	*new_table(int length);
-void	pl_init_times(t_table *tab, int *times);
-#endif
+	return ((t_fork *) obj);
+}

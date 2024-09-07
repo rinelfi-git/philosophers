@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:38:08 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 11:08:48 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 12:56:11 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pl_utl_lst_foreach(t_table *tab, void (*call)())
 {
-	unsigned int	i;
+	int	i;
 
 	i = 0;
 	while (i < tab->length)

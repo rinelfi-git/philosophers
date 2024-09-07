@@ -6,11 +6,12 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 12:14:04 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 12:49:38 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_philo.h"
+#include "pl_fork.h"
 
 void	pl_take_fork(t_philo *pl)
 {

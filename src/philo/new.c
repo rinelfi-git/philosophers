@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 12:45:47 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 12:55:00 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	*pl_thread_exec(void *self)
 			printf("%ld %d %s\n", pl_utl_time(), pl->rank,
 				pl_str_state(curr_state));
 		if (!tt.sleep)
-			pl_think(pl);
+			pl_think(pl, &tt);
 		if (curr_state == PHILO_THINKING)
 		{
 			pl_take_fork(pl);
