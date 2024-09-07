@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 00:13:41 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 01:02:13 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,17 @@ void	*pl_exec(void *self)
 	long		time;
 
 	pl = to_philo(self);
-	state = PHILO_SLEEPING;
+	state = PHILO_THINKING;
 	init_counter(&tt, &pl->tt);
+	pl_refresh_state(pl, &state);
 	while (pl->is_running)
 	{
 		time = pl_utl_time();
-		pl_check_state(pl, &tt, time);
 		if (pl->state == PHILO_THINKING)
-			pl_take_fork(pl);
+			pl_take_fork(pl, time);
 		else if (tt.eat <= time)
 			pl_free_fork(pl);
+		pl_check_state(pl, &tt, time);
 		if (tt.die <= time)
 			pl->state = PHILO_DEAD;
 		if (state != pl->state)

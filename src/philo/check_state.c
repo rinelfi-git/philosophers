@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 00:24:25 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 01:06:59 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 void	pl_check_state(t_philo *pl, t_times *tt, long time)
 {
-	if (tt->eat >= time && pl->state == PHILO_EATING)
+	if (pl->state == PHILO_EATING && tt->eat > time)
 		pl_eat(pl, tt, time);
-	else if (tt->sleep >= time && pl->state == PHILO_SLEEPING)
+	else if (pl->state == PHILO_SLEEPING && tt->sleep > time)
 		pl_sleep(pl, tt, time);
 	else
 		pl_think(pl, tt, time);
