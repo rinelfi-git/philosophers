@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 10:28:01 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 10:56:20 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	pl_run(void *self)
 	philo->is_running = 1;
 }
 
-t_philo	*pl_new(int rank, int *times)
+t_philo	*new_philo(int rank)
 {
 	t_philo	*ret;
 
@@ -64,9 +64,9 @@ t_philo	*pl_new(int rank, int *times)
 	if (!ret)
 		exit(1);
 	ret->rank = rank;
-	ret->tt_die = times[0];
-	ret->tt_eat = times[1];
-	ret->tt_sleep = times[2];
+	ret->tt_die = 0;
+	ret->tt_eat = 0;
+	ret->tt_sleep = 0;
 	ret->forks[0] = 0;
 	ret->forks[1] = 0;
 	ret->max_eat = 0;

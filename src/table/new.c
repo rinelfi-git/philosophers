@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 10:09:03 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 10:55:45 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_forks(t_fork **obj, const unsigned int length)
 
 	i = 0;
 	while (i < length)
-		obj[i++] = 0;
+		obj[i++] = new_fork();
 }
 
 static void	init_philos(t_philo **obj, const unsigned int length)
@@ -28,10 +28,10 @@ static void	init_philos(t_philo **obj, const unsigned int length)
 
 	i = 0;
 	while (i < length)
-		obj[i++] = 0;
+		obj[i++] = new_philo(i);
 }
 
-t_table	*tab_new(int length)
+t_table	*new_table(int length)
 {
 	t_table	*new;
 

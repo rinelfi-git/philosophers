@@ -6,30 +6,22 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/06 09:54:41 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/07 10:56:57 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_philo.h"
+#include "pl_table.h"
 #include "pl_utils.h"
 #include <stdlib.h>
 
-static t_philo	**pl_lst_init(int size, int *times)
+static void	pl_lst_init(t_table *tab, int *times)
 {
-	t_philo	**pls;
 	int		i;
 
-	pls = (t_philo **)malloc(sizeof(t_philo *) * (size + 1));
-	if (!pls)
-		exit(EXIT_FAILURE);
 	i = 0;
-	while (i < size)
-	{
-		pls[i] = pl_new(i + 1, times);
-		i++;
-	}
-	pls[i] = 0;
-	return (pls);
+	while (i < tab->length)
+		pl_set_times(tab->philos[i++], times[0], times[1], times[2]);
 }
 
 static int	is_arg_correct(int argc, const char **argv)
@@ -42,6 +34,7 @@ static int	is_arg_correct(int argc, const char **argv)
 
 int	main(int argc, const char **argv)
 {
+	t_table	*tab;
 	t_philo	**philos;
 	int		times[3];
 	int		size;
@@ -53,7 +46,8 @@ int	main(int argc, const char **argv)
 	times[0] = pl_utl_atoi(argv[2]);
 	times[1] = pl_utl_atoi(argv[3]);
 	times[2] = pl_utl_atoi(argv[4]);
-	philos = pl_lst_init(size, times);
+	tab = new_tab(size);
+	pl_lst_init(size, times);
 	i = 0;
 	while (philos[i] && (i + 5) < argc)
 	{
