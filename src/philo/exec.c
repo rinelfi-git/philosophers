@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 15:36:58 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 23:52:51 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*pl_str_state(t_state state)
 	return ("died");
 }
 
-static void	pl_refresh_state(t_philo *pl, t_state *curr)
+static void	pl_print_state(t_philo *pl, t_state *curr)
 {
 	t_table	*tab;
 	long	interval;
@@ -44,9 +44,13 @@ static void	pl_refresh_state(t_philo *pl, t_state *curr)
 static void	pl_kill(t_philo *pl)
 {
 	pthread_mutex_lock(&pl->seat->lock);
-	pl->seat->dead = pl;
-	pl->state = PHILO_DEAD;
+	if (!pl->seat->dead)
+	{
+		pl->seat->dead = pl;
+		pl->state = PHILO_DEAD;
+	}
 	pthread_mutex_unlock(&pl->seat->lock);
+	pl->is_running = 0;
 }
 
 void	*pl_exec(void *self)
@@ -57,19 +61,19 @@ void	*pl_exec(void *self)
 
 	pl = to_philo(self);
 	state = PHILO_THINKING;
-	pl_refresh_state(pl, &state);
-	while (!pl->seat->dead)
+	pl_print_state(pl, &state);
+	while (!pl->seat->dead && pl->is_running)
 	{
 		time = pl_utl_time();
-		pl_check_state(pl);
+		pl_check_state(pl, time);
 		if (pl->state == PHILO_THINKING)
 			pl_take_fork(pl);
-		else if (pl->tt.eat <= time)
+		else if (pl->tt.eat <= time || is_max_eat_exceeded(pl))
 			pl_free_fork(pl);
 		if (pl->tt.die <= time)
 			pl_kill(pl);
 		if (state != pl->state)
-			pl_refresh_state(pl, &state);
+			pl_print_state(pl, &state);
 		usleep(EXEC_INTERVAL);
 	}
 	pl_stop(pl->seat);

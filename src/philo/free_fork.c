@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:49:06 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 13:53:41 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 23:25:20 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,15 @@
 
 void	pl_free_fork(t_philo *pl)
 {
-	pl->left->user = 0;
-	pl->right->user = 0;
-	pthread_mutex_unlock(&pl->left->lock);
-	pthread_mutex_unlock(&pl->right->lock);
+	if (pl->left->user == pl)
+	{
+		pl->left->user = 0;
+		pthread_mutex_unlock(&pl->left->lock);
+	}
+	if (pl->right->user == pl)
+	{
+		pl->right->user = 0;
+		pthread_mutex_unlock(&pl->right->lock);
+	}
 	pl->state = PHILO_SLEEPING;
 }

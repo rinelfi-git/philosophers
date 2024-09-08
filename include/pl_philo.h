@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 15:35:16 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 23:51:31 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ t_philo		*new_philo(int rank, t_fork *left);
 t_philo		*to_philo(void *obj);
 pthread_t	*to_thread(void *obj);
 int			philosopher(t_table *tab);
+int			is_max_eat_exceeded(t_philo *pl);
 void		pl_take_fork(t_philo *pl);
 void		pl_free_fork(t_philo *pl);
 void		pl_eat(t_philo *pl, long curr_time);
 void		pl_sleep(t_philo *pl, long curr_time);
 void		pl_think(t_philo *pl, long curr_time);
-void		pl_check_state(t_philo *pl);
+void		pl_check_state(t_philo *pl, long time);
 void		*pl_exec(void *self);
 #endif
