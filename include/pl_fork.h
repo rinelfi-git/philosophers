@@ -6,19 +6,14 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:34:42 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 15:39:10 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 12:20:12 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PL_FORK_H
 # define PL_FORK_H
-# include <pthread.h>
+# include "pl_module.h"
 
-typedef struct s_fork
-{
-	pthread_mutex_t	locker;
-	void			*user;
-}	t_fork;
 t_fork	*new_fork(void);
 t_fork	*to_fork(void *obj);
 #endif

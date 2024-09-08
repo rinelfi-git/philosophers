@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:49:06 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 08:42:47 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 12:19:18 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pl_free_fork(t_philo *pl)
 	while (i < 2)
 	{
 		fork = to_fork(pl->forks[i]);
-		fork->user = 0;
+		fork->philo = 0;
 		pthread_mutex_unlock(&fork->locker);
 		pl->forks[i] = 0;
 		i++;

@@ -6,17 +6,16 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 09:54:18 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 12:32:02 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_philo.h"
+#include "pl_module.h"
 #include "pl_utils.h"
-#include "pl_table.h"
 #include <unistd.h>
 #include <stdlib.h>
 
-static char	*pl_str_state(t_pl_state state)
+static char	*pl_str_state(t_state state)
 {
 	if (state == PHILO_EATING)
 		return ("is eating");
@@ -27,7 +26,7 @@ static char	*pl_str_state(t_pl_state state)
 	return ("died");
 }
 
-static void	pl_refresh_state(t_philo *pl, t_pl_state *curr)
+static void	pl_refresh_state(t_philo *pl, t_state *curr)
 {
 	int		i;
 	t_philo	*philo;
@@ -45,13 +44,11 @@ static void	pl_refresh_state(t_philo *pl, t_pl_state *curr)
 
 void	*pl_exec(void *self)
 {
-	t_philo		*pl;
-	t_pl_state	state;
-	t_times		tt;
+	t_philo	*pl;
+	t_state	state;
 
 	pl = to_philo(self);
 	state = PHILO_THINKING;
-	tt = pl->tt;
 	pl_refresh_state(pl, &state);
 	while (pl->is_running)
 	{
