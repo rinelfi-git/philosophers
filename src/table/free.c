@@ -6,33 +6,29 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:10:33 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 16:18:56 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 13:53:41 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_table.h"
-#include "pl_philo.h"
-#include "pl_fork.h"
+#include "pl_module.h"
 #include <stdlib.h>
 
-void	pl_free(void *tab)
+void	pl_free(t_table *tab)
 {
-	t_fork	*fork;
 	int		i;
 
-	tab = to_table(tab);
 	i = 0;
-	while (i < to_table(tab)->length)
+	while (i < tab->length)
 	{
-		fork = to_table(tab)->forks[i++];
-		pthread_mutex_unlock(&fork->locker);
-		pthread_mutex_destroy(&fork->locker);
-		free(fork);
+		pthread_mutex_unlock(&tab->forks[i]->lock);
+		pthread_mutex_destroy(&tab->forks[i]->lock);
+		i++;
 	}
 	i = 0;
-	while (i < to_table(tab)->length)
-		free(to_table(tab)->philos[i++]);
-	free(to_table(tab)->forks);
-	free(to_table(tab)->philos);
+	while (i < tab->length)
+		free(tab->philos[i++]);
+	free(tab->forks);
+	free(tab->philos);
+	free(tab->tt);
 	free(tab);
 }

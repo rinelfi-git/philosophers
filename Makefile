@@ -9,14 +9,13 @@ SRCs = src/fork/new.c \
 		src/philo/exec.c \
 		src/philo/free_fork.c \
 		src/philo/new.c \
-		src/philo/set_time.c \
 		src/philo/sleep.c \
 		src/philo/take_fork.c \
 		src/philo/think.c \
 		src/philo/to_philo.c \
 		src/philo/to_thread.c \
-		src/table/init_times.c \
 		src/table/free.c \
+		src/table/init_times.c \
 		src/table/new.c \
 		src/table/stop.c \
 		src/table/to_table.c \

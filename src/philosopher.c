@@ -6,10 +6,13 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 16:21:27 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 13:51:21 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "pl_module.h"
+#include "pl_table.h"
+#include "pl_philo.h"
 #include "pl_utils.h"
 #include <stdlib.h>
 #include <unistd.h>

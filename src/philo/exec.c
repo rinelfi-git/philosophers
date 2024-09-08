@@ -6,12 +6,13 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 12:32:02 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 14:03:48 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_module.h"
 #include "pl_utils.h"
+#include "pl_table.h"
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -28,37 +29,45 @@ static char	*pl_str_state(t_state state)
 
 static void	pl_refresh_state(t_philo *pl, t_state *curr)
 {
-	int		i;
-	t_philo	*philo;
+	t_table	*tab;
+	long	interval;
 
-	i = 0;
-	while (i < pl->seat->length)
+	tab = pl->seat;
+	interval = pl_utl_time() - tab->start;
+	if (!tab->dead || pl == tab->dead)
 	{
-		philo = pl->seat->philos[i++];
-		if (philo->state == PHILO_DEAD && pl != philo)
-			return ;
+		printf("%ld %d %s\n", interval, pl->rank, pl_str_state(pl->state));
+		*curr = pl->state;
 	}
-	printf("%ld %d %s\n", pl_utl_time(), pl->rank + 1, pl_str_state(pl->state));
-	*curr = pl->state;
+}
+
+static void	pl_kill(t_philo *pl)
+{
+	pthread_mutex_lock(&pl->seat->lock);
+	pl->seat->dead = pl;
+	pl->state = PHILO_DEAD;
+	pthread_mutex_unlock(&pl->seat->lock);
 }
 
 void	*pl_exec(void *self)
 {
 	t_philo	*pl;
 	t_state	state;
+	long	time;
 
 	pl = to_philo(self);
 	state = PHILO_THINKING;
 	pl_refresh_state(pl, &state);
-	while (pl->is_running)
+	while (!pl->seat->dead)
 	{
-		pl_check_state(pl, &tt);
+		time = pl_utl_time();
+		pl_check_state(pl);
 		if (pl->state == PHILO_THINKING)
 			pl_take_fork(pl);
-		else if (tt.eat <= 0)
+		else if (pl->tt.eat <= time)
 			pl_free_fork(pl);
-		if (tt.die <= 0)
-			pl->state = PHILO_DEAD;
+		if (pl->tt.die <= time)
+			pl_kill(pl);
 		if (state != pl->state)
 			pl_refresh_state(pl, &state);
 		usleep(EXEC_INTERVAL);

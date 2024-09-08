@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 21:28:00 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 13:44:43 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,6 @@
 #include "pl_table.h"
 #include "pl_utils.h"
 #include <stdlib.h>
-
-static void	pl_lst_init(t_table *tab, int *times)
-{
-	int		i;
-
-	i = 0;
-	while (i < tab->length)
-		pl_set_times(tab->philos[i++], times);
-}
 
 static int	is_arg_correct(int ac, const char **av)
 {
@@ -45,7 +36,7 @@ int	main(int ac, const char **av)
 	times[1] = pl_utl_atoi(av[3]);
 	times[2] = pl_utl_atoi(av[4]);
 	tab = new_table(size);
-	pl_lst_init(tab, times);
+	pl_init_times(tab, times);
 	if (ac == 6)
 		tab->max_eat = pl_utl_atoi(av[5]);
 	return (philosopher(tab));

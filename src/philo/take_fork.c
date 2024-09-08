@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 12:19:18 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 14:05:08 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,21 @@
 
 void	pl_take_fork(t_philo *pl)
 {
-	t_fork	*forks[2];
-	int		i;
-	int		jump;
+	long	interval;
 
-	if (pl->seat->length < 2)
-		return ;
-	forks[0] = pl->seat->forks[pl->rank];
-	jump = (pl->rank - 1) % pl->seat->length;
-	if (jump < 0)
-		jump = (jump + pl->seat->length) % pl->seat->length;
-	forks[1] = pl->seat->forks[jump];
-	if (forks[0]->philo || forks[1]->philo)
-		return ;
-	i = 0;
-	while (i < 2)
+	interval = pl_utl_time() - pl->seat->start;
+	if (!pl->left->user)
 	{
-		pthread_mutex_lock(&forks[i]->locker);
-		forks[i]->philo = pl;
-		pl->forks[i] = forks[i];
-		i++;
+		pthread_mutex_lock(&pl->left->lock);
+		pl->left->user = pl;
+		printf("%ld %d has taken a fork\n", interval, pl->rank);
 	}
-	pl->state = PHILO_EATING;
-	if (pl->seat->max_eat)
-		pl->max_eat++;
-	printf("%ld %d has taken a fork\n", pl_utl_time(), pl->rank + 1);
+	if (!pl->right->user)
+	{
+		pthread_mutex_lock(&pl->right->lock);
+		pl->right->user = pl;
+		printf("%ld %d has taken a fork\n", interval, pl->rank);
+	}
+	if (pl->left != pl->right && pl->left->user == pl && pl->right->user == pl)
+		pl->state = PHILO_EATING;
 }
