@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 00:55:36 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 08:40:36 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "pl_fork.h"
 #include "pl_utils.h"
 
-void	pl_take_fork(t_philo *pl, long time)
+void	pl_take_fork(t_philo *pl)
 {
 	t_fork	*forks[2];
 	int		i;
@@ -40,5 +40,5 @@ void	pl_take_fork(t_philo *pl, long time)
 	pl->state = PHILO_EATING;
 	if (pl->seat->max_eat)
 		pl->max_eat++;
-	printf("%ld %d has taken a fork\n", time, pl->rank + 1);
+	printf("%ld %d has taken a fork\n", pl_utl_time(), pl->rank + 1);
 }

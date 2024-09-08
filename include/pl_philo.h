@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 00:51:12 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 09:57:10 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "pl_fork.h"
 # include <pthread.h>
 # include <stdio.h>
+# define REFRESH_INTERVAL 1
+# define EXEC_INTERVAL 500
 
 typedef enum e_pl_state
 {
@@ -26,9 +28,9 @@ typedef enum e_pl_state
 }	t_pl_state;
 typedef struct s_times
 {
-	long	die;
-	long	eat;
-	long	sleep;
+	int	die;
+	int	eat;
+	int	sleep;
 }	t_times;
 typedef struct s_philo
 {
@@ -46,12 +48,12 @@ t_philo		*new_philo(int rank);
 t_philo		*to_philo(void *obj);
 pthread_t	*to_thread(void *obj);
 int			philosopher(t_table *tab);
-void		pl_take_fork(t_philo *pl, long time);
+void		pl_take_fork(t_philo *pl);
 void		pl_free_fork(t_philo *pl);
-void		pl_eat(t_philo *pl, t_times *tt, long time);
-void		pl_sleep(t_philo *pl, t_times *tt, long time);
-void		pl_think(t_philo *pl, t_times *tt, long time);
+void		pl_eat(t_philo *pl, t_times *tt);
+void		pl_sleep(t_philo *pl, t_times *tt);
+void		pl_think(t_philo *pl, t_times *tt);
 void		pl_set_times(void *pl, int *times);
-void		pl_check_state(t_philo *pl, t_times *tt, long time);
+void		pl_check_state(t_philo *pl, t_times *tt);
 void		*pl_exec(void *self);
 #endif

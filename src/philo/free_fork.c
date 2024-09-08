@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:49:06 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 00:53:49 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 08:42:47 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	pl_free_fork(t_philo *pl)
 {
 	int		i;
 	t_fork	*fork;	
-	
+
 	i = 0;
 	while (i < 2)
 	{
