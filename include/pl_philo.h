@@ -6,14 +6,14 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 13:45:04 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:35:16 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PL_PHILO_H
 # define PL_PHILO_H
-# include "pl_module.h"
 # define EXEC_INTERVAL 10
+# include "pl_module.h"
 
 t_philo		*new_philo(int rank, t_fork *left);
 t_philo		*to_philo(void *obj);

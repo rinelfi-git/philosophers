@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 12:18:15 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 13:54:36 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/08 15:22:27 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ enum e_state
 };
 struct s_times
 {
-	int	die;
-	int	eat;
-	int	sleep;
+	long	die;
+	long	eat;
+	long	sleep;
 };
 struct s_philo
 {
@@ -41,7 +41,6 @@ struct s_philo
 	int			is_running;
 	int			max_eat;
 	void		(*run)(void *);
-	t_fork		*forks[2];
 	t_fork		*left;
 	t_fork		*right;
 	t_state		state;
