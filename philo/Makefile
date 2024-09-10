@@ -11,14 +11,15 @@ SRCs = src/fork/new.c \
 		src/philo/max_eat_exceeded.c \
 		src/philo/new.c \
 		src/philo/sleep.c \
+		src/philo/stop.c \
 		src/philo/take_fork.c \
 		src/philo/think.c \
 		src/philo/to_philo.c \
 		src/philo/to_thread.c \
+		src/table/end.c \
 		src/table/free.c \
 		src/table/init_times.c \
 		src/table/new.c \
-		src/table/stop.c \
 		src/table/to_table.c \
 		src/utils/pl_utl_atoi.c \
 		src/utils/pl_utl_error.c \

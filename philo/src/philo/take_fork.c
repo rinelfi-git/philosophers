@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 23:34:54 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:32:28 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@ static int	can_use_fork(t_philo *pl)
 {
 	return (pl->left != pl->right
 		&& pl->left->user == pl && pl->right->user == pl);
-}
-
-static int	max_eat_not_exceeded(t_philo *pl)
-{
-	t_table	*tab;
-
-	tab = pl->seat;
-	return (!tab->max_eat || pl->max_eat <= tab->max_eat);
 }
 
 void	pl_take_fork(t_philo *pl)
@@ -45,7 +37,7 @@ void	pl_take_fork(t_philo *pl)
 		pl->right->user = pl;
 		printf("%ld %d has taken a fork\n", interval, pl->rank);
 	}
-	if (can_use_fork(pl) && max_eat_not_exceeded(pl))
+	if (can_use_fork(pl) && !is_max_eat_exceeded(pl))
 	{
 		pl->state = PHILO_EATING;
 		pl->max_eat++;

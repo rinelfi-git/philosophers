@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/09 00:19:24 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:33:33 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,29 +55,29 @@ static void	pl_kill(t_philo *pl)
 
 void	*pl_exec(void *self)
 {
-	t_philo	*pl;
 	t_state	state;
 	long	time;
 
-	pl = to_philo(self);
 	state = PHILO_THINKING;
-	pl_print_state(pl, &state);
-	while (!pl->seat->dead && pl->is_running)
+	pl_print_state(to_philo(self), &state);
+	while (to_philo(self)->is_running)
 	{
 		time = pl_utl_time();
-		pl_check_state(pl, time);
-		if (pl->state == PHILO_THINKING)
-			pl_take_fork(pl);
-		else if (pl->tt.eat <= time)
-			pl_free_fork(pl);
-		if (pl->tt.die <= time)
-			pl_kill(pl);
-		if (is_max_eat_exceeded(pl))
+		pl_check_state(to_philo(self), time);
+		if (to_philo(self)->state == PHILO_THINKING)
+			pl_take_fork(to_philo(self));
+		else if (to_philo(self)->tt.eat <= time)
+			pl_free_fork(to_philo(self));
+		if (is_max_eat_exceeded(to_philo(self)))
 			break ;
-		if (state != pl->state)
-			pl_print_state(pl, &state);
+		if (to_philo(self)->tt.die <= time)
+			pl_kill(to_philo(self));
+		if (state != to_philo(self)->state)
+			pl_print_state(to_philo(self), &state);
 		usleep(EXEC_INTERVAL);
 	}
-	pl_stop(pl->seat);
+	if (to_philo(self)->state == PHILO_DEAD)
+		pl_end(to_philo(self)->seat);
+	printf("STOP %d\n", to_philo(self)->rank);
 	return (0);
 }

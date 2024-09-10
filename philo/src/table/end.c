@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stop.c                                             :+:      :+:    :+:   */
+/*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/09 00:21:04 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:33:41 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_module.h"
 #include "pl_utils.h"
 
-void	pl_stop(t_table *tab)
+void	pl_end(t_table *tab)
 {
 	int		i;
 	t_philo	*pl;
