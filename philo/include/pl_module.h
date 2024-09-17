@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 12:18:15 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/17 19:25:21 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/17 20:18:27 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_philo	t_philo;
 typedef struct s_table	t_table;
 enum e_state
 {
+	PHILO_NONE,
 	PHILO_THINKING,
 	PHILO_EATING,
 	PHILO_DEAD,
@@ -32,6 +33,7 @@ struct s_times
 	long	die;
 	long	eat;
 	long	sleep;
+	long	free;
 };
 struct s_philo
 {

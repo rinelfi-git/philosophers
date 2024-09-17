@@ -8,6 +8,7 @@ SRCs = src/fork/new.c \
 		src/philo/eat.c \
 		src/philo/exec.c \
 		src/philo/free_fork.c \
+		src/philo/has_one_fork.c \
 		src/philo/max_eat_exceeded.c \
 		src/philo/new.c \
 		src/philo/sleep.c \

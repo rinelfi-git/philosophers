@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/17 19:52:22 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/17 20:19:38 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	pl_stop(void *self)
 	if (pl->tt.die <= time)
 	{
 		pl->state = PHILO_DEAD;
+		pl->seat->dead = pl;
 		pl_end(pl->seat);
 	}
 }
@@ -59,7 +60,7 @@ t_philo	*new_philo(int rank, t_fork *left)
 	ret->right = 0;
 	ret->is_running = 0;
 	ret->max_eat = 0;
-	ret->state = PHILO_THINKING;
+	ret->state = PHILO_NONE;
 	ret->seat = 0;
 	ret->run = pl_run;
 	ret->stop = pl_stop;

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/17 19:53:40 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/17 20:32:36 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ void	*pl_exec(void *self)
 {
 	t_state	state;
 	long	time;
+	t_philo	*pl;
 
-	state = PHILO_THINKING;
-	pl_print_state(to_philo(self), &state);
+	pl = to_philo(self);
 	while (to_philo(self)->is_running)
 	{
 		time = pl_utl_time();
-		pl_check_state(to_philo(self), time);
-		if (to_philo(self)->state == PHILO_THINKING)
-			pl_take_fork(to_philo(self));
-		else if (to_philo(self)->tt.eat <= time)
-			pl_free_fork(to_philo(self));
-		if (is_max_eat_exceeded(to_philo(self)) || to_philo(self)->tt.die <= time)
-			to_philo(self)->stop(self);
-		if (state != to_philo(self)->state)
-			pl_print_state(to_philo(self), &state);
+		pl_check_state(pl, time);
+		if (pl->state == PHILO_NONE || pl->state == PHILO_THINKING)
+			pl_take_fork(pl);
+		if (pl->tt.eat <= time || (pl->tt.free <= time && pl_has_one_fork(pl)))
+			pl_free_fork(pl);
+		if (is_max_eat_exceeded(pl) || pl->tt.die <= time)
+			pl->stop(self);
+		if (state != pl->state)
+			pl_print_state(pl, &state);
 		usleep(EXEC_INTERVAL);
 	}
 	return (0);

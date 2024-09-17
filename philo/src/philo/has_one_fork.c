@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   has_one_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/17 20:10:34 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/17 20:21:24 by erijania          #+#    #+#             */
+/*   Updated: 2024/09/17 20:24:33 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_module.h"
-#include "pl_utils.h"
 
-void	pl_end(t_table *tab)
+int	pl_has_one_fork(t_philo *pl)
 {
-	int		i;
-	t_philo	*pl;
+	int	left_only;
+	int	right_only;
 
-	i = 0;
-	while (i < tab->length)
-	{
-		pl = tab->philos[i++];
-		pl->is_running = !tab->dead && !is_max_eat_exceeded(pl);
-		if (is_max_eat_exceeded(pl))
-			pl_free_fork(pl);
-	}
+	left_only = pl->left->user == pl && pl->right->user != pl;
+	right_only = pl->left->user != pl && pl->right->user == pl;
+	return (left_only || right_only);
 }
