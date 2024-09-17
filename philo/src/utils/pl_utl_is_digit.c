@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_utils.h                                         :+:      :+:    :+:   */
+/*   pl_utl_is_digit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 15:49:22 by erijania          #+#    #+#             */
+/*   Created: 2024/09/17 23:37:26 by erijania          #+#    #+#             */
 /*   Updated: 2024/09/17 23:42:11 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PL_UTILS_H
-# define PL_UTILS_H
-# include "pl_philo.h"
-
-int		pl_utl_atoi(const char *str);
-int		pl_utl_error(char *msg, int code);
-int		pl_utl_is_number(char *str);
-void	pl_utl_lst_foreach(t_table *tab, void (*call)());
-long	pl_utl_time(void);
-#endif
+int		pl_utl_is_number(char *str)
+{
+	if (!str)
+		return (0);
+	if (*str == '+' || *str == '-')
+		str++;
+	while (*str >= '0' && *str <= '9')
+		str++;
+	return (*str == 0);
+}

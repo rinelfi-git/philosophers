@@ -24,6 +24,7 @@ SRCs = src/fork/new.c \
 		src/table/to_table.c \
 		src/utils/pl_utl_atoi.c \
 		src/utils/pl_utl_error.c \
+		src/utils/pl_utl_is_digit.c \
 		src/utils/pl_utl_lst_foreach.c \
 		src/utils/pl_utl_timestamp.c \
 		src/philosopher.c \

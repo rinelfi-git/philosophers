@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 13:44:43 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/17 23:52:59 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,26 @@
 #include "pl_utils.h"
 #include <stdlib.h>
 
-static int	is_arg_correct(int ac, const char **av)
+static int	is_arg_correct(int ac, char **av)
 {
-	(void)(av);
+	int	i;
+
 	if (ac < 5)
-		return (pl_utl_error("Error:\n > Too few argument.\n", 0));
+		return (pl_utl_error("Error:\n > Too few arguments.\n", 0));
+	if (ac > 6)
+		return (pl_utl_error("Error:\n > Too many arguments.\n", 0));
+	i = 1;
+	while (i < ac)
+		if (!pl_utl_is_number(av[i++]))
+			return (pl_utl_error("Error:\n > Arguments must be numbers.\n", 0));
+	i = 1;
+	while (i < ac)
+		if (pl_utl_atoi(av[i++]) <= 0)
+			return (pl_utl_error("Error:\n > Numbers must be greater than zero.\n", 0));
 	return (1);
 }
 
-int	main(int ac, const char **av)
+int	main(int ac, char **av)
 {
 	t_table	*tab;
 	int		times[3];
