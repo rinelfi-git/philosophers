@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/10 18:33:41 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:36:21 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ void	pl_end(t_table *tab)
 		pl = tab->philos[i++];
 		pl->is_running = !tab->dead && !is_max_eat_exceeded(pl);
 		if (is_max_eat_exceeded(pl))
-		{
 			pl_free_fork(pl);
-			pl_sleep(pl, pl_utl_time());
-		}
 	}
 }

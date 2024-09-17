@@ -6,15 +6,17 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 22:47:18 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:52:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include "pl_table.h"
 #include "pl_philo.h"
 #include "pl_utils.h"
 #include "pl_fork.h"
-#include <stdlib.h>
-#include <unistd.h>
 
 static void	pl_run(void *self)
 {
@@ -23,6 +25,22 @@ static void	pl_run(void *self)
 	philo = to_philo(self);
 	philo->is_running = 1;
 	pthread_create(&philo->pt, 0, pl_exec, philo);
+}
+
+static void	pl_stop(void *self)
+{
+	t_philo	*pl;
+	long	time;
+
+	pl = to_philo(self);
+	time = pl_utl_time();
+	pl->is_running = 0;
+	pl_free_fork(pl);
+	if (pl->tt.die <= time)
+	{
+		pl->state = PHILO_DEAD;
+		pl_end(pl->seat);
+	}
 }
 
 t_philo	*new_philo(int rank, t_fork *left)
@@ -44,5 +62,6 @@ t_philo	*new_philo(int rank, t_fork *left)
 	ret->state = PHILO_THINKING;
 	ret->seat = 0;
 	ret->run = pl_run;
+	ret->stop = pl_stop;
 	return (ret);
 }

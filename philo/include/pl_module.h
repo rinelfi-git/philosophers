@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 12:18:15 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 15:22:27 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:25:21 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ struct s_philo
 	int			is_running;
 	int			max_eat;
 	void		(*run)(void *);
+	void		(*stop)(void *);
 	t_fork		*left;
 	t_fork		*right;
 	t_state		state;
