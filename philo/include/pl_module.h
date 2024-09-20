@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 12:18:15 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/17 20:18:27 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:15:39 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ struct s_times
 	long	die;
 	long	eat;
 	long	sleep;
-	long	free;
+	long	think;
 };
 struct s_philo
 {

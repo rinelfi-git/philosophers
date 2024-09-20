@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 11:58:29 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 22:24:59 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/20 19:27:49 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void	pl_sleep(t_philo *pl, long time)
 
 	tab = pl->seat;
 	pl->tt.eat = tab->tt->eat + time;
+	pl->tt.think = tab->tt->think + time;
 }
