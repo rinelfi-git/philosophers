@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/20 19:48:48 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/21 11:10:10 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	*pl_exec(void *self)
 	t_philo	*pl;
 
 	pl = to_philo(self);
+	state = PHILO_NONE;
 	if (pl->rank % 2 == 0)
 		usleep(1000);
 	while (to_philo(self)->is_running)
