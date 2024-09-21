@@ -12,7 +12,6 @@ SRCs = src/fork/new.c \
 		src/philo/max_eat_exceeded.c \
 		src/philo/new.c \
 		src/philo/sleep.c \
-		src/philo/stop.c \
 		src/philo/take_fork.c \
 		src/philo/think.c \
 		src/philo/to_philo.c \

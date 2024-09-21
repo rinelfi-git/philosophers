@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/17 23:52:59 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/21 11:14:05 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static int	is_arg_correct(int ac, char **av)
 	i = 1;
 	while (i < ac)
 		if (pl_utl_atoi(av[i++]) <= 0)
-			return (pl_utl_error("Error:\n > Numbers must be greater than zero.\n", 0));
+			return (pl_utl_error(
+					"Error:\n > Numbers must be greater than zero.\n", 0));
 	return (1);
 }
 

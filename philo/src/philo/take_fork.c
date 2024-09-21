@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/20 19:20:44 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/21 11:12:39 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	take_left_first(t_philo *pl)
 		printf("%ld %d has taken a fork\n", interval, pl->rank);
 	}
 }
+
 static void	take_right_first(t_philo *pl)
 {
 	long	interval;
