@@ -6,11 +6,11 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 20:21:24 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/17 20:24:33 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/21 12:36:53 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_module.h"
+#include "pl_types.h"
 
 int	pl_has_one_fork(t_philo *pl)
 {

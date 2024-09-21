@@ -6,11 +6,11 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 23:49:02 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/10 18:26:39 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/21 12:36:53 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_module.h"
+#include "pl_types.h"
 
 int	is_max_eat_exceeded(t_philo *pl)
 {

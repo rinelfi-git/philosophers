@@ -6,11 +6,11 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 11:10:10 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/21 12:36:53 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_module.h"
+#include "pl_types.h"
 #include "pl_utils.h"
 #include "pl_table.h"
 #include <unistd.h>
@@ -62,7 +62,7 @@ void	*pl_exec(void *self)
 	pl = to_philo(self);
 	state = PHILO_NONE;
 	if (pl->rank % 2 == 0)
-		usleep(1000);
+		usleep(WAIT_START);
 	while (to_philo(self)->is_running)
 	{
 		time = pl_utl_time();

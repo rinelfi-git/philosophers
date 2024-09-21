@@ -6,11 +6,11 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/17 20:10:34 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/21 12:36:53 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_module.h"
+#include "pl_types.h"
 #include "pl_utils.h"
 
 void	pl_end(t_table *tab)

@@ -6,12 +6,12 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/08 13:54:50 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/21 12:36:53 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "pl_module.h"
+#include "pl_types.h"
 #include "pl_utils.h"
 #include "pl_fork.h"
 #include "pl_philo.h"
@@ -45,7 +45,7 @@ t_table	*new_table(int length)
 	new = (t_table *)malloc(sizeof(t_table));
 	if (!new)
 		exit(1);
-	pthread_mutex_init(&new->lock, 0);
+	pthread_mutex_init(&new->dead_lock, 0);
 	new->philos = (t_philo **)malloc(sizeof(t_philo *) * length);
 	new->forks = (t_fork **)malloc(sizeof(t_fork *) * length);
 	new->length = length;
