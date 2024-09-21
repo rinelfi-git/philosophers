@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 11:14:05 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/21 11:39:38 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,25 @@ static int	is_arg_correct(int ac, char **av)
 {
 	int	i;
 
-	if (ac < 5)
-		return (pl_utl_error("Error:\n > Too few arguments.\n", 0));
-	if (ac > 6)
-		return (pl_utl_error("Error:\n > Too many arguments.\n", 0));
+	if (ac < 5 || ac > 6)
+		return (pl_utl_error("Error:\n > Format should "
+				"(./philo philo_nbr tt_die tt_eat tt_sleep [max_eat]).\n", 0));
 	i = 1;
 	while (i < ac)
 		if (!pl_utl_is_number(av[i++]))
 			return (pl_utl_error("Error:\n > Arguments must be numbers.\n", 0));
 	i = 1;
 	while (i < ac)
+		if (!pl_utl_is_integer(av[i++]))
+			return (pl_utl_error("Error:\n"
+					"> Integer values only [-2147483648, 2147483647].\n", 0));
+	i = 1;
+	while (i < ac)
 		if (pl_utl_atoi(av[i++]) <= 0)
 			return (pl_utl_error(
 					"Error:\n > Numbers must be greater than zero.\n", 0));
+	if (pl_utl_atoi(av[1]) > 200)
+		return(pl_utl_error("Warning:\n > It's too much of philosophers.\n", 0));
 	return (1);
 }
 
