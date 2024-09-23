@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 11:12:39 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:10:04 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	pl_take_fork(t_philo *pl)
 	if (can_use_fork(pl) && !is_max_eat_exceeded(pl))
 	{
 		pl->state = PHILO_EATING;
-		pl->tt.die = pl->seat->tt->die + pl_utl_time();
+		pl->tt.die = pl->seat->tt.die + pl_utl_time();
 		pl->max_eat++;
 	}
 }

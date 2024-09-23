@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:10:33 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 12:36:53 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:10:26 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,5 @@ void	pl_free(t_table *tab)
 		free(tab->philos[i++]);
 	free(tab->forks);
 	free(tab->philos);
-	free(tab->tt);
 	free(tab);
 }

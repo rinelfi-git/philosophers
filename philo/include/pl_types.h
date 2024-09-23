@@ -13,7 +13,7 @@
 #ifndef pl_types_H
 # define pl_types_H
 # define EXEC_INTERVAL 100
-# define WAIT_START 500
+# define WAIT_START 400
 # define TT_THINK 1
 # include <pthread.h>
 # include <stdio.h>
@@ -62,7 +62,7 @@ struct s_table
 	int				length;
 	int				max_eat;
 	long			start;
-	t_time			*tt;
+	t_time			tt;
 };
 struct s_fork
 {

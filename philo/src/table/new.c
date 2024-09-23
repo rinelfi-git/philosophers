@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 12:36:53 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:11:33 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ t_table	*new_table(int length)
 	new->length = length;
 	new->start = pl_utl_time();
 	new->max_eat = 0;
-	new->tt = 0;
+	new->tt.die = 0;
+	new->tt.eat = 0;
+	new->tt.sleep = 0;
+	new->tt.think = TT_THINK;
 	new->dead = 0;
 	init_vars(new);
 	return (new);

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 12:34:36 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 17:57:58 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,14 @@ static void	pl_stop(void *self)
 	if (pl->tt.die <= time)
 	{
 		pthread_mutex_lock(&tab->dead_lock);
-		pl->state = PHILO_DEAD;
-		tab->dead = pl;
-		pthread_mutex_unlock(&tab->dead_lock);
+		if (!tab->dead)
+		{
+			pl->state = PHILO_DEAD;
+			tab->dead = pl;
+			printf("%ld %d died\n", time - tab->start, pl->rank);
+		}
 		pl_end(pl->seat);
+		pthread_mutex_unlock(&tab->dead_lock);
 	}
 }
 
