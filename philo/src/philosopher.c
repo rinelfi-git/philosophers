@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/23 19:46:06 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:53:20 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	pl_start(t_table *tab)
 	t_philo	*pl;
 
 	indexes[0] = 0;
-	while (indexes[0] < tab->length / 2)
+	while (indexes[0] <= tab->length / 2)
 	{
 		indexes[1] = tab->length - 1 - indexes[0];
 		pl = &tab->philos[indexes[0]];

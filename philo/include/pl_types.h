@@ -13,8 +13,8 @@
 #ifndef pl_types_H
 # define pl_types_H
 # define EXEC_INTERVAL 100
-# define WAIT_START 400
-# define TT_THINK 1
+# define WAIT_START 300
+# define TT_THINK 2
 # include <pthread.h>
 # include <stdio.h>
 

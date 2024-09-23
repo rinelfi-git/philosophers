@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/23 19:46:03 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 20:23:41 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,13 @@ static int	pl_should_eat(t_philo *pl)
 {
 	long	time;
 
-	time = pl_utl_time();
+	if (!pl->is_running)
+		return (0);
+	if (is_max_eat_exceeded(pl))
+		return (0);
 	if (pl->state == PHILO_NONE)
 		return (1);
+	time = pl_utl_time();
 	if (pl->state == PHILO_THINKING && pl->tt.think <= time)
 		return (1);
 	return (0);
