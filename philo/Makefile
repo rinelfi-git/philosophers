@@ -2,15 +2,15 @@ NAME = philo
 CC = cc
 CARG = -Werror -Wextra -Wall
 INCs = -Iinclude
-SRCs = src/fork/new.c \
+SRCs = src/fork/init.c \
 		src/fork/to_fork.c \
 		src/philo/check_state.c \
 		src/philo/eat.c \
 		src/philo/exec.c \
 		src/philo/free_fork.c \
 		src/philo/has_one_fork.c \
+		src/philo/init.c \
 		src/philo/max_eat_exceeded.c \
-		src/philo/new.c \
 		src/philo/sleep.c \
 		src/philo/take_fork.c \
 		src/philo/think.c \
@@ -19,7 +19,7 @@ SRCs = src/fork/new.c \
 		src/table/end.c \
 		src/table/free.c \
 		src/table/init_times.c \
-		src/table/new.c \
+		src/table/init.c \
 		src/table/to_table.c \
 		src/utils/pl_utl_atoi.c \
 		src/utils/pl_utl_error.c \

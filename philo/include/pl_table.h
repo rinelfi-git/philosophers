@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 12:36:53 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:18:34 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PL_TABLE_H
 # include "pl_types.h"
 
-t_table	*new_table(int length);
+void	init_table(t_table *tab, int length);
 void	pl_init_times(t_table *tab, int *times);
 void	pl_free(t_table *tab);
 t_table	*to_table(void *obj);

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 13:02:24 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:46:06 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,30 @@
 
 static void	pl_start(t_table *tab)
 {
-	int	i;
-	int	mirror;
-	
-	i = 0;
-	while (i <= tab->length / 2)
+	int		indexes[2];
+	t_philo	*pl;
+
+	indexes[0] = 0;
+	while (indexes[0] < tab->length / 2)
 	{
-		mirror = tab->length - 1 - i;
-		tab->philos[i]->run(tab->philos[i]);
-		if (mirror > i)
-			tab->philos[mirror]->run(tab->philos[mirror]);
-		i++;
+		indexes[1] = tab->length - 1 - indexes[0];
+		pl = &tab->philos[indexes[0]];
+		pl->run(pl);
+		if (indexes[1] > indexes[0])
+		{
+			pl = &tab->philos[indexes[1]];
+			pl->run(pl);
+		}
+		indexes[0]++;
 	}
 }
 
 static void	pl_join(void *self)
 {
-	pthread_join(to_philo(self)->pt, 0);
+	t_philo	*pl;
+
+	pl = to_philo(self);
+	pthread_join(pl->thread, 0);
 }
 
 int	philosopher(t_table *tab)

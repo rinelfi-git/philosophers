@@ -40,7 +40,7 @@ struct s_times
 };
 struct s_philo
 {
-	pthread_t	pt;
+	pthread_t	thread;
 	int			id;
 	int			rank;
 	int			is_running;
@@ -51,12 +51,12 @@ struct s_philo
 	t_fork		*right;
 	t_state		state;
 	t_time		tt;
-	t_table		*seat;
+	t_table		*tab;
 };
 struct s_table
 {
-	t_fork			**forks;
-	t_philo			**philos;
+	t_fork			*forks;
+	t_philo			*philos;
 	t_philo			*dead;
 	pthread_mutex_t	dead_lock;
 	int				length;

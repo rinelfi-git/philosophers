@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new.c                                              :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/23 17:57:58 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:45:44 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 
 static void	pl_run(void *self)
 {
-	t_philo	*philo;
+	t_philo	*pl;
 
-	philo = to_philo(self);
-	philo->is_running = 1;
-	pthread_create(&philo->pt, 0, pl_exec, philo);
+	pl = to_philo(self);
+	pl->is_running = 1;
+	pthread_create(&(pl->thread), 0, pl_exec, self);
 }
 
 static void	pl_stop(void *self)
@@ -36,7 +36,7 @@ static void	pl_stop(void *self)
 	pl = to_philo(self);
 	time = pl_utl_time();
 	pl->is_running = 0;
-	tab = pl->seat;
+	tab = pl->tab;
 	pl_free_fork(pl);
 	if (pl->tt.die <= time)
 	{
@@ -45,32 +45,26 @@ static void	pl_stop(void *self)
 		{
 			pl->state = PHILO_DEAD;
 			tab->dead = pl;
-			printf("%ld %d died\n", time - tab->start, pl->rank);
+			printf("%ld %d died\n", time - tab->start, pl->id);
 		}
-		pl_end(pl->seat);
+		pl_end(pl->tab);
 		pthread_mutex_unlock(&tab->dead_lock);
 	}
 }
 
-t_philo	*new_philo(int rank, t_fork *left)
+void	init_philo(t_philo *pl, int id, t_fork *left)
 {
-	t_philo	*ret;
-
-	ret = (t_philo *)malloc(sizeof(t_philo));
-	if (!ret)
-		exit(1);
-	ret->id = rank;
-	ret->rank = rank + 1;
-	ret->tt.die = 0;
-	ret->tt.eat = 0;
-	ret->tt.sleep = 0;
-	ret->left = left;
-	ret->right = 0;
-	ret->is_running = 0;
-	ret->max_eat = 0;
-	ret->state = PHILO_NONE;
-	ret->seat = 0;
-	ret->run = pl_run;
-	ret->stop = pl_stop;
-	return (ret);
+	pl->id = id;
+	pl->rank = id + 1;
+	pl->tt.die = 0;
+	pl->tt.eat = 0;
+	pl->tt.sleep = 0;
+	pl->left = left;
+	pl->right = 0;
+	pl->is_running = 0;
+	pl->max_eat = 0;
+	pl->state = PHILO_NONE;
+	pl->tab = 0;
+	pl->run = pl_run;
+	pl->stop = pl_stop;
 }

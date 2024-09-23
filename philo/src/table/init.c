@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new.c                                              :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/23 18:11:33 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:45:16 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,45 @@
 
 static void	init_vars(t_table *tab)
 {
-	int	i;
+	int		i;
+	t_philo	*pl;
+	t_fork	*fk;
 
 	if (!tab)
 		return ;
 	i = 0;
 	while (i < tab->length)
 	{
-		tab->forks[i] = new_fork();
-		tab->philos[i] = new_philo(i, tab->forks[i]);
-		tab->philos[i]->seat = tab;
-		i++;
+		fk = &tab->forks[i];
+		pl = &tab->philos[i];
+		init_fork(fk);
+		init_philo(pl, i++, fk);
+		pl->tab = tab;
 	}
 	i = 0;
 	while (i < tab->length)
 	{
-		tab->philos[i]->right = tab->forks[(i + 1) % tab->length];
+		pl = &tab->philos[i];
+		fk = &tab->forks[(i + 1) % tab->length];
+		pl->right = fk;
 		i++;
 	}
 }
 
-t_table	*new_table(int length)
+void	init_table(t_table *tab, int length)
 {
-	t_table	*new;
-
-	new = (t_table *)malloc(sizeof(t_table));
-	if (!new)
+	pthread_mutex_init(&tab->dead_lock, 0);
+	tab->philos = (t_philo *)malloc(sizeof(t_philo) * length);
+	tab->forks = (t_fork *)malloc(sizeof(t_fork) * length);
+	if (!tab->philos || !tab->forks)
 		exit(1);
-	pthread_mutex_init(&new->dead_lock, 0);
-	new->philos = (t_philo **)malloc(sizeof(t_philo *) * length);
-	new->forks = (t_fork **)malloc(sizeof(t_fork *) * length);
-	new->length = length;
-	new->start = pl_utl_time();
-	new->max_eat = 0;
-	new->tt.die = 0;
-	new->tt.eat = 0;
-	new->tt.sleep = 0;
-	new->tt.think = TT_THINK;
-	new->dead = 0;
-	init_vars(new);
-	return (new);
+	tab->length = length;
+	tab->start = pl_utl_time();
+	tab->max_eat = 0;
+	tab->tt.die = 0;
+	tab->tt.eat = 0;
+	tab->tt.sleep = 0;
+	tab->tt.think = TT_THINK;
+	tab->dead = 0;
+	init_vars(tab);
 }

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 11:39:38 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:19:06 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	is_arg_correct(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	t_table	*tab;
+	t_table	tab;
 	int		times[3];
 	int		size;
 
@@ -53,9 +53,9 @@ int	main(int ac, char **av)
 	times[0] = pl_utl_atoi(av[2]);
 	times[1] = pl_utl_atoi(av[3]);
 	times[2] = pl_utl_atoi(av[4]);
-	tab = new_table(size);
-	pl_init_times(tab, times);
+	init_table(&tab, size);
+	pl_init_times(&tab, times);
 	if (ac == 6)
-		tab->max_eat = pl_utl_atoi(av[5]);
-	return (philosopher(tab));
+		tab.max_eat = pl_utl_atoi(av[5]);
+	return (philosopher(&tab));
 }

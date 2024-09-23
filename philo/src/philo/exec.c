@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/23 18:08:17 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 19:46:03 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	pl_print_state(t_philo *pl, t_state *curr)
 	long	interval;
 	char	*state_str;
 
-	tab = pl->seat;
+	tab = pl->tab;
 	interval = pl_utl_time() - tab->start;
 	state_str = pl_str_state(pl->state);
 	if (state_str)
@@ -65,7 +65,7 @@ void	*pl_exec(void *self)
 	state = PHILO_NONE;
 	if (pl->rank % 2 == 0)
 		usleep(WAIT_START);
-	while (to_philo(self)->is_running)
+	while (pl->is_running)
 	{
 		time = pl_utl_time();
 		pl_check_state(pl, time);

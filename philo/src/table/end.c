@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 12:36:53 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:29:00 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	pl_end(t_table *tab)
 	i = 0;
 	while (i < tab->length)
 	{
-		pl = tab->philos[i++];
+		pl = &tab->philos[i++];
 		pl->is_running = !tab->dead && !is_max_eat_exceeded(pl);
 		if (is_max_eat_exceeded(pl))
 			pl_free_fork(pl);

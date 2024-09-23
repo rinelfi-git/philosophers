@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:10:33 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/23 18:10:26 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:38:08 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,15 @@
 void	pl_free(t_table *tab)
 {
 	int		i;
+	t_fork	*fk;
 
 	i = 0;
 	while (i < tab->length)
 	{
-		pthread_mutex_unlock(&tab->forks[i]->lock);
-		pthread_mutex_destroy(&tab->forks[i]->lock);
-		free(tab->forks[i]);
-		i++;
+		fk = &tab->forks[i++];
+		pthread_mutex_unlock(&fk->lock);
+		pthread_mutex_destroy(&fk->lock);
 	}
-	i = 0;
-	while (i < tab->length)
-		free(tab->philos[i++]);
 	free(tab->forks);
 	free(tab->philos);
-	free(tab);
 }
