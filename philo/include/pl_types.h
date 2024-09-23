@@ -14,7 +14,7 @@
 # define pl_types_H
 # define EXEC_INTERVAL 100
 # define WAIT_START 500
-# define TT_THINK 5
+# define TT_THINK 1
 # include <pthread.h>
 # include <stdio.h>
 
