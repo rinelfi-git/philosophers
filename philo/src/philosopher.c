@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/23 19:53:20 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:58:45 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,14 @@
 
 static void	pl_start(t_table *tab)
 {
-	int		indexes[2];
+	int		i;
 	t_philo	*pl;
 
-	indexes[0] = 0;
-	while (indexes[0] <= tab->length / 2)
+	i = 0;
+	while (i < tab->length)
 	{
-		indexes[1] = tab->length - 1 - indexes[0];
-		pl = &tab->philos[indexes[0]];
+		pl = &tab->philos[i++];
 		pl->run(pl);
-		if (indexes[1] > indexes[0])
-		{
-			pl = &tab->philos[indexes[1]];
-			pl->run(pl);
-		}
-		indexes[0]++;
 	}
 }
 
@@ -45,10 +38,42 @@ static void	pl_join(void *self)
 	pthread_join(pl->thread, 0);
 }
 
+static int	are_philos_alive(t_table *tab)
+{
+	int	i;
+
+	i = 0;
+	while (i < tab->length)
+	{
+		if (!tab->philos[i++].is_running)
+			return (0);
+	}
+	return (1);
+}
+
+static void	*monitoring(void *mon)
+{
+	t_table	*tab;
+	int		sleep;
+
+	usleep(WAIT_START);
+	sleep = EXEC_INTERVAL / 2;
+	tab = to_table(mon);
+	while (!tab->dead && are_philos_alive(tab))
+		usleep(sleep);
+	pl_end(tab);
+	return(0);
+}
+
 int	philosopher(t_table *tab)
 {
+	pthread_t	monitor;
+
 	pl_start(tab);
+	if (pthread_create(&monitor, 0, monitoring, tab) != 0)
+		exit(1);
 	pl_utl_lst_foreach(tab, pl_join);
+	pthread_join(monitor, 0);
 	pl_free(tab);
 	return (0);
 }

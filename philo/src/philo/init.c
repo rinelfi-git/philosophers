@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/23 20:12:19 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:53:42 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void	pl_run(void *self)
 
 	pl = to_philo(self);
 	pl->is_running = 1;
-	pthread_create(&(pl->thread), 0, pl_exec, self);
+	if (pthread_create(&(pl->thread), 0, pl_exec, self) != 0)
+		exit(2);
 }
 
 static void	pl_stop(void *self)
@@ -45,9 +46,8 @@ static void	pl_stop(void *self)
 		if (!tab->dead)
 		{
 			tab->dead = pl;
-			printf("%ld %d died\n", time - tab->start, pl->id);
+			printf("%ld %d died\n", time - tab->start, pl->rank);
 		}
-		pl_end(pl->tab);
 		pthread_mutex_unlock(&tab->dead_lock);
 	}
 }
@@ -56,9 +56,9 @@ void	init_philo(t_philo *pl, int id, t_fork *left)
 {
 	pl->id = id;
 	pl->rank = id + 1;
-	pl->tt.die = 0;
-	pl->tt.eat = 0;
-	pl->tt.sleep = 0;
+	pl->tt.die = 1;
+	pl->tt.eat = 1;
+	pl->tt.sleep = 1;
 	pl->left = left;
 	pl->right = 0;
 	pl->is_running = 0;
