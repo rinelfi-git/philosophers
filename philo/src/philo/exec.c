@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/24 20:08:53 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:49:32 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	pl_print_state(t_philo *pl, t_state *curr)
 	char	*state_str;
 
 	tab = pl->tab;
-	interval = pl_utl_time() - tab->start;
+	interval = pl_utl_timestamp() - tab->start;
 	state_str = pl_str_state(pl->state);
 	if (state_str)
 	{
@@ -53,7 +53,7 @@ static int	pl_should_eat(t_philo *pl)
 		return (0);
 	if (pl->state == PHILO_NONE)
 		return (1);
-	time = pl_utl_time();
+	time = pl_utl_timestamp();
 	if (pl->state == PHILO_THINKING && pl->tt.think <= time)
 		return (1);
 	return (0);
@@ -72,7 +72,7 @@ void	*pl_exec(void *self)
 	usleep(WAIT_START);
 	while (pl->is_running)
 	{
-		time = pl_utl_time();
+		time = pl_utl_timestamp();
 		pl_check_state(pl, time);
 		if (pl_should_eat(pl))
 			pl_take_fork(pl);

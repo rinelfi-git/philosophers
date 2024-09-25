@@ -25,6 +25,7 @@ SRCs = src/fork/init.c \
 		src/utils/pl_utl_error.c \
 		src/utils/pl_utl_is_digit.c \
 		src/utils/pl_utl_lst_foreach.c \
+		src/utils/pl_utl_message.c \
 		src/utils/pl_utl_timestamp.c \
 		src/philosopher.c \
 		src/main.c

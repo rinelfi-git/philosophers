@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_utl_timestamp.c                                 :+:      :+:    :+:   */
+/*   pl_utl_message.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 17:09:39 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 17:49:32 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/25 17:48:24 by erijania          #+#    #+#             */
+/*   Updated: 2024/09/25 17:51:01 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/time.h>
+#include "pl_types.h"
+#include "pl_utils.h"
+#include <stdio.h>
 
-long	pl_utl_timestamp(void)
+void	pl_utl_message(t_philo *pl, char *state)
 {
-	long			timestamp;
-	struct timeval	time;
+	long	time;
+	t_table	*tab;
 
-	gettimeofday(&time, 0);
-	timestamp = time.tv_usec / 1000;
-	timestamp = time.tv_sec * 1000 + timestamp;
-	return (timestamp);
+	time = pl_utl_timestamp();
+	tab = pl->tab;
+	printf("%ld %d %s\n", time - tab->start, pl->rank, state);
 }

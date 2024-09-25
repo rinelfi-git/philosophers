@@ -24,6 +24,7 @@ typedef struct s_times	t_time;
 typedef struct s_fork	t_fork;
 typedef struct s_philo	t_philo;
 typedef struct s_table	t_table;
+typedef pthread_mutex_t	t_sync;
 enum e_state
 {
 	PHILO_NONE,
@@ -42,6 +43,7 @@ struct s_times
 struct s_philo
 {
 	pthread_t	thread;
+	t_sync		run_lock;
 	int			id;
 	int			rank;
 	int			is_running;
@@ -56,18 +58,18 @@ struct s_philo
 };
 struct s_table
 {
-	t_fork			*forks;
-	t_philo			*philos;
-	t_philo			*dead;
-	pthread_mutex_t	dead_lock;
-	int				length;
-	int				max_eat;
-	long			start;
-	t_time			tt;
+	t_sync	dead_lock;
+	t_fork	*forks;
+	t_philo	*philos;
+	t_philo	*dead;
+	int		length;
+	int		max_eat;
+	long	start;
+	t_time	tt;
 };
 struct s_fork
 {
-	pthread_mutex_t	lock;
-	t_philo			*user;
+	t_sync	lock;
+	t_philo	*user;
 };
 #endif
