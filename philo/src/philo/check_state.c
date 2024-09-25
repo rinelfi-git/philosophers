@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/24 20:08:39 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:26:18 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	pl_check_state(t_philo *pl, long time)
 {
 	t_table	*tab;
-	
+
 	tab = pl->tab;
 	if (pl->state == PHILO_EATING)
 		pl_eat(pl, time);

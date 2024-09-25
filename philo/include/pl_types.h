@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef pl_types_H
-# define pl_types_H
+#ifndef PL_TYPES_H
+# define PL_TYPES_H
 # define EXEC_INTERVAL 500
 # define EVEN_WAIT_START 1000
 # define WAIT_START 100

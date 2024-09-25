@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/24 19:58:45 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:25:54 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	*monitoring(void *mon)
 	while (!tab->dead && are_philos_alive(tab))
 		usleep(sleep);
 	pl_end(tab);
-	return(0);
+	return (0);
 }
 
 int	philosopher(t_table *tab)

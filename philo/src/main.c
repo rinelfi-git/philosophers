@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/23 18:19:06 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:25:25 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static int	is_arg_correct(int ac, char **av)
 			return (pl_utl_error(
 					"Error:\n > Numbers must be greater than zero.\n", 0));
 	if (pl_utl_atoi(av[1]) > 200)
-		return(pl_utl_error("Warning:\n > It's too much of philosophers.\n", 0));
+		return (pl_utl_error("Warning:\n > "
+				"It's too much of philosophers.\n", 0));
 	return (1);
 }
 
