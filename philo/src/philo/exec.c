@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 20:14:16 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:17:26 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	*pl_exec(void *self)
 			pl_take_fork(pl);
 		if (pl->tt.eat <= time)
 			pl_free_fork(pl);
-		if (is_max_eat_exceeded(pl) || (pl->tt.die + TT_THINK + 5) <= time)
+		if (is_max_eat_exceeded(pl) || (pl->tt.die + TT_THINK + 3) <= time)
 			pl->stop(pl);
 		if (state != pl->state)
 			pl_print_state(pl, &state);

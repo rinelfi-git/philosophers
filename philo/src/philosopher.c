@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 20:14:16 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:17:26 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	are_philos_alive(t_table *tab)
 	{
 		pl = &tab->philos[i++];
 		pthread_mutex_lock(&pl->time_lock);
-		stoped = (pl->tt.die + TT_THINK + 5) <= time
+		stoped = (pl->tt.die + TT_THINK + 3) <= time
 				|| is_max_eat_exceeded(pl);
 		pthread_mutex_unlock(&pl->time_lock);
 		if (stoped)
