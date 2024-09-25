@@ -6,12 +6,11 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 17:49:32 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:14:16 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 #include "pl_table.h"
 #include "pl_philo.h"
@@ -40,13 +39,13 @@ static void	pl_stop(void *self)
 	tab = pl->tab;
 	pl->state = PHILO_DEAD;
 	pl_free_fork(pl);
-	if (pl->tt.die <= time)
+	if ((pl->tt.die + TT_THINK + 5) <= time)
 	{
 		pthread_mutex_lock(&tab->dead_lock);
 		if (!tab->dead)
 		{
 			tab->dead = pl;
-			printf("%ld %d died\n", time - tab->start, pl->rank);
+			pl_utl_message(pl, "died");
 		}
 		pthread_mutex_unlock(&tab->dead_lock);
 	}
@@ -54,6 +53,8 @@ static void	pl_stop(void *self)
 
 void	init_philo(t_philo *pl, int id, t_fork *left)
 {
+	pthread_mutex_init(&pl->self_lock, 0);
+	pthread_mutex_init(&pl->time_lock, 0);
 	pl->id = id;
 	pl->rank = id + 1;
 	pl->tt.die = 1;

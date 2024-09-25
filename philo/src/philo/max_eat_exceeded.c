@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 23:49:02 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/24 19:22:37 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:45:34 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 int	is_max_eat_exceeded(t_philo *pl)
 {
 	t_table	*tab;
+	int		exceeded;
 
 	tab = pl->tab;
-	return (tab->max_eat && pl->max_eat > tab->max_eat);
+	pthread_mutex_lock(&tab->self_lock);
+	exceeded = tab->max_eat && pl->max_eat > tab->max_eat;
+	pthread_mutex_unlock(&tab->self_lock);
+	return (exceeded);
 }

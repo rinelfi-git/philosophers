@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 17:49:32 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:05:45 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ static void	init_vars(t_table *tab)
 
 void	init_table(t_table *tab, int length)
 {
+	pthread_mutex_init(&tab->self_lock, 0);
 	pthread_mutex_init(&tab->dead_lock, 0);
+	pthread_mutex_init(&tab->print_lock, 0);
 	tab->philos = (t_philo *)malloc(sizeof(t_philo) * length);
 	tab->forks = (t_fork *)malloc(sizeof(t_fork) * length);
 	if (!tab->philos || !tab->forks)

@@ -12,9 +12,9 @@
 
 #ifndef PL_TYPES_H
 # define PL_TYPES_H
-# define EXEC_INTERVAL 500
-# define EVEN_WAIT_START 1000
-# define WAIT_START 100
+# define EXEC_INTERVAL 100
+# define EVEN_WAIT_START 500
+# define WAIT_START 1000
 # define TT_THINK 1
 # include <pthread.h>
 # include <stdio.h>
@@ -43,7 +43,8 @@ struct s_times
 struct s_philo
 {
 	pthread_t	thread;
-	t_sync		run_lock;
+	t_sync		self_lock;
+	t_sync		time_lock;
 	int			id;
 	int			rank;
 	int			is_running;
@@ -58,7 +59,9 @@ struct s_philo
 };
 struct s_table
 {
+	t_sync	self_lock;
 	t_sync	dead_lock;
+	t_sync	print_lock;
 	t_fork	*forks;
 	t_philo	*philos;
 	t_philo	*dead;
@@ -69,7 +72,7 @@ struct s_table
 };
 struct s_fork
 {
-	t_sync	lock;
+	t_sync	use_lock;
 	t_philo	*user;
 };
 #endif

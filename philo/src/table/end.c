@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/24 19:52:28 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:39:28 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,21 @@
 void	pl_end(t_table *tab)
 {
 	int		i;
+	int		everyone_is_alive;
+	int		exceeded;
 	t_philo	*pl;
 
 	i = 0;
+	pthread_mutex_lock(&tab->dead_lock);
+	everyone_is_alive = !tab->dead;
+	pthread_mutex_unlock(&tab->dead_lock);
 	while (i < tab->length)
 	{
 		pl = &tab->philos[i++];
-		pl->is_running = !tab->dead && !is_max_eat_exceeded(pl);
-		if (is_max_eat_exceeded(pl))
+		exceeded = is_max_eat_exceeded(pl);
+		if (exceeded)
 			pl_free_fork(pl);
+		if (!everyone_is_alive)
+			pl->stop(pl);
 	}
 }

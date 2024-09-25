@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 17:49:32 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/25 20:14:16 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	pl_print_state(t_philo *pl, t_state *curr)
 	state_str = pl_str_state(pl->state);
 	if (state_str)
 	{
-		printf("%ld %d %s\n", interval, pl->rank, state_str);
+		pl_utl_message(pl, state_str);
 		*curr = pl->state;
 	}
 }
@@ -47,8 +47,6 @@ static int	pl_should_eat(t_philo *pl)
 {
 	long	time;
 
-	if (!pl->is_running)
-		return (0);
 	if (is_max_eat_exceeded(pl))
 		return (0);
 	if (pl->state == PHILO_NONE)
@@ -78,8 +76,8 @@ void	*pl_exec(void *self)
 			pl_take_fork(pl);
 		if (pl->tt.eat <= time)
 			pl_free_fork(pl);
-		if (is_max_eat_exceeded(pl) || pl->tt.die <= time)
-			pl->stop(self);
+		if (is_max_eat_exceeded(pl) || (pl->tt.die + TT_THINK + 5) <= time)
+			pl->stop(pl);
 		if (state != pl->state)
 			pl_print_state(pl, &state);
 		usleep(EXEC_INTERVAL);
