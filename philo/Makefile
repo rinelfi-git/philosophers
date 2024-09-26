@@ -1,19 +1,15 @@
 NAME = philo
 CC = cc
-CARG = -Werror -Wextra -Wall
+CARG = -Werror -Wextra -Wall -fsanitize=thread -g
 INCs = -Iinclude
 SRCs = src/fork/init.c \
 		src/fork/to_fork.c \
 		src/philo/check_state.c \
-		src/philo/eat.c \
 		src/philo/exec.c \
 		src/philo/free_fork.c \
-		src/philo/has_one_fork.c \
 		src/philo/init.c \
 		src/philo/max_eat_exceeded.c \
-		src/philo/sleep.c \
 		src/philo/take_fork.c \
-		src/philo/think.c \
 		src/philo/to_philo.c \
 		src/philo/to_thread.c \
 		src/table/end.c \

@@ -12,10 +12,11 @@
 
 #ifndef PL_TYPES_H
 # define PL_TYPES_H
-# define EXEC_INTERVAL 100
+# define EXEC_INTERVAL 500
 # define EVEN_WAIT_START 500
 # define WAIT_START 1000
-# define TT_THINK 1
+# define TT_THINK 2
+# define ROOM 5
 # include <pthread.h>
 # include <stdio.h>
 

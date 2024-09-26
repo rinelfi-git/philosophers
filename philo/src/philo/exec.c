@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/26 09:26:32 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:19:11 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,27 @@ static int	pl_should_eat(t_philo *pl)
 void	*pl_exec(void *self)
 {
 	t_state	state;
-	long	time;
 	t_philo	*pl;
+	int		running;
 
 	pl = to_philo(self);
 	state = PHILO_NONE;
+	running = 1;
+	usleep(WAIT_START);
 	if (pl->rank % 2 == 0)
 		usleep(EVEN_WAIT_START);
-	usleep(WAIT_START);
-	while (pl->is_running)
+	while (running)
 	{
-		time = pl_utl_timestamp();
-		pl_check_state(pl, time);
 		if (pl_should_eat(pl))
 			pl_take_fork(pl);
-		if (pl->tt.eat <= time)
-			pl_free_fork(pl);
-		if (is_max_eat_exceeded(pl) || (pl->tt.die + TT_THINK + 3) <= time)
+		pl_check_state(pl);
+		if (is_max_eat_exceeded(pl) || (pl->tt.die + ROOM) <= pl_utl_timestamp())
 			pl->stop(pl);
 		if (state != pl->state)
 			pl_print_state(pl, &state);
+		pthread_mutex_lock(&pl->self_lock);
+		running = pl->is_running;
+		pthread_mutex_unlock(&pl->self_lock);
 		usleep(EXEC_INTERVAL);
 	}
 	return (0);

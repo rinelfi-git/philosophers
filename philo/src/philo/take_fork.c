@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 19:36:18 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:00:23 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	pl_take_fork(t_philo *pl)
 		pl->state = PHILO_EATING;
 		pthread_mutex_lock(&pl->time_lock);
 		pl->tt.die = pl->tab->tt.die + pl_utl_timestamp();
-		pthread_mutex_unlock(&pl->time_lock);
 		pl->max_eat++;
+		pthread_mutex_unlock(&pl->time_lock);
 	}
 }

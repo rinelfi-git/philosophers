@@ -6,11 +6,12 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:49:06 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 18:42:00 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/26 19:17:44 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_philo.h"
+#include "pl_utils.h"
 
 void	pl_free_fork(t_philo *pl)
 {
@@ -31,6 +32,8 @@ void	pl_free_fork(t_philo *pl)
 		freed++;
 	}
 	pthread_mutex_unlock(&pl->right->use_lock);
+	pthread_mutex_lock(&pl->self_lock);
 	if (pl->state == PHILO_EATING && freed == 2)
 		pl->state = PHILO_SLEEPING;
+	pthread_mutex_unlock(&pl->self_lock);
 }
