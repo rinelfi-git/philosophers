@@ -15,8 +15,8 @@
 # define EXEC_INTERVAL 500
 # define EVEN_WAIT_START 500
 # define WAIT_START 1000
-# define TT_THINK 2
-# define ROOM 5
+# define TT_THINK 1
+# define ROOM 2
 # include <pthread.h>
 # include <stdio.h>
 
@@ -50,6 +50,7 @@ struct s_philo
 	int			rank;
 	int			is_running;
 	int			max_eat;
+	long		start;
 	void		(*run)(void *);
 	void		(*stop)(void *);
 	t_fork		*left;

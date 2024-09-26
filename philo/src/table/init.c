@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/26 18:56:05 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/26 20:09:45 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	init_table(t_table *tab, int length)
 	if (!tab->philos || !tab->forks)
 		exit(1);
 	tab->length = length;
-	tab->start = pl_utl_timestamp() + (WAIT_START / 1000);
+	tab->start = pl_utl_timestamp();
 	tab->max_eat = 0;
 	tab->tt.die = 0;
 	tab->tt.eat = 0;

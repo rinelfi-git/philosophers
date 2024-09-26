@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/26 19:19:11 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/26 20:29:07 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,20 @@ static int	pl_should_eat(t_philo *pl)
 	return (0);
 }
 
+static void	init_routine(t_philo *pl, t_state *s, int *r)
+{
+	t_table	*tab;
+
+	tab = pl->tab;
+	pl->start = pl_utl_timestamp();
+	pl->tt.die = tab->tt.die + pl->start;
+	pl->tt.eat = tab->tt.eat + pl->start;
+	pl->tt.sleep = tab->tt.sleep + pl->start;
+	pl->tt.think = TT_THINK + pl->start;
+	*s = PHILO_NONE;
+	*r = 1;
+}
+
 void	*pl_exec(void *self)
 {
 	t_state	state;
@@ -60,11 +74,10 @@ void	*pl_exec(void *self)
 	int		running;
 
 	pl = to_philo(self);
-	state = PHILO_NONE;
-	running = 1;
 	usleep(WAIT_START);
 	if (pl->rank % 2 == 0)
 		usleep(EVEN_WAIT_START);
+	init_routine(pl, &state, &running);
 	while (running)
 	{
 		if (pl_should_eat(pl))
