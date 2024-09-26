@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 20:17:26 by erijania         ###   ########.fr       */
+/*   Updated: 2024/09/26 09:26:32 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,8 @@ static char	*pl_str_state(t_state state)
 
 static void	pl_print_state(t_philo *pl, t_state *curr)
 {
-	t_table	*tab;
-	long	interval;
 	char	*state_str;
 
-	tab = pl->tab;
-	interval = pl_utl_timestamp() - tab->start;
 	state_str = pl_str_state(pl->state);
 	if (state_str)
 	{
