@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/26 19:01:49 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:39:46 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,8 @@ static void	thinking(t_philo *pl, long time)
 	pthread_mutex_unlock(&pl->time_lock);
 }
 
-void	pl_check_state(t_philo *pl)
+void	pl_check_state(t_philo *pl, long time)
 {
-	long	time;
-
-	time = pl_utl_timestamp();
 	if (pl->state == PHILO_NONE)
 		waiting(pl, time);
 	if (pl->state == PHILO_EATING)

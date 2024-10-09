@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/26 19:00:23 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:42:53 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,38 @@
 #include "pl_fork.h"
 #include "pl_utils.h"
 
-static void	take_left_first(t_philo *pl)
+static void	take_left_first(t_philo *pl, long time)
 {
 	pthread_mutex_lock(&pl->left->use_lock);
 	if (!pl->left->user)
 	{
 		pl->left->user = pl;
-		pl_utl_message(pl, "has taken a fork");
+		pl_utl_message(pl, "has taken a fork", time);
 	}
 	pthread_mutex_unlock(&pl->left->use_lock);
 	pthread_mutex_lock(&pl->right->use_lock);
 	if (!pl->right->user)
 	{
 		pl->right->user = pl;
-		pl_utl_message(pl, "has taken a fork");
+		pl_utl_message(pl, "has taken a fork", time);
 	}
 	pthread_mutex_unlock(&pl->right->use_lock);
 }
 
-static void	take_right_first(t_philo *pl)
+static void	take_right_first(t_philo *pl, long time)
 {
 	pthread_mutex_lock(&pl->right->use_lock);
 	if (!pl->right->user)
 	{
 		pl->right->user = pl;
-		pl_utl_message(pl, "has taken a fork");
+		pl_utl_message(pl, "has taken a fork", time);
 	}
 	pthread_mutex_unlock(&pl->right->use_lock);
 	pthread_mutex_lock(&pl->left->use_lock);
 	if (!pl->left->user)
 	{
 		pl->left->user = pl;
-		pl_utl_message(pl, "has taken a fork");
+		pl_utl_message(pl, "has taken a fork", time);
 	}
 	pthread_mutex_unlock(&pl->left->use_lock);
 }
@@ -64,17 +64,17 @@ static int	can_use_fork(t_philo *pl)
 	return (can_use);
 }
 
-void	pl_take_fork(t_philo *pl)
+void	pl_take_fork(t_philo *pl, long time)
 {
 	if (pl->rank % 2 == 0)
-		take_right_first(pl);
+		take_right_first(pl, time);
 	else
-		take_left_first(pl);
+		take_left_first(pl, time);
 	if (can_use_fork(pl) && !is_max_eat_exceeded(pl))
 	{
 		pl->state = PHILO_EATING;
 		pthread_mutex_lock(&pl->time_lock);
-		pl->tt.die = pl->tab->tt.die + pl_utl_timestamp();
+		pl->tt.die = pl->tab->tt.die + time;
 		pl->max_eat++;
 		pthread_mutex_unlock(&pl->time_lock);
 	}

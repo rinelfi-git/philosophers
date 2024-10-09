@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/26 19:16:46 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:47:40 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	pl_stop(void *self)
 		if (!tab->dead)
 		{
 			tab->dead = pl;
-			pl_utl_message(pl, "died");
+			pl_utl_message(pl, "died", time);
 		}
 		pthread_mutex_unlock(&tab->dead_lock);
 	}

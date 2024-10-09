@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:49:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 17:51:13 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:39:12 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ int		pl_utl_is_number(char *str);
 void	pl_utl_lst_foreach(t_table *tab, void (*call)());
 long	pl_utl_timestamp(void);
 int		pl_utl_is_integer(char *str);
-void	pl_utl_message(t_philo *pl, char *state);
+void	pl_utl_message(t_philo *pl, char *state, long time);
 #endif

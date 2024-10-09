@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 17:48:24 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/05 11:10:08 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:49:00 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 #include "pl_utils.h"
 #include <stdio.h>
 
-void	pl_utl_message(t_philo *pl, char *state)
+void	pl_utl_message(t_philo *pl, char *state, long time)
 {
-	long	time;
 	t_table	*tab;
 
-	time = pl_utl_timestamp();
 	tab = pl->tab;
 	pthread_mutex_lock(&tab->print_lock);
 	printf("%ld %d %s\n", time - tab->start, pl->rank, state);

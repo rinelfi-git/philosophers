@@ -14,7 +14,7 @@
 # define PL_TYPES_H
 # define EXEC_INTERVAL 500
 # define EVEN_WAIT_START 500
-# define WAIT_START 1000
+# define WAIT_START 10
 # define TT_THINK 1
 # define ROOM 2
 # include <pthread.h>
