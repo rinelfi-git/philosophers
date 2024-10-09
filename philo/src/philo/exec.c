@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/09 17:46:06 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:52:28 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,12 @@ static void	init_routine(t_philo *pl, t_state *s, int *r)
 
 	tab = pl->tab;
 	pl->start = pl_utl_timestamp();
+	pthread_mutex_lock(&pl->time_lock);
 	pl->tt.die = tab->tt.die + pl->start;
 	pl->tt.eat = tab->tt.eat + pl->start;
 	pl->tt.sleep = tab->tt.sleep + pl->start;
 	pl->tt.think = TT_THINK + pl->start;
+	pthread_mutex_unlock(&pl->time_lock);
 	*s = PHILO_NONE;
 	*r = 1;
 }

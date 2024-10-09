@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/09 17:39:46 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:54:09 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ static void	thinking(t_philo *pl, long time)
 {
 	t_table	*tab;
 
-	pl->state = PHILO_THINKING;
 	tab = pl->tab;
+	pthread_mutex_lock(&pl->self_lock);
+	pl->state = PHILO_THINKING;
+	pthread_mutex_unlock(&pl->self_lock);
 	pthread_mutex_lock(&pl->time_lock);
 	pl->tt.sleep = tab->tt.sleep + time;
 	pl->tt.eat = tab->tt.eat + time;

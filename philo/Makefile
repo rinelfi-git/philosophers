@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-CARG = -Werror -Wextra -Wall
+CARG = -Werror -Wextra -Wall -fsanitize=thread -g
 INCs = -Iinclude
 SRCs = src/fork/init.c \
 		src/fork/to_fork.c \
