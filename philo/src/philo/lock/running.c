@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_table.h                                         :+:      :+:    :+:   */
+/*   running.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/09 19:29:40 by erijania         ###   ########.fr       */
+/*   Created: 2024/10/09 19:30:55 by erijania          #+#    #+#             */
+/*   Updated: 2024/10/09 19:33:09 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PL_TABLE_H
-# define PL_TABLE_H
-# include "pl_types.h"
+#include "pl_types.h"
 
-void	init_table(t_table *tab, int length);
-void	pl_init_times(t_table *tab, int *times);
-void	pl_free(t_table *tab);
-t_table	*to_table(void *obj);
-void	pl_end(t_table *tab);
-t_philo	*pl_get_dead(t_table *tab);
-#endif
+void	pl_set_run(t_philo *pl, int run)
+{
+	pthread_mutex_lock(&pl->self_lock);
+	pl->is_running = run;
+	pthread_mutex_unlock(&pl->self_lock);
+}
+
+int	pl_is_running(t_philo *pl)
+{
+	int	run;
+	
+	pthread_mutex_lock(&pl->self_lock);
+	run = pl->is_running;
+	pthread_mutex_unlock(&pl->self_lock);
+	return (run);
+}

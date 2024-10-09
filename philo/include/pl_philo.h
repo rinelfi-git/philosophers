@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/09 17:41:26 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:53:10 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,8 @@ void		pl_take_fork(t_philo *pl, long time);
 void		pl_free_fork(t_philo *pl);
 void		pl_check_state(t_philo *pl, long time);
 void		*pl_exec(void *self);
+t_state		pl_get_state(t_philo *pl);
+void		pl_set_run(t_philo *pl, int run);
+int			pl_is_running(t_philo *pl);
+void		pl_set_state(t_philo *pl, t_state state);
 #endif

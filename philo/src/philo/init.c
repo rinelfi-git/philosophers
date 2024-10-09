@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/09 17:47:40 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:48:50 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,12 @@ static void	pl_stop(void *self)
 		return ;
 	pl = to_philo(self);
 	time = pl_utl_timestamp();
-	pthread_mutex_lock(&pl->self_lock);
-	pl->is_running = 0;
-	pthread_mutex_unlock(&pl->self_lock);
+	pl_set_run(pl, 0);
 	tab = pl->tab;
 	pl_free_fork(pl);
 	if ((pl->tt.die + ROOM) <= time)
 	{
-		pl->state = PHILO_DEAD;
+		pl_set_state(pl, PHILO_DEAD);
 		pthread_mutex_lock(&tab->dead_lock);
 		if (!tab->dead)
 		{
@@ -59,6 +57,8 @@ void	init_philo(t_philo *pl, int id, t_fork *left)
 {
 	pthread_mutex_init(&pl->self_lock, 0);
 	pthread_mutex_init(&pl->time_lock, 0);
+	pthread_mutex_init(&pl->state_lock, 0);
+	pthread_mutex_init(&pl->run_lock, 0);
 	pl->id = id;
 	pl->rank = id + 1;
 	pl->tt.die = 1;

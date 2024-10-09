@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:10:33 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/25 19:42:55 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:16:58 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	mutex_philo_destroy(t_philo *pl)
 {
 	pthread_mutex_destroy(&pl->self_lock);
 	pthread_mutex_destroy(&pl->time_lock);
+	pthread_mutex_destroy(&pl->state_lock);
+	pthread_mutex_destroy(&pl->run_lock);
 }
 static void	mutex_table_destroy(t_table *tab)
 {

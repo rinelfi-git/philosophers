@@ -14,7 +14,7 @@
 # define PL_TYPES_H
 # define EXEC_INTERVAL 500
 # define EVEN_WAIT_START 500
-# define WAIT_START 10
+# define WAIT_START 500
 # define TT_THINK 1
 # define ROOM 2
 # include <pthread.h>
@@ -45,6 +45,8 @@ struct s_philo
 {
 	pthread_t	thread;
 	t_sync		self_lock;
+	t_sync		state_lock;
+	t_sync		run_lock;
 	t_sync		time_lock;
 	int			id;
 	int			rank;

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/26 19:14:24 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/09 20:04:05 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,22 @@ static void	pl_join(void *self)
 	pthread_join(pl->thread, 0);
 }
 
-static int	are_philos_alive(t_table *tab)
+static int	are_philos_alive(t_table *tab, long time)
 {
 	int		i;
 	int		stoped;
 	t_philo	*pl;
-	long	time;
+	t_time	*tt;
 
 	i = 0;
-	time = pl_utl_timestamp();
 	while (i < tab->length)
 	{
 		pl = &tab->philos[i++];
 		pthread_mutex_lock(&pl->time_lock);
-		stoped = (pl->tt.die + ROOM) <= time
-				|| is_max_eat_exceeded(pl);
+		tt = &pl->tt;
 		pthread_mutex_unlock(&pl->time_lock);
+		stoped = (tt->die + ROOM) <= time
+				|| is_max_eat_exceeded(pl);
 		if (stoped)
 			return (0);
 	}
@@ -69,7 +69,7 @@ static void	*monitoring(void *mon)
 	usleep(WAIT_START);
 	sleep = EXEC_INTERVAL / 2;
 	tab = to_table(mon);
-	while (!tab->dead && are_philos_alive(tab))
+	while (!pl_get_dead(tab) && are_philos_alive(tab, pl_utl_timestamp()))
 		usleep(sleep);
 	pl_end(tab);
 	return (0);
