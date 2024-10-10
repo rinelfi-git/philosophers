@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 06:58:25 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:03:46 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	are_philos_alive(t_table *tab)
 		stoped = 0;
 		pthread_mutex_lock(&pl->state_lock);
 		stoped = pl->state == PHILO_DEAD || pl->state == PHILO_FULL;
-		pthread_mutex_lock(&pl->state_lock);
+		pthread_mutex_unlock(&pl->state_lock);
 		if (stoped)
 			return (0);
 	}

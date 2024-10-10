@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 14:24:59 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:04:26 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,12 @@ void	*pl_exec(void *self)
 	if (pl->rank % 2 == 0)
 		usleep(EVEN_WAIT_START);
 	init_routine(pl, &state);
-	pl_utl_message(pl, "start", pl->start);
 	while (1)
 	{
 		time = pl_utl_timestamp();
-		pl_check_state(pl, time);
 		if (pl_should_eat(pl, time))
 			pl_take_fork(pl, time);
+		pl_check_state(pl, time);
 		pl_print_state(pl, &state, time);
 		if (state == PHILO_DEAD || state == PHILO_FULL)
 			break ;
