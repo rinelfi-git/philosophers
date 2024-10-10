@@ -2,3 +2,4 @@
 .vscode/*
 */**/*.[oa]
 /philo/philo
+.fuse_*
