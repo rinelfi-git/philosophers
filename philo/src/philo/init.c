@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 06:54:27 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:32:46 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	pl_stop(void *self, long time)
 		return ;
 	pl = to_philo(self);
 	tab = pl->tab;
+	pl_set_run(pl, 0);
 	pl_free_fork(pl);
 	if (pl_get_state(pl) == PHILO_DEAD)
 	{

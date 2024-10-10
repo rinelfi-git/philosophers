@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 18:04:41 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:58:15 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	pl_check_state(t_philo *pl, long time)
 	t_state	state;
 	
 	state = pl_get_state(pl);
-	if (pl->rank == 1)
 	if (state == PHILO_NONE)
 		waiting(pl, time);
 	if (state == PHILO_EATING)
@@ -69,4 +68,6 @@ void	pl_check_state(t_philo *pl, long time)
 		sleeping(pl, time);
 	if (state == PHILO_THINKING)
 		thinking(pl, time);
+	if (pl->tt.die + ROOM <= time)
+		pl_set_state(pl, PHILO_DEAD);
 }

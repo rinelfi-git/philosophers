@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 14:09:28 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:08:27 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	pl_take_fork(t_philo *pl, long time)
 	if (can_use_fork(pl) && !pl_is_full(pl))
 	{
 		pl->tt.die = pl->tab->tt.die + time;
+		pl->tt.eat = pl->tab->tt.eat + time;
 		pl->max_eat++;
 		pthread_mutex_lock(&pl->state_lock);
 		pl->state = PHILO_EATING;

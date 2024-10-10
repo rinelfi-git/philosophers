@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 18:04:26 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:03:54 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ static void	pl_print_state(t_philo *pl, t_state *curr, long time)
 	char	*state_str;
 	t_state	state;
 
+	if (*curr == PHILO_DEAD || *curr == PHILO_FULL)
+		return ;
 	state = pl_get_state(pl);
 	state_str = pl_str_state(state);
 	if (state_str && *curr != state)
-	{
 		pl_utl_message(pl, state_str, time);
-		*curr = state;
-	}
+	*curr = state;
 }
 
 static int	pl_should_eat(t_philo *pl, long time)
@@ -73,21 +73,22 @@ void	*pl_exec(void *self)
 	t_state	state;
 	t_philo	*pl;
 	long	time;
+	int		wait;
 
 	pl = to_philo(self);
-	usleep(WAIT_START + (pl->tab->length - pl->rank) * 100);
-	if (pl->rank % 2 == 0)
-		usleep(EVEN_WAIT_START);
+	wait = (pl->tab->length - pl->rank) * 100;
+	wait += WAIT_START;
+	if (pl->rank % 2)
+		wait += EVEN_WAIT_START;
+	usleep(wait);
 	init_routine(pl, &state);
-	while (1)
+	while (pl_is_running(pl))
 	{
 		time = pl_utl_timestamp();
+		pl_check_state(pl, time);
 		if (pl_should_eat(pl, time))
 			pl_take_fork(pl, time);
-		pl_check_state(pl, time);
 		pl_print_state(pl, &state, time);
-		if (state == PHILO_DEAD || state == PHILO_FULL)
-			break ;
 		usleep(EXEC_INTERVAL);
 	}
 	pl->stop(pl, time);

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 18:03:46 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:03:40 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static int	are_philos_alive(t_table *tab)
 	t_philo	*pl;
 
 	i = 0;
-	while (i < tab->length)
+
+	while (i < tab->length - 1)
 	{
 		pl = &tab->philos[i++];
 		stoped = 0;

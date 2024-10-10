@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 06:36:56 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:34:51 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,4 @@ t_state		pl_get_state(t_philo *pl);
 void		pl_set_run(t_philo *pl, int run);
 int			pl_is_running(t_philo *pl);
 void		pl_set_state(t_philo *pl, t_state state);
-int			pl_should_die(t_philo *pl, long time);
 #endif
