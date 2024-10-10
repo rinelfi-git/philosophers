@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/09 17:42:53 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 07:38:09 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ void	pl_take_fork(t_philo *pl, long time)
 		take_right_first(pl, time);
 	else
 		take_left_first(pl, time);
-	if (can_use_fork(pl) && !is_max_eat_exceeded(pl))
+	if (can_use_fork(pl) && !pl_is_full(pl))
 	{
-		pl->state = PHILO_EATING;
-		pthread_mutex_lock(&pl->time_lock);
 		pl->tt.die = pl->tab->tt.die + time;
 		pl->max_eat++;
-		pthread_mutex_unlock(&pl->time_lock);
+		pthread_mutex_lock(&pl->state_lock);
+		pl->state = PHILO_EATING;
+		if (pl->tab->max_eat && pl->max_eat > pl->tab->max_eat)
+			pl->state = PHILO_FULL;
+		pthread_mutex_unlock(&pl->state_lock);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/09 19:48:50 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 06:54:27 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,18 @@ static void	pl_run(void *self)
 		exit(2);
 }
 
-static void	pl_stop(void *self)
+static void	pl_stop(void *self, long time)
 {
 	t_philo	*pl;
 	t_table	*tab;
-	long	time;
 
 	if (!self)
 		return ;
 	pl = to_philo(self);
-	time = pl_utl_timestamp();
-	pl_set_run(pl, 0);
 	tab = pl->tab;
 	pl_free_fork(pl);
-	if ((pl->tt.die + ROOM) <= time)
+	if (pl_get_state(pl) == PHILO_DEAD)
 	{
-		pl_set_state(pl, PHILO_DEAD);
 		pthread_mutex_lock(&tab->dead_lock);
 		if (!tab->dead)
 		{

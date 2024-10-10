@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/09 20:03:51 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/10 07:39:55 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ static int	pl_should_eat(t_philo *pl, long time)
 {
 	t_state	state;
 
-	pthread_mutex_lock(&pl->state_lock);
-	state = pl->state;
-	pthread_mutex_unlock(&pl->state_lock);
-	if (is_max_eat_exceeded(pl))
+	state = pl_get_state(pl);
+	if (pl_is_full(pl))
 		return (0);
 	if (state == PHILO_NONE)
 		return (1);
@@ -60,17 +58,13 @@ static int	pl_should_eat(t_philo *pl, long time)
 static void	init_routine(t_philo *pl, t_state *s)
 {
 	t_table	*tab;
-	t_time	*tt;
 
 	tab = pl->tab;
 	pl->start = pl_utl_timestamp();
-	pthread_mutex_lock(&pl->time_lock);
-	tt = &pl->tt;
-	pthread_mutex_unlock(&pl->time_lock);
-	tt->die = tab->tt.die + pl->start;
-	tt->eat = tab->tt.eat + pl->start;
-	tt->sleep = tab->tt.sleep + pl->start;
-	tt->think = TT_THINK + pl->start;
+	pl->tt.die = tab->tt.die + pl->start;
+	pl->tt.eat = tab->tt.eat + pl->start;
+	pl->tt.sleep = tab->tt.sleep + pl->start;
+	pl->tt.think = TT_THINK + pl->start;
 	*s = PHILO_NONE;
 }
 
@@ -79,22 +73,25 @@ void	*pl_exec(void *self)
 	t_state	state;
 	t_philo	*pl;
 	long	time;
-	int		waiting;
+	int		wait;
 
 	pl = to_philo(self);
-	waiting = WAIT_START + (pl->tab->length - pl->rank);
+	wait = WAIT_START;
 	if (pl->rank % 2 == 0)
-		waiting += EVEN_WAIT_START;
-	usleep(waiting);
+		wait += EVEN_WAIT_START;
+	usleep(wait);
 	init_routine(pl, &state);
-	while (pl_is_running(pl))
+	while (1)
 	{
 		time = pl_utl_timestamp();
 		pl_check_state(pl, time);
 		if (pl_should_eat(pl, time))
 			pl_take_fork(pl, time);
 		pl_print_state(pl, &state, time);
+		if (state == PHILO_DEAD || state == PHILO_FULL)
+			break ;
 		usleep(EXEC_INTERVAL);
 	}
+	pl->stop(pl, time);
 	return (0);
 }

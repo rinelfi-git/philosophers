@@ -13,12 +13,13 @@
 #ifndef PL_TYPES_H
 # define PL_TYPES_H
 # define EXEC_INTERVAL 500
-# define EVEN_WAIT_START 500
+# define EVEN_WAIT_START 1000
 # define WAIT_START 500
 # define TT_THINK 1
 # define ROOM 2
 # include <pthread.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 typedef enum e_state	t_state;
 typedef struct s_times	t_time;
@@ -31,8 +32,9 @@ enum e_state
 	PHILO_NONE,
 	PHILO_THINKING,
 	PHILO_EATING,
+	PHILO_SLEEPING,
+	PHILO_FULL,
 	PHILO_DEAD,
-	PHILO_SLEEPING
 };
 struct s_times
 {
@@ -54,7 +56,7 @@ struct s_philo
 	int			max_eat;
 	long		start;
 	void		(*run)(void *);
-	void		(*stop)(void *);
+	void		(*stop)(void *, long);
 	t_fork		*left;
 	t_fork		*right;
 	t_state		state;

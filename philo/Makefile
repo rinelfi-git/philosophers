@@ -10,7 +10,7 @@ SRCs = src/fork/init.c \
 		src/philo/exec.c \
 		src/philo/free_fork.c \
 		src/philo/init.c \
-		src/philo/max_eat_exceeded.c \
+		src/philo/is_full.c \
 		src/philo/take_fork.c \
 		src/philo/to_philo.c \
 		src/philo/to_thread.c \
