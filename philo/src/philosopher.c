@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 20:32:16 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/11 07:48:17 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,29 @@
 #include <stdio.h>
 #include <unistd.h>
 
-static void	pl_start(t_table *tab)
+static void	*pl_start(void *self)
 {
 	int		i;
 	t_philo	*pl;
+	t_table	*tab;
 
+	tab = to_table(self);
 	i = 0;
 	while (i < tab->length)
 	{
-		pl = &tab->philos[i++];
+		pl = &tab->philos[i];
+		i += 2;
 		pl->run(pl);
 	}
+	usleep(EVEN_WAIT_START);
+	i = 1;
+	while (i < tab->length)
+	{
+		pl = &tab->philos[i];
+		i += 2;
+		pl->run(pl);
+	}
+	return (0);
 }
 
 static void	pl_join(void *self)
@@ -64,10 +76,18 @@ static void	*monitoring(void *mon)
 {
 	t_table	*tab;
 	int		sleep;
+	int		i;
+	t_philo	*pl;
 
 	usleep(WAIT_START);
 	sleep = EXEC_INTERVAL / 2;
 	tab = to_table(mon);
+	i = 0;
+	while (i < tab->length)
+	{
+		pl = &tab->philos[i++];
+		pl_set_run(pl, 1);
+	}
 	while (!pl_get_dead(tab) && are_philos_alive(tab))
 		usleep(sleep);
 	pl_end(tab);
@@ -77,10 +97,13 @@ static void	*monitoring(void *mon)
 int	philosopher(t_table *tab)
 {
 	pthread_t	monitor;
+	pthread_t	start;
 
-	pl_start(tab);
+	if (pthread_create(&start, 0, pl_start, tab) != 0)
+		exit(2);
+	pthread_join(start, 0);
 	if (pthread_create(&monitor, 0, monitoring, tab) != 0)
-		exit(1);
+		exit(2);
 	pl_utl_lst_foreach(tab, pl_join);
 	pthread_join(monitor, 0);
 	pl_free(tab);

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 20:39:49 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/11 07:48:58 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,12 @@ void	*pl_exec(void *self)
 	t_state	state;
 	t_philo	*pl;
 	long	time;
-	int		wait;
 
 	pl = to_philo(self);
-	wait = (pl->tab->length - pl->rank) * 200; 
-	wait += WAIT_START;
+	while (!pl_is_running(pl))
+		usleep(WAIT_START);
 	if (pl->rank % 2 == 0)
-		wait += EVEN_WAIT_START;
-	usleep(wait);
+		usleep(EVEN_WAIT_START);
 	init_routine(pl, &state);
 	while (pl_is_running(pl))
 	{

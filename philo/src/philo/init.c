@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/10 18:32:46 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/11 06:53:43 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	pl_run(void *self)
 	t_philo	*pl;
 
 	pl = to_philo(self);
-	pl->is_running = 1;
 	if (pthread_create(&(pl->thread), 0, pl_exec, self) != 0)
 		exit(2);
 }
