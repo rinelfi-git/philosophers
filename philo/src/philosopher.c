@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/11 07:48:17 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/11 08:38:26 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,7 @@ static void	*pl_start(void *self)
 	i = 0;
 	while (i < tab->length)
 	{
-		pl = &tab->philos[i];
-		i += 2;
-		pl->run(pl);
-	}
-	usleep(EVEN_WAIT_START);
-	i = 1;
-	while (i < tab->length)
-	{
-		pl = &tab->philos[i];
-		i += 2;
+		pl = &tab->philos[i++];
 		pl->run(pl);
 	}
 	return (0);
@@ -75,21 +66,28 @@ static int	are_philos_alive(t_table *tab)
 static void	*monitoring(void *mon)
 {
 	t_table	*tab;
-	int		sleep;
 	int		i;
 	t_philo	*pl;
 
 	usleep(WAIT_START);
-	sleep = EXEC_INTERVAL / 2;
 	tab = to_table(mon);
 	i = 0;
 	while (i < tab->length)
 	{
-		pl = &tab->philos[i++];
+		pl = &tab->philos[i];
+		i += 2;
+		pl_set_run(pl, 1);
+	}
+	usleep(EVEN_WAIT_START * 1000);
+	i = 1;
+	while (i < tab->length)
+	{
+		pl = &tab->philos[i];
+		i += 2;
 		pl_set_run(pl, 1);
 	}
 	while (!pl_get_dead(tab) && are_philos_alive(tab))
-		usleep(sleep);
+		usleep(MONITOR_WAIT);
 	pl_end(tab);
 	return (0);
 }

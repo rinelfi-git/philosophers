@@ -12,11 +12,12 @@
 
 #ifndef PL_TYPES_H
 # define PL_TYPES_H
-# define EXEC_INTERVAL 500
-# define EVEN_WAIT_START 10000
-# define WAIT_START 2000
-# define TT_THINK 0
-# define ROOM 10
+# define EXEC_INTERVAL 500 // µs
+# define EVEN_WAIT_START 5 // ms
+# define MONITOR_WAIT 100 // µs
+# define WAIT_START 1000 // µs
+# define TT_THINK 2 // ms
+# define ROOM 10 // ms
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -42,6 +43,7 @@ struct s_times
 	long	eat;
 	long	sleep;
 	long	think;
+	long	start;
 };
 struct s_philo
 {
