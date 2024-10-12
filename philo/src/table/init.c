@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/26 20:09:45 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/12 16:06:19 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static void	init_vars(t_table *tab)
 	{
 		pl = &tab->philos[i];
 		fk = &tab->forks[(i + 1) % tab->length];
-		pl->right = fk;
+		if (pl->left != fk)
+			pl->right = fk;
 		i++;
 	}
 }

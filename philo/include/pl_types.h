@@ -17,7 +17,7 @@
 # define MONITOR_WAIT 100 // µs
 # define WAIT_START 1000 // µs
 # define TT_THINK 2 // ms
-# define ROOM 10 // ms
+# define ROOM 5 // ms
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
