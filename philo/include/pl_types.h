@@ -16,8 +16,8 @@
 # define EVEN_WAIT_START 5 // ms
 # define MONITOR_WAIT 100 // µs
 # define WAIT_START 1000 // µs
-# define TT_THINK 2 // ms
-# define ROOM 5 // ms
+# define TT_THINK 1 // ms
+# define ROOM 3 // ms
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/12 16:10:30 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/15 11:56:10 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	thinking(t_philo *pl, long time)
 void	pl_check_state(t_philo *pl, long time)
 {
 	t_state	state;
-	
+
 	state = pl_get_state(pl);
 	if (state == PHILO_NONE)
 		waiting(pl, time);
