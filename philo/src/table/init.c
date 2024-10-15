@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/12 16:06:19 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:52:56 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static void	init_vars(t_table *tab)
 
 void	init_table(t_table *tab, int length)
 {
-	pthread_mutex_init(&tab->self_lock, 0);
 	pthread_mutex_init(&tab->dead_lock, 0);
 	pthread_mutex_init(&tab->print_lock, 0);
 	tab->philos = (t_philo *)malloc(sizeof(t_philo) * length);
@@ -59,7 +58,6 @@ void	init_table(t_table *tab, int length)
 	tab->tt.die = 0;
 	tab->tt.eat = 0;
 	tab->tt.sleep = 0;
-	tab->tt.think = TT_THINK;
 	tab->dead = 0;
 	init_vars(tab);
 }

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/11 06:53:43 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:34:36 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static void	pl_stop(void *self, long time)
 
 void	init_philo(t_philo *pl, int id, t_fork *left)
 {
-	pthread_mutex_init(&pl->self_lock, 0);
-	pthread_mutex_init(&pl->time_lock, 0);
 	pthread_mutex_init(&pl->state_lock, 0);
 	pthread_mutex_init(&pl->run_lock, 0);
 	pl->id = id;

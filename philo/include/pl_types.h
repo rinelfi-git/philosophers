@@ -16,8 +16,6 @@
 # define EVEN_WAIT_START 5 // ms
 # define MONITOR_WAIT 100 // µs
 # define WAIT_START 1000 // µs
-# define TT_THINK 1 // ms
-# define ROOM 3 // ms
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -48,10 +46,8 @@ struct s_times
 struct s_philo
 {
 	pthread_t	thread;
-	t_sync		self_lock;
 	t_sync		state_lock;
 	t_sync		run_lock;
-	t_sync		time_lock;
 	int			id;
 	int			rank;
 	int			is_running;
@@ -67,7 +63,6 @@ struct s_philo
 };
 struct s_table
 {
-	t_sync	self_lock;
 	t_sync	dead_lock;
 	t_sync	print_lock;
 	t_fork	*forks;

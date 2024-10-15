@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/12 16:06:19 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:15:57 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	pl_should_eat(t_philo *pl, long time)
 		return (0);
 	if (state == PHILO_NONE && pl->tt.start <= time)
 		return (1);
-	if (state == PHILO_THINKING && pl->tt.think <= time)
+	if (state == PHILO_THINKING)
 		return (1);
 	return (0);
 }
@@ -64,7 +64,6 @@ static void	init_routine(t_philo *pl, t_state *s)
 	pl->tt.die = tab->tt.die + pl->start;
 	pl->tt.eat = tab->tt.eat + pl->start;
 	pl->tt.sleep = tab->tt.sleep + pl->start;
-	pl->tt.think = TT_THINK + pl->start;
 	pl->tt.start = pl->start;
 	if (pl->rank % 2 == 0)
 		pl->tt.start += EVEN_WAIT_START;

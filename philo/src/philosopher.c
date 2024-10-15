@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/12 16:12:26 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:59:32 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static void	*monitoring(void *mon)
 	int		i;
 	t_philo	*pl;
 
-	usleep(WAIT_START);
 	tab = to_table(mon);
 	i = 0;
 	while (i < tab->length)
