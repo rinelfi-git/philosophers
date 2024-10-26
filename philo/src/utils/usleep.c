@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dead.c                                             :+:      :+:    :+:   */
+/*   usleep.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 19:28:05 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 17:48:47 by erijania         ###   ########.fr       */
+/*   Created: 2024/10/26 16:25:16 by erijania          #+#    #+#             */
+/*   Updated: 2024/10/26 17:59:17 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_types.h"
+#include "pl_utils.h"
+#include <unistd.h>
 
-t_philo	*pl_get_dead(t_table *tab)
+int	pl_usleep(t_philo *pl, long ms)
 {
-	t_philo	*pl;
+	long	start;
+	long	timestamp;
+	int		run;
 
-	pl = 0;
-	pthread_mutex_lock(&tab->dead_lock);
-	pl = tab->dead;
-	pthread_mutex_unlock(&tab->dead_lock);
-	return (pl);
-}
-
-void	pl_set_dead(t_table *tab, t_philo *pl)
-{
-	pthread_mutex_lock(&tab->dead_lock);
-	tab->dead = pl;
-	pthread_mutex_unlock(&tab->dead_lock);
+	start = pl_utl_timestamp();
+	timestamp = start;
+	run = pl_is_running(pl);
+	while (run && start + ms > timestamp)
+	{
+		timestamp = pl_utl_timestamp();
+		run = pl_is_running(pl);
+		if (pl->tt.die <= timestamp)
+		{
+			pl_set_state(pl, PHILO_DEAD);
+			return (0);
+		}
+		usleep(EXEC_INTERVAL);
+	}
+	return (run);
 }

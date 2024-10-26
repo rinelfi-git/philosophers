@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 16:06:09 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/26 18:11:42 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,24 @@ static void	pl_join(void *self)
 	pthread_join(pl->thread, 0);
 }
 
-static int	are_philos_alive(t_table *tab)
+static int	nobodys_dead(t_table *tab)
 {
 	int		i;
-	int		stoped;
+	t_state	state;
 	t_philo	*pl;
 
 	i = 0;
 	while (i < tab->length)
 	{
 		pl = &tab->philos[i++];
-		stoped = 0;
-		pthread_mutex_lock(&pl->state_lock);
-		stoped = pl->state == PHILO_DEAD || pl->state == PHILO_FULL;
-		pthread_mutex_unlock(&pl->state_lock);
-		if (stoped)
+		state = pl_get_state(pl);
+		if (state == PHILO_DEAD)
+		{
+			pl_set_dead(tab, pl);
+			pl_utl_message(pl, "died");
+			return (0);
+		}
+		if (state == PHILO_FULL)
 			return (0);
 	}
 	return (1);
@@ -85,7 +88,7 @@ static void	*monitoring(void *mon)
 		i += 2;
 		pl_set_run(pl, 1);
 	}
-	while (!pl_get_dead(tab) && are_philos_alive(tab))
+	while (nobodys_dead(tab))
 		usleep(MONITOR_WAIT);
 	pl_end(tab);
 	return (0);

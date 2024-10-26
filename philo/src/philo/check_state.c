@@ -6,71 +6,45 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 15:48:56 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/26 18:06:42 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_philo.h"
 #include "pl_utils.h"
 
-static void	eating(t_philo *pl, long time)
+int	pl_eating(t_philo *pl)
 {
-	t_table	*tab;
-	long	tt_think;
+	t_table *tab;
+	int out;
 
 	tab = pl->tab;
-	tt_think = 0;
-	pl->tt.sleep = tab->tt.sleep + time;
-	if (pl->rank % 2)
-		tt_think = 1;
-	pl->tt.think = tt_think + time;
-	if (pl->tt.eat <= time)
-		pl_free_fork(pl);
+	pl->tt.die = tab->tt.die + pl_utl_timestamp();
+	out = 1;
+	if (!pl_usleep(pl, tab->tt.eat))
+		out = 0;
+	pl_free_fork(pl);
+	if (out)
+	{
+		pl_set_state(pl, PHILO_SLEEPING);
+		pl_utl_message(pl, "is sleeping");
+	}
+	return (out);
 }
 
-static void	sleeping(t_philo *pl, long time)
+int	pl_sleeping(t_philo *pl)
 {
-	t_table	*tab;
+	t_table *tab;
+	int out;
 
 	tab = pl->tab;
-	pl->tt.eat = tab->tt.eat + time;
-	if (pl->tt.sleep <= time)
+	out = 1;
+	if (!pl_usleep(pl, tab->tt.sleep))
+		out = 0;
+	if (out)
+	{
 		pl_set_state(pl, PHILO_THINKING);
-}
-
-static void	waiting(t_philo *pl, long time)
-{
-	t_table	*tab;
-
-	tab = pl->tab;
-	pl->tt.sleep = tab->tt.sleep + time;
-	pl->tt.eat = tab->tt.eat + time;
-	pl->tt.think = tab->tt.think + time;
-}
-
-static void	thinking(t_philo *pl, long time)
-{
-	t_table	*tab;
-
-	tab = pl->tab;
-	pl->tt.sleep = tab->tt.sleep + time;
-	pl->tt.eat = tab->tt.eat + time;
-	pl_set_state(pl, PHILO_THINKING);
-}
-
-void	pl_check_state(t_philo *pl, long time)
-{
-	t_state	state;
-
-	state = pl_get_state(pl);
-	if (state == PHILO_NONE)
-		waiting(pl, time);
-	if (state == PHILO_EATING)
-		eating(pl, time);
-	if (state == PHILO_SLEEPING)
-		sleeping(pl, time);
-	if (state == PHILO_THINKING)
-		thinking(pl, time);
-	if (pl->tt.die + pl->tt.think <= time)
-		pl_set_state(pl, PHILO_DEAD);
+		pl_utl_message(pl, "is thinking");
+	}
+	return (out);
 }

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/09 19:29:40 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/26 17:49:08 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	pl_free(t_table *tab);
 t_table	*to_table(void *obj);
 void	pl_end(t_table *tab);
 t_philo	*pl_get_dead(t_table *tab);
+void	pl_set_dead(t_table *tab, t_philo *pl);
 #endif

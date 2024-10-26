@@ -12,7 +12,7 @@
 
 #ifndef PL_TYPES_H
 # define PL_TYPES_H
-# define EXEC_INTERVAL 500 // µs
+# define EXEC_INTERVAL 250 // µs
 # define EVEN_WAIT_START 5 // ms
 # define MONITOR_WAIT 100 // µs
 # define WAIT_START 1000 // µs
@@ -57,7 +57,7 @@ struct s_philo
 	int			max_eat;
 	long		start;
 	void		(*run)(void *);
-	void		(*stop)(void *, long);
+	void		(*stop)(void *);
 	t_fork		*left;
 	t_fork		*right;
 	t_state		state;
