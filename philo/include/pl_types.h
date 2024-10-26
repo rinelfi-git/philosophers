@@ -14,8 +14,8 @@
 # define PL_TYPES_H
 # define EXEC_INTERVAL 250 // µs
 # define EVEN_WAIT_START 5 // ms
-# define MONITOR_WAIT 100 // µs
-# define WAIT_START 1000 // µs
+# define MONITOR_WAIT 125 // µs
+# define WAIT_START 500 // µs
 # define ROOM 0 // ms
 # include <pthread.h>
 # include <stdio.h>

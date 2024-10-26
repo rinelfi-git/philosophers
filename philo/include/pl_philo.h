@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 17:21:31 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/26 18:24:11 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ int			pl_is_running(t_philo *pl);
 void		pl_set_state(t_philo *pl, t_state state);
 int 	    pl_eating(t_philo *pl);
 int	    pl_sleeping(t_philo *pl);
+int	    pl_thinking(t_philo *pl);
 #endif

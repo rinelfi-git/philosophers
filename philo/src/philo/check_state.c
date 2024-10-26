@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 18:06:42 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/26 18:58:31 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,17 @@ int	pl_sleeping(t_philo *pl)
 		pl_set_state(pl, PHILO_THINKING);
 		pl_utl_message(pl, "is thinking");
 	}
+	return (out);
+}
+
+int	pl_thinking(t_philo *pl)
+{
+	t_table *tab;
+	int out;
+
+	tab = pl->tab;
+	out = 1;
+	if (!pl_usleep(pl, 1))
+		out = 0;
 	return (out);
 }

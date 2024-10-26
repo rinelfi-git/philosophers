@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 17:39:09 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/26 18:29:25 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	pl_take_fork(t_philo *pl)
 	int out;
 
 	out = 0;
-	if (pl->rank % 2 == 0)
+	if (!pl->rank % 2)
 		take_right_first(pl);
 	else
 		take_left_first(pl);
