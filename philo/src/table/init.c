@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/12 16:06:19 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/26 16:06:48 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ void	init_table(t_table *tab, int length)
 	tab->philos = (t_philo *)malloc(sizeof(t_philo) * length);
 	tab->forks = (t_fork *)malloc(sizeof(t_fork) * length);
 	if (!tab->philos || !tab->forks)
-		exit(1);
+		return ;
 	tab->length = length;
 	tab->start = pl_utl_timestamp();
 	tab->max_eat = 0;
 	tab->tt.die = 0;
 	tab->tt.eat = 0;
 	tab->tt.sleep = 0;
-	tab->tt.think = TT_THINK;
+	tab->tt.think = 0;
 	tab->dead = 0;
 	init_vars(tab);
 }

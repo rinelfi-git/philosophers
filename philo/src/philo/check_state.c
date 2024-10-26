@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/15 11:56:10 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/26 15:48:56 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,14 @@
 static void	eating(t_philo *pl, long time)
 {
 	t_table	*tab;
+	long	tt_think;
 
 	tab = pl->tab;
+	tt_think = 0;
 	pl->tt.sleep = tab->tt.sleep + time;
-	pl->tt.think = TT_THINK + time;
+	if (pl->rank % 2)
+		tt_think = 1;
+	pl->tt.think = tt_think + time;
 	if (pl->tt.eat <= time)
 		pl_free_fork(pl);
 }
@@ -30,7 +34,6 @@ static void	sleeping(t_philo *pl, long time)
 
 	tab = pl->tab;
 	pl->tt.eat = tab->tt.eat + time;
-	pl->tt.think = TT_THINK + time;
 	if (pl->tt.sleep <= time)
 		pl_set_state(pl, PHILO_THINKING);
 }
@@ -68,6 +71,6 @@ void	pl_check_state(t_philo *pl, long time)
 		sleeping(pl, time);
 	if (state == PHILO_THINKING)
 		thinking(pl, time);
-	if (pl->tt.die + ROOM <= time)
+	if (pl->tt.die + pl->tt.think <= time)
 		pl_set_state(pl, PHILO_DEAD);
 }

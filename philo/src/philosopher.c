@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/12 16:12:26 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/26 16:06:09 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ int	philosopher(t_table *tab)
 	pthread_t	start;
 
 	if (pthread_create(&start, 0, pl_start, tab) != 0)
-		exit(2);
+		return(2);
 	pthread_join(start, 0);
 	if (pthread_create(&monitor, 0, monitoring, tab) != 0)
-		exit(2);
+		return(2);
 	pl_utl_lst_foreach(tab, pl_join);
 	pthread_join(monitor, 0);
 	pl_free(tab);
