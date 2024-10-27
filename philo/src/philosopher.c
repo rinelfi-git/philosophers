@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 14:37:32 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 19:54:44 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ static int	nobodys_dead(t_table *tab)
 {
 	int		i;
 	t_state	state;
+	int		fulls;
 	t_philo	*pl;
 
 	i = 0;
+	fulls = 0;
 	while (i < tab->length)
 	{
 		pl = &tab->philos[i++];
@@ -60,9 +62,9 @@ static int	nobodys_dead(t_table *tab)
 			return (0);
 		}
 		if (state == PHILO_FULL)
-			return (0);
+			fulls++;
 	}
-	return (1);
+	return (fulls < tab->length);
 }
 
 static void	*monitoring(void *mon)
