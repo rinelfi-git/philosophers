@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 18:11:42 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 14:37:32 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	*monitoring(void *mon)
 		i += 2;
 		pl_set_run(pl, 1);
 	}
-	usleep(EVEN_WAIT_START * 1000);
+	usleep(EVEN_WAIT_START);
 	i = 1;
 	while (i < tab->length)
 	{

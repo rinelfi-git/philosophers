@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 19:01:14 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 18:11:35 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@
 void	*pl_exec(void *self)
 {
 	t_philo	*pl;
+	int		take;
 
 	pl = to_philo(self);
 	while (!pl_is_running(pl))
 		usleep(WAIT_START);
-	while (pl_is_running(pl))
+	while (1)
 	{
-		if (!pl_take_fork(pl))
+		take = pl_take_fork(pl);
+		while (take == -1)
+			take = pl_take_fork(pl);
+		if (take == 0)
 			break ;
 		if (!pl_eating(pl))
 			break ;

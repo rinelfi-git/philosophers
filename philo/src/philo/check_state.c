@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 14:23:48 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 18:58:31 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 18:27:32 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,40 @@
 
 int	pl_eating(t_philo *pl)
 {
-	t_table *tab;
-	int out;
+	t_table	*tab;
+	int		out;
 
 	tab = pl->tab;
 	pl->tt.die = tab->tt.die + pl_utl_timestamp();
 	out = 1;
+	pl->max_eat++;
+	pl_utl_message(pl, "is eating");
 	if (!pl_usleep(pl, tab->tt.eat))
 		out = 0;
 	pl_free_fork(pl);
-	if (out)
-	{
-		pl_set_state(pl, PHILO_SLEEPING);
-		pl_utl_message(pl, "is sleeping");
-	}
 	return (out);
 }
 
 int	pl_sleeping(t_philo *pl)
 {
-	t_table *tab;
-	int out;
+	t_table	*tab;
+	int		out;
 
 	tab = pl->tab;
 	out = 1;
+	pl_utl_message(pl, "is sleeping");
 	if (!pl_usleep(pl, tab->tt.sleep))
 		out = 0;
-	if (out)
-	{
-		pl_set_state(pl, PHILO_THINKING);
-		pl_utl_message(pl, "is thinking");
-	}
 	return (out);
 }
 
 int	pl_thinking(t_philo *pl)
 {
-	t_table *tab;
-	int out;
+	int		out;
 
-	tab = pl->tab;
 	out = 1;
-	if (!pl_usleep(pl, 1))
+	pl_utl_message(pl, "is thinking");
+	if (!pl_usleep(pl, 0))
 		out = 0;
 	return (out);
 }

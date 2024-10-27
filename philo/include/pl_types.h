@@ -12,11 +12,10 @@
 
 #ifndef PL_TYPES_H
 # define PL_TYPES_H
-# define EXEC_INTERVAL 250 // µs
-# define EVEN_WAIT_START 5 // ms
-# define MONITOR_WAIT 125 // µs
-# define WAIT_START 500 // µs
-# define ROOM 0 // ms
+# define EXEC_INTERVAL 200
+# define EVEN_WAIT_START 1000
+# define MONITOR_WAIT 50
+# define WAIT_START 500
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
