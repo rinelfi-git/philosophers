@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 16:06:48 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 23:35:39 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@
 #include "pl_fork.h"
 #include "pl_philo.h"
 
-static void	init_vars(t_table *tab)
+t_monitor	*to_monitor(void *obj)
+{
+	return ((t_monitor *) obj);
+}
+
+static void	init_vars(t_monitor *tab)
 {
 	int		i;
 	t_philo	*pl;
@@ -44,7 +49,7 @@ static void	init_vars(t_table *tab)
 	}
 }
 
-void	init_table(t_table *tab, int length)
+void	init_monitor(t_monitor *tab, int length)
 {
 	pthread_mutex_init(&tab->self_lock, 0);
 	pthread_mutex_init(&tab->dead_lock, 0);
@@ -54,7 +59,7 @@ void	init_table(t_table *tab, int length)
 	if (!tab->philos || !tab->forks)
 		return ;
 	tab->length = length;
-	tab->start = pl_utl_timestamp();
+	tab->start = pl_timestamp();
 	tab->max_eat = 0;
 	tab->tt.die = 0;
 	tab->tt.eat = 0;

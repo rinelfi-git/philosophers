@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:48:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 18:25:57 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 23:37:46 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	take_fork(t_philo *pl, t_fork *fk)
 	{
 		fk->user = pl;
 		out = 1;
-		pl_utl_message(pl, "has taken a fork");
+		pl_msg(pl, "has taken a fork");
 	}
 	else if (fk->user == pl)
 		out = 1;

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:25:16 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 19:46:51 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 23:35:39 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	pl_usleep(t_philo *pl, long ms)
 	long	interval;
 	long	timestamp;
 
-	start = pl_utl_timestamp();
+	start = pl_timestamp();
 	timestamp = start;
 	interval = start + ms;
 	while (timestamp < interval)
 	{
-		timestamp = pl_utl_timestamp();
+		timestamp = pl_timestamp();
 		if (pl->tt.die <= timestamp)
 		{
 			pl_set_state(pl, PHILO_DEAD);

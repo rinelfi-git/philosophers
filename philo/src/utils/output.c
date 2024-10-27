@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_times.c                                       :+:      :+:    :+:   */
+/*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 11:03:31 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 17:17:15 by erijania         ###   ########.fr       */
+/*   Created: 2024/07/21 18:56:41 by erijania          #+#    #+#             */
+/*   Updated: 2024/10/27 23:37:46 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "pl_types.h"
-#include "pl_fork.h"
+#include "pl_utils.h"
 
-void	pl_init_times(t_table *tab, int *times)
+int	pl_error(char *msg, int code)
 {
-	int		i;
-	t_philo	*pl;
+	while (*msg)
+		write(2, msg++, 1);
+	return (code);
+}
 
-	tab->tt.die = times[0];
-	tab->tt.eat = times[1];
-	tab->tt.sleep = times[2];
-	i = 0;
-	while (i < tab->length)
-	{
-		pl = &tab->philos[i++];
-		pl->tt.die = tab->tt.die + tab->start;
-		pl->tt.eat = tab->tt.eat;
-		pl->tt.sleep = tab->tt.sleep;
-	}
+void	pl_msg(t_philo *pl, char *state)
+{
+	t_monitor	*tab;
+	long time;
+
+	tab = pl->tab;
+	time = pl_timestamp();
+	pthread_mutex_lock(&tab->print_lock);
+	printf("%ld %d %s\n", time - pl->tab->start, pl->rank, state);
+	pthread_mutex_unlock(&tab->print_lock);
 }

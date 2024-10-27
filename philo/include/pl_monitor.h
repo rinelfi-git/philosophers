@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_utl_is_digit.c                                  :+:      :+:    :+:   */
+/*   pl_monitor.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/17 23:37:26 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 11:24:57 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
+/*   Updated: 2024/10/27 23:09:27 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include "pl_utils.h"
+#ifndef PL_TABLE_H
+# define PL_TABLE_H
+# include "pl_types.h"
 
-int	pl_utl_is_number(char *str)
-{
-	if (!str)
-		return (0);
-	if (*str == '+' || *str == '-')
-		str++;
-	while (*str >= '0' && *str <= '9')
-		str++;
-	return (*str == 0);
-}
-
-int	pl_utl_is_integer(char *str)
-{
-	long	nbr;
-
-	nbr = pl_utl_atoi(str);
-	if (nbr > (long) INT_MAX || nbr < (long) INT_MIN)
-		return (0);
-	return (1);
-}
+void	init_monitor(t_monitor *tab, int length);
+void	pl_init_times(t_monitor *tab, int *times);
+void	pl_free(t_monitor *tab);
+t_monitor	*to_monitor(void *obj);
+void	pl_end(t_monitor *tab);
+t_philo	*pl_get_dead(t_monitor *tab);
+void	pl_set_dead(t_monitor *tab, t_philo *pl);
+#endif

@@ -6,43 +6,36 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 19:54:44 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 23:39:36 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_types.h"
-#include "pl_table.h"
+#include "pl_monitor.h"
 #include "pl_philo.h"
+#include "pl_types.h"
 #include "pl_utils.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
-
-static void	*pl_start(void *self)
-{
-	int		i;
-	t_philo	*pl;
-	t_table	*tab;
-
-	tab = to_table(self);
-	i = 0;
-	while (i < tab->length)
-	{
-		pl = &tab->philos[i++];
-		pl->run(pl);
-	}
-	return (0);
-}
 
 static void	pl_join(void *self)
 {
 	t_philo	*pl;
 
-	pl = to_philo(self);
+	pl = (t_philo *)self;
 	pthread_join(pl->thread, 0);
 }
 
-static int	nobodys_dead(t_table *tab)
+static void	pl_start(void *self)
+{
+	t_philo	*pl;
+
+	pl = (t_philo *)self;
+	if (pthread_create(&pl->thread, 0, pl_routine, pl) != 0)
+		return ;
+}
+
+static int	nobodys_dead(t_monitor *tab)
 {
 	int		i;
 	t_state	state;
@@ -58,7 +51,7 @@ static int	nobodys_dead(t_table *tab)
 		if (state == PHILO_DEAD)
 		{
 			pl_set_dead(tab, pl);
-			pl_utl_message(pl, "died");
+			pl_msg(pl, "died");
 			return (0);
 		}
 		if (state == PHILO_FULL)
@@ -69,12 +62,12 @@ static int	nobodys_dead(t_table *tab)
 
 static void	*monitoring(void *mon)
 {
-	t_table	*tab;
-	int		i;
-	t_philo	*pl;
+	t_monitor	*tab;
+	int			i;
+	t_philo		*pl;
 
 	usleep(WAIT_START);
-	tab = to_table(mon);
+	tab = to_monitor(mon);
 	i = 0;
 	while (i < tab->length)
 	{
@@ -96,16 +89,13 @@ static void	*monitoring(void *mon)
 	return (0);
 }
 
-int	philosopher(t_table *tab)
+int	philosopher(t_monitor *tab)
 {
 	pthread_t	monitor;
-	pthread_t	start;
 
-	if (pthread_create(&start, 0, pl_start, tab) != 0)
-		return(2);
-	pthread_join(start, 0);
+	pl_utl_lst_foreach(tab, pl_start);
 	if (pthread_create(&monitor, 0, monitoring, tab) != 0)
-		return(2);
+		return (2);
 	pl_utl_lst_foreach(tab, pl_join);
 	pthread_join(monitor, 0);
 	pl_free(tab);

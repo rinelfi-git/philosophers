@@ -14,71 +14,67 @@
 # define PL_TYPES_H
 # define EXEC_INTERVAL 200
 # define EVEN_WAIT_START 1000
-# define MONITOR_WAIT 50
+# define MONITOR_WAIT 100
 # define WAIT_START 500
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
 
-typedef enum e_state	t_state;
-typedef struct s_times	t_time;
-typedef struct s_fork	t_fork;
-typedef struct s_philo	t_philo;
-typedef struct s_table	t_table;
-typedef pthread_mutex_t	t_sync;
-enum e_state
+typedef enum e_state		t_state;
+typedef struct s_times		t_time;
+typedef struct s_fork		t_fork;
+typedef struct s_philo		t_philo;
+typedef struct s_monitor	t_monitor;
+typedef pthread_mutex_t		t_sync;
+enum						e_state
 {
 	PHILO_NONE,
-	PHILO_THINKING,
-	PHILO_EATING,
-	PHILO_SLEEPING,
 	PHILO_FULL,
 	PHILO_DEAD,
 };
-struct s_times
+struct						s_times
 {
-	long	die;
-	long	eat;
-	long	sleep;
-	long	think;
-	long	start;
+	long					die;
+	long					eat;
+	long					sleep;
+	long					think;
+	long					start;
 };
-struct s_philo
+struct						s_philo
 {
-	pthread_t	thread;
-	t_sync		self_lock;
-	t_sync		state_lock;
-	t_sync		run_lock;
-	t_sync		time_lock;
-	int			id;
-	int			rank;
-	int			is_running;
-	int			max_eat;
-	long		start;
-	void		(*run)(void *);
-	void		(*stop)(void *);
-	t_fork		*left;
-	t_fork		*right;
-	t_state		state;
-	t_time		tt;
-	t_table		*tab;
+	pthread_t				thread;
+	t_sync					self_lock;
+	t_sync					state_lock;
+	t_sync					run_lock;
+	t_sync					time_lock;
+	int						id;
+	int						rank;
+	int						is_running;
+	int						max_eat;
+	long					start;
+	void					(*stop)(void *);
+	t_fork					*left;
+	t_fork					*right;
+	t_state					state;
+	t_time					tt;
+	t_monitor				*tab;
 };
-struct s_table
+struct						s_monitor
 {
-	t_sync	self_lock;
-	t_sync	dead_lock;
-	t_sync	print_lock;
-	t_fork	*forks;
-	t_philo	*philos;
-	t_philo	*dead;
-	int		length;
-	int		max_eat;
-	long	start;
-	t_time	tt;
+	t_sync					self_lock;
+	t_sync					dead_lock;
+	t_sync					print_lock;
+	t_fork					*forks;
+	t_philo					*philos;
+	t_philo					*dead;
+	int						length;
+	int						max_eat;
+	long					start;
+	t_time					tt;
 };
-struct s_fork
+struct						s_fork
 {
-	t_sync	use_lock;
-	t_philo	*user;
+	t_sync					use_lock;
+	t_philo					*user;
 };
 #endif

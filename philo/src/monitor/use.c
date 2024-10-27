@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   to_table.c                                         :+:      :+:    :+:   */
+/*   init_times.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 16:01:13 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/07 16:01:54 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/07 11:03:31 by erijania          #+#    #+#             */
+/*   Updated: 2024/10/27 23:07:10 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_table.h"
+#include "pl_types.h"
+#include "pl_fork.h"
 
-t_table	*to_table(void *obj)
+void	pl_init_times(t_monitor *tab, int *times)
 {
-	return ((t_table *) obj);
+	int		i;
+	t_philo	*pl;
+
+	tab->tt.die = times[0];
+	tab->tt.eat = times[1];
+	tab->tt.sleep = times[2];
+	i = 0;
+	while (i < tab->length)
+	{
+		pl = &tab->philos[i++];
+		pl->tt.die = tab->tt.die + tab->start;
+		pl->tt.eat = tab->tt.eat;
+		pl->tt.sleep = tab->tt.sleep;
+	}
 }

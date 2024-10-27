@@ -6,25 +6,16 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 14:35:11 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 23:38:56 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_fork.h"
 #include "pl_philo.h"
-#include "pl_table.h"
+#include "pl_monitor.h"
 #include "pl_utils.h"
 #include <stdlib.h>
 #include <unistd.h>
-
-static void	pl_run(void *self)
-{
-	t_philo	*pl;
-
-	pl = to_philo(self);
-	if (pthread_create(&(pl->thread), 0, pl_exec, self) != 0)
-		return ;
-}
 
 static void	pl_stop(void *self)
 {
@@ -32,7 +23,7 @@ static void	pl_stop(void *self)
 
 	if (!self)
 		return ;
-	pl = to_philo(self);
+	pl = (t_philo *)self;
 	pl_set_run(pl, 0);
 	pl_free_fork(pl);
 }
@@ -54,6 +45,5 @@ void	init_philo(t_philo *pl, int id, t_fork *left)
 	pl->max_eat = 0;
 	pl->state = PHILO_NONE;
 	pl->tab = 0;
-	pl->run = pl_run;
 	pl->stop = pl_stop;
 }

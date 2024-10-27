@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_utl_atoi.c                                      :+:      :+:    :+:   */
+/*   fts.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 15:40:06 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 11:22:44 by erijania         ###   ########.fr       */
+/*   Created: 2024/10/27 23:26:24 by erijania          #+#    #+#             */
+/*   Updated: 2024/10/27 23:34:36 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <limits.h>
 
 static int	char_to_digit(char c)
 {
@@ -17,7 +19,7 @@ static int	char_to_digit(char c)
 	return (-1);
 }
 
-long	pl_utl_atoi(const char *str)
+long	pl_atoi(const char *str)
 {
 	long	ret;
 	int		sign;
@@ -36,4 +38,24 @@ long	pl_utl_atoi(const char *str)
 		ret += char_to_digit(*(str++));
 	}
 	return (ret * sign);
+}
+int	pl_isnumber(char *str)
+{
+	if (!str)
+		return (0);
+	if (*str == '+' || *str == '-')
+		str++;
+	while (*str >= '0' && *str <= '9')
+		str++;
+	return (*str == 0);
+}
+
+int	pl_isinteger(char *str)
+{
+	long	nbr;
+
+	nbr = pl_atoi(str);
+	if (nbr > (long) INT_MAX || nbr < (long) INT_MIN)
+		return (0);
+	return (1);
 }

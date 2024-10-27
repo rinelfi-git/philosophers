@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dead.c                                             :+:      :+:    :+:   */
+/*   use.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 19:28:05 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/26 17:48:47 by erijania         ###   ########.fr       */
+/*   Created: 2024/10/27 23:13:53 by erijania          #+#    #+#             */
+/*   Updated: 2024/10/27 23:19:23 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_types.h"
 
-t_philo	*pl_get_dead(t_table *tab)
+void	pl_set_fork_use(t_fork *fk, t_philo *user)
 {
-	t_philo	*pl;
-
-	pl = 0;
-	pthread_mutex_lock(&tab->dead_lock);
-	pl = tab->dead;
-	pthread_mutex_unlock(&tab->dead_lock);
-	return (pl);
+	pthread_mutex_lock(&fk->use_lock);
+	fk->user = user;
+	pthread_mutex_unlock(&fk->use_lock);
 }
 
-void	pl_set_dead(t_table *tab, t_philo *pl)
+t_philo	*pl_get_fork_user(t_fork *fk)
 {
-	pthread_mutex_lock(&tab->dead_lock);
-	tab->dead = pl;
-	pthread_mutex_unlock(&tab->dead_lock);
+	t_philo *pl;
+
+	pl = 0;
+	pthread_mutex_lock(&fk->use_lock);
+	pl = fk->user;
+	pthread_mutex_unlock(&fk->use_lock);
+	return (pl);
 }

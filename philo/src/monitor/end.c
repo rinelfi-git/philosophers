@@ -1,17 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 15:10:33 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/15 11:56:55 by erijania         ###   ########.fr       */
+/*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
+/*   Updated: 2024/10/27 23:10:57 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_types.h"
-#include <stdlib.h>
+#include "pl_utils.h"
+
+void	pl_end(t_monitor *tab)
+{
+	int		i;
+	t_philo	*pl;
+
+	i = 0;
+	while (i < tab->length)
+	{
+		pl = &tab->philos[i++];
+		pl->stop(pl);
+	}
+}
 
 static void	mutex_fork_destroy(t_fork *fk)
 {
@@ -26,13 +39,13 @@ static void	mutex_philo_destroy(t_philo *pl)
 	pthread_mutex_destroy(&pl->run_lock);
 }
 
-static void	mutex_table_destroy(t_table *tab)
+static void	mutex_table_destroy(t_monitor *tab)
 {
 	pthread_mutex_destroy(&tab->self_lock);
 	pthread_mutex_destroy(&tab->dead_lock);
 }
 
-void	pl_free(t_table *tab)
+void	pl_free(t_monitor *tab)
 {
 	int		i;
 	t_fork	*fk;
