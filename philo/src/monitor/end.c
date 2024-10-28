@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:10:57 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/28 00:05:09 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	pl_end(t_monitor *tab)
 	while (i < tab->length)
 	{
 		pl = &tab->philos[i++];
-		pl->stop(pl);
+		pl_set_state(pl, PHILO_STOP);
 	}
 }
 

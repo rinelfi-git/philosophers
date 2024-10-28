@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:39:36 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 23:59:01 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ static int	nobodys_dead(t_monitor *tab)
 	{
 		pl = &tab->philos[i++];
 		state = pl_get_state(pl);
-		if (state == PHILO_DEAD)
+		if (state == PHILO_FULL)
+			fulls++;
+		else if (state == PHILO_DEAD)
 		{
 			pl_set_dead(tab, pl);
 			pl_msg(pl, "died");
 			return (0);
 		}
-		if (state == PHILO_FULL)
-			fulls++;
 	}
 	return (fulls < tab->length);
 }

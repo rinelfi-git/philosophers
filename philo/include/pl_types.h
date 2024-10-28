@@ -29,6 +29,7 @@ typedef pthread_mutex_t		t_sync;
 enum						e_state
 {
 	PHILO_NONE,
+	PHILO_STOP,
 	PHILO_FULL,
 	PHILO_DEAD,
 };

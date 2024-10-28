@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:38:05 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/27 23:55:21 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	*pl_routine(void *self)
 		if (!pl_eating(pl))
 			break ;
 		if (!pl_sleeping(pl))
+			break ;
+		if (!pl_thinking(pl))
 			break ;
 	}
 	pl->stop(pl);
