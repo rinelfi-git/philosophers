@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:59:01 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:30:15 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	pl_start(void *self)
 	t_philo	*pl;
 
 	pl = (t_philo *)self;
+	pl->is_running = 1;
 	if (pthread_create(&pl->thread, 0, pl_routine, pl) != 0)
 		return ;
 }
@@ -63,26 +64,8 @@ static int	nobodys_dead(t_monitor *tab)
 static void	*monitoring(void *mon)
 {
 	t_monitor	*tab;
-	int			i;
-	t_philo		*pl;
-
-	usleep(WAIT_START);
-	tab = to_monitor(mon);
-	i = 0;
-	while (i < tab->length)
-	{
-		pl = &tab->philos[i];
-		i += 2;
-		pl_set_run(pl, 1);
-	}
-	usleep(EVEN_WAIT_START);
-	i = 1;
-	while (i < tab->length)
-	{
-		pl = &tab->philos[i];
-		i += 2;
-		pl_set_run(pl, 1);
-	}
+	
+	tab = (t_monitor *)mon;
 	while (nobodys_dead(tab))
 		usleep(MONITOR_WAIT);
 	pl_end(tab);

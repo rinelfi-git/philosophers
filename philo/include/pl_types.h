@@ -13,7 +13,7 @@
 #ifndef PL_TYPES_H
 # define PL_TYPES_H
 # define EXEC_INTERVAL 200
-# define EVEN_WAIT_START 1000
+# define EVEN_WAIT_START 10000
 # define MONITOR_WAIT 100
 # define WAIT_START 500
 # include <pthread.h>
@@ -64,6 +64,7 @@ struct						s_monitor
 	t_sync					self_lock;
 	t_sync					dead_lock;
 	t_sync					print_lock;
+	t_sync					ready_lock;
 	t_sync					*forks;
 	t_philo					*philos;
 	t_philo					*dead;

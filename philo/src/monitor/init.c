@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/31 19:41:41 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:25:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,50 +20,51 @@ t_monitor	*to_monitor(void *obj)
 	return ((t_monitor *) obj);
 }
 
-static void	init_vars(t_monitor *tab)
+static void	init_vars(t_monitor *mon)
 {
 	int		i;
 	t_philo	*pl;
 	t_sync	*fk;
 
-	if (!tab)
+	if (!mon)
 		return ;
 	i = 0;
-	while (i < tab->length)
+	while (i < mon->length)
 	{
-		fk = &tab->forks[i];
-		pl = &tab->philos[i];
+		fk = &mon->forks[i];
+		pl = &mon->philos[i];
 		pthread_mutex_init(fk, 0);
 		init_philo(pl, i++, fk);
-		pl->mon = tab;
+		pl->mon = mon;
 	}
 	i = 0;
-	while (i < tab->length)
+	while (i < mon->length)
 	{
-		pl = &tab->philos[i];
-		fk = &tab->forks[(i + 1) % tab->length];
+		pl = &mon->philos[i];
+		fk = &mon->forks[(i + 1) % mon->length];
 		if (pl->left != fk)
 			pl->right = fk;
 		i++;
 	}
 }
 
-void	init_monitor(t_monitor *tab, int length)
+void	init_monitor(t_monitor *mon, int length)
 {
-	pthread_mutex_init(&tab->self_lock, 0);
-	pthread_mutex_init(&tab->dead_lock, 0);
-	pthread_mutex_init(&tab->print_lock, 0);
-	tab->philos = (t_philo *)malloc(sizeof(t_philo) * length);
-	tab->forks = (t_sync *)malloc(sizeof(t_sync) * length);
-	if (!tab->philos || !tab->forks)
+	pthread_mutex_init(&mon->dead_lock, 0);
+	pthread_mutex_init(&mon->print_lock, 0);
+	pthread_mutex_init(&mon->ready_lock, 0);
+	mon->philos = (t_philo *)malloc(sizeof(t_philo) * length);
+	mon->forks = (t_sync *)malloc(sizeof(t_sync) * length);
+	if (!mon->philos || !mon->forks)
 		return ;
-	tab->length = length;
-	tab->start = pl_timestamp();
-	tab->max_eat = 0;
-	tab->tt.die = 0;
-	tab->tt.eat = 0;
-	tab->tt.sleep = 0;
-	tab->tt.think = 0;
-	tab->dead = 0;
-	init_vars(tab);
+	mon->length = length;
+	mon->start = pl_timestamp();
+	mon->max_eat = 0;
+	mon->tt.die = 0;
+	mon->tt.eat = 0;
+	mon->tt.sleep = 0;
+	mon->tt.think = 0;
+	mon->dead = 0;
+	mon->is_ready = 0;
+	init_vars(mon);
 }

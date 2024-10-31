@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dead.c                                             :+:      :+:    :+:   */
+/*   ready.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/09 19:28:05 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/31 20:26:26 by erijania         ###   ########.fr       */
+/*   Created: 2024/10/31 20:12:41 by erijania          #+#    #+#             */
+/*   Updated: 2024/10/31 20:21:08 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_types.h"
 
-t_philo	*pl_get_dead(t_monitor *tab)
+int pl_is_ready(t_monitor *mon)
 {
-	t_philo	*pl;
+    int ready;
 
-	pl = 0;
-	pthread_mutex_lock(&tab->dead_lock);
-	pl = tab->dead;
-	pthread_mutex_unlock(&tab->dead_lock);
-	return (pl);
+    pthread_mutex_lock(&mon->ready_lock);
+    ready = mon->is_ready;
+    pthread_mutex_unlock(&mon->ready_lock);
+    return (ready);
 }
 
-void	pl_set_dead(t_monitor *tab, t_philo *pl)
+void pl_set_ready(t_monitor *mon, int ready)
 {
-	pthread_mutex_lock(&tab->dead_lock);
-	tab->dead = pl;
-	pthread_mutex_unlock(&tab->dead_lock);
+    pthread_mutex_lock(&mon->ready_lock);
+    mon->is_ready = ready;
+    pthread_mutex_unlock(&mon->ready_lock);
 }

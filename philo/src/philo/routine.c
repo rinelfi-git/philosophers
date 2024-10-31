@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/31 19:47:25 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:35:31 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,16 @@ void	*pl_routine(void *self)
 	t_philo	*pl;
 
 	pl = (t_philo *)self;
-	while (!pl_is_running(pl))
-		usleep(WAIT_START);
-	while (1)
+	if (pl->rank == pl->mon->length)
+	{
+		pl_set_ready(pl->mon, 1);
+		usleep(EXEC_INTERVAL);
+	}
+	while (!pl_is_ready(pl->mon))
+		usleep(EXEC_INTERVAL);
+	if (!pl->rank % 2)
+		usleep(EVEN_WAIT_START);
+	while (pl_is_running(pl))
 	{
 		if (!pl_take_fork(pl))
 			break ;
