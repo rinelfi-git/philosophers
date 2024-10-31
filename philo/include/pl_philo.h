@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:50:37 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:12:03 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/31 19:48:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 # define PL_PHILO_H
 # include "pl_types.h"
 
-void		init_philo(t_philo *pl, int rank, t_fork *left);
-t_philo		*to_philo(void *obj);
-pthread_t	*to_thread(void *obj);
+void		init_philo(t_philo *pl, int rank, t_sync *left);
 int			philosopher(t_monitor *tab);
-int			pl_is_full(t_philo *pl);
 int			pl_take_fork(t_philo *pl);
 void		pl_free_fork(t_philo *pl);
 void		*pl_routine(void *self);

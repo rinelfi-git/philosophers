@@ -6,14 +6,13 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:35:39 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/31 19:41:41 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "pl_types.h"
 #include "pl_utils.h"
-#include "pl_fork.h"
 #include "pl_philo.h"
 
 t_monitor	*to_monitor(void *obj)
@@ -25,7 +24,7 @@ static void	init_vars(t_monitor *tab)
 {
 	int		i;
 	t_philo	*pl;
-	t_fork	*fk;
+	t_sync	*fk;
 
 	if (!tab)
 		return ;
@@ -34,9 +33,9 @@ static void	init_vars(t_monitor *tab)
 	{
 		fk = &tab->forks[i];
 		pl = &tab->philos[i];
-		init_fork(fk);
+		pthread_mutex_init(fk, 0);
 		init_philo(pl, i++, fk);
-		pl->tab = tab;
+		pl->mon = tab;
 	}
 	i = 0;
 	while (i < tab->length)
@@ -55,7 +54,7 @@ void	init_monitor(t_monitor *tab, int length)
 	pthread_mutex_init(&tab->dead_lock, 0);
 	pthread_mutex_init(&tab->print_lock, 0);
 	tab->philos = (t_philo *)malloc(sizeof(t_philo) * length);
-	tab->forks = (t_fork *)malloc(sizeof(t_fork) * length);
+	tab->forks = (t_sync *)malloc(sizeof(t_sync) * length);
 	if (!tab->philos || !tab->forks)
 		return ;
 	tab->length = length;

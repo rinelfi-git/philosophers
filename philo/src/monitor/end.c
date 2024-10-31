@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/28 00:05:09 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/31 19:40:07 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ void	pl_end(t_monitor *tab)
 	}
 }
 
-static void	mutex_fork_destroy(t_fork *fk)
-{
-	pthread_mutex_destroy(&fk->use_lock);
-}
-
 static void	mutex_philo_destroy(t_philo *pl)
 {
 	pthread_mutex_destroy(&pl->self_lock);
@@ -48,7 +43,7 @@ static void	mutex_table_destroy(t_monitor *tab)
 void	pl_free(t_monitor *tab)
 {
 	int		i;
-	t_fork	*fk;
+	t_sync	*fk;
 	t_philo	*pl;
 
 	i = 0;
@@ -56,7 +51,7 @@ void	pl_free(t_monitor *tab)
 	{
 		pl = &tab->philos[i];
 		fk = &tab->forks[i++];
-		mutex_fork_destroy(fk);
+		pthread_mutex_destroy(fk);
 		mutex_philo_destroy(pl);
 	}
 	mutex_table_destroy(tab);

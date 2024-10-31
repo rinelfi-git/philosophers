@@ -22,7 +22,6 @@
 
 typedef enum e_state		t_state;
 typedef struct s_times		t_time;
-typedef struct s_fork		t_fork;
 typedef struct s_philo		t_philo;
 typedef struct s_monitor	t_monitor;
 typedef pthread_mutex_t		t_sync;
@@ -54,28 +53,24 @@ struct						s_philo
 	int						max_eat;
 	long					start;
 	void					(*stop)(void *);
-	t_fork					*left;
-	t_fork					*right;
+	t_sync					*left;
+	t_sync					*right;
 	t_state					state;
 	t_time					tt;
-	t_monitor				*tab;
+	t_monitor				*mon;
 };
 struct						s_monitor
 {
 	t_sync					self_lock;
 	t_sync					dead_lock;
 	t_sync					print_lock;
-	t_fork					*forks;
+	t_sync					*forks;
 	t_philo					*philos;
 	t_philo					*dead;
 	int						length;
 	int						max_eat;
+	int						is_ready;
 	long					start;
 	t_time					tt;
-};
-struct						s_fork
-{
-	t_sync					use_lock;
-	t_philo					*user;
 };
 #endif

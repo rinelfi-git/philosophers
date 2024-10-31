@@ -6,11 +6,10 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:38:56 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/31 19:42:24 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_fork.h"
 #include "pl_philo.h"
 #include "pl_monitor.h"
 #include "pl_utils.h"
@@ -28,7 +27,7 @@ static void	pl_stop(void *self)
 	pl_free_fork(pl);
 }
 
-void	init_philo(t_philo *pl, int id, t_fork *left)
+void	init_philo(t_philo *pl, int id, t_sync *left)
 {
 	pthread_mutex_init(&pl->self_lock, 0);
 	pthread_mutex_init(&pl->time_lock, 0);
@@ -44,6 +43,6 @@ void	init_philo(t_philo *pl, int id, t_fork *left)
 	pl->is_running = 0;
 	pl->max_eat = 0;
 	pl->state = PHILO_NONE;
-	pl->tab = 0;
+	pl->mon = 0;
 	pl->stop = pl_stop;
 }

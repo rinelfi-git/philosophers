@@ -2,18 +2,15 @@ NAME = philo
 CC = cc
 CARG = -Werror -Wextra -Wall
 INCs = -Iinclude
-SRCs = src/fork/lock/use.c \
-		src/fork/free_fork.c \
-		src/fork/init.c \
-		src/monitor/lock/dead.c \
+SRCs = src/monitor/lock/dead.c \
 		src/monitor/end.c \
 		src/monitor/init.c \
 		src/monitor/use.c \
 		src/philo/lock/running.c \
 		src/philo/lock/state.c \
+		src/philo/fork.c \
 		src/philo/init.c \
 		src/philo/routine.c \
-		src/philo/take_fork.c \
 		src/utils/fts.c \
 		src/utils/loop.c \
 		src/utils/output.c \

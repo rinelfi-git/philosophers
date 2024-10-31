@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:25:16 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:56:22 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:33:51 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	pl_usleep(t_philo *pl, long ms)
 	long	start;
 	long	interval;
 	long	timestamp;
-	t_state	state;
 
 	start = pl_timestamp();
 	timestamp = start;

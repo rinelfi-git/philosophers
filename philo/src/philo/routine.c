@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:55:21 by erijania         ###   ########.fr       */
+/*   Updated: 2024/10/31 19:47:25 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	pl_eating(t_philo *pl)
 	t_monitor	*tab;
 	int			out;
 
-	tab = pl->tab;
+	tab = pl->mon;
 	pl->tt.die = tab->tt.die + pl_timestamp();
 	out = 1;
 	pl->max_eat++;
@@ -37,7 +37,7 @@ int	pl_sleeping(t_philo *pl)
 	t_monitor	*tab;
 	int			out;
 
-	tab = pl->tab;
+	tab = pl->mon;
 	out = 1;
 	pl_msg(pl, "is sleeping");
 	if (!pl_usleep(pl, tab->tt.sleep))
@@ -59,17 +59,13 @@ int	pl_thinking(t_philo *pl)
 void	*pl_routine(void *self)
 {
 	t_philo	*pl;
-	int		take;
 
 	pl = (t_philo *)self;
 	while (!pl_is_running(pl))
 		usleep(WAIT_START);
 	while (1)
 	{
-		take = pl_take_fork(pl);
-		while (take == -1)
-			take = pl_take_fork(pl);
-		if (take == 0)
+		if (!pl_take_fork(pl))
 			break ;
 		if (!pl_eating(pl))
 			break ;
