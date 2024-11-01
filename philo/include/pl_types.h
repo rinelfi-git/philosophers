@@ -12,10 +12,9 @@
 
 #ifndef PL_TYPES_H
 # define PL_TYPES_H
-# define EXEC_INTERVAL 200
-# define EVEN_WAIT_START 10000
-# define MONITOR_WAIT 100
-# define WAIT_START 500
+# define EXEC_INTERVAL 50
+# define EVEN_WAIT_START 15000
+# define MONITOR_WAIT 10
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -46,8 +45,7 @@ struct						s_philo
 	t_sync					self_lock;
 	t_sync					state_lock;
 	t_sync					run_lock;
-	t_sync					time_lock;
-	int						id;
+	t_sync					last_meal_lock;
 	int						rank;
 	int						is_running;
 	int						max_eat;
@@ -57,6 +55,7 @@ struct						s_philo
 	t_sync					*right;
 	t_state					state;
 	t_time					tt;
+	long					last_meal;
 	t_monitor				*mon;
 };
 struct						s_monitor
@@ -71,6 +70,7 @@ struct						s_monitor
 	int						length;
 	int						max_eat;
 	int						is_ready;
+	int						nbr_ate;
 	long					start;
 	t_time					tt;
 };

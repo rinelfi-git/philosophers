@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:43:44 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/31 20:31:35 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/01 21:19:08 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,24 @@ static void	take(t_philo *pl, t_sync *fk)
 	pl_msg(pl, "has taken a fork");
 }
 
-static void	take_right_first(t_philo *pl)
-{
-	if (pl->right)
-		take(pl, pl->right);
-	if (pl->left)
-		take(pl, pl->left);
-}
-
-static void	take_left_first(t_philo *pl)
-{
-	if (pl->left)
-		take(pl, pl->left);
-	if (pl->right)
-		take(pl, pl->right);
-}
-
 int	pl_take_fork(t_philo *pl)
 {
 	if (pl->mon->max_eat && pl->max_eat >= pl->mon->max_eat)
+	{
+		pl_set_state(pl, PHILO_FULL);
 		return (0);
-	if (!pl->rank % 2)
-		take_right_first(pl);
-	else
-		take_left_first(pl);
+	}
+	if (pl->right)
+		take(pl, pl->right);
+	if (pl->left)
+		take(pl, pl->left);
 	return (1);
 }
 
 void	pl_free_fork(t_philo *pl)
 {
-	if (pl->left)
-		pthread_mutex_unlock(pl->left);
 	if (pl->right)
 		pthread_mutex_unlock(pl->right);
+	if (pl->left)
+		pthread_mutex_unlock(pl->left);
 }

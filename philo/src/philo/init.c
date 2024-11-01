@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/31 20:12:08 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/01 20:37:10 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,8 @@ static void	pl_stop(void *self)
 
 void	init_philo(t_philo *pl, int id, t_sync *left)
 {
-	pthread_mutex_init(&pl->time_lock, 0);
 	pthread_mutex_init(&pl->state_lock, 0);
 	pthread_mutex_init(&pl->run_lock, 0);
-	pl->id = id;
 	pl->rank = id + 1;
 	pl->tt.die = 1;
 	pl->tt.eat = 1;
@@ -41,6 +39,7 @@ void	init_philo(t_philo *pl, int id, t_sync *left)
 	pl->right = 0;
 	pl->is_running = 0;
 	pl->max_eat = 0;
+	pl->last_meal = 0;
 	pl->state = PHILO_NONE;
 	pl->mon = 0;
 	pl->stop = pl_stop;

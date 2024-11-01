@@ -6,29 +6,28 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/31 20:12:05 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/01 20:38:52 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_types.h"
 #include "pl_utils.h"
 
-void	pl_end(t_monitor *tab)
+void	pl_end(t_monitor *mon)
 {
 	int		i;
 	t_philo	*pl;
 
 	i = 0;
-	while (i < tab->length)
+	while (i < mon->length)
 	{
-		pl = &tab->philos[i++];
-		pl_set_state(pl, PHILO_STOP);
+		pl = &mon->philos[i++];
+		pl_set_run(pl, 0);
 	}
 }
 
 static void	mutex_philo_destroy(t_philo *pl)
 {
-	pthread_mutex_destroy(&pl->time_lock);
 	pthread_mutex_destroy(&pl->state_lock);
 	pthread_mutex_destroy(&pl->run_lock);
 }
