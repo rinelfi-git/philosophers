@@ -3,7 +3,6 @@ CC = cc
 CARG = -Werror -Wextra -Wall
 INCs = -Iinclude
 SRCs = src/monitor/lock/dead.c \
-		src/monitor/lock/ready.c \
 		src/monitor/end.c \
 		src/monitor/init.c \
 		src/monitor/use.c \

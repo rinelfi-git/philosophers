@@ -6,11 +6,12 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:25:16 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/01 21:21:08 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/03 22:40:21 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_types.h"
+#include "pl_monitor.h"
 #include "pl_utils.h"
 #include <unistd.h>
 
@@ -18,24 +19,26 @@ int	pl_usleep(t_philo *pl, long ms)
 {
 	long	start;
 	long	time;
-	int		run;
-	t_state	state;
+	int		is_dead;
 
 	start = pl_timestamp();
 	time = pl_timestamp();
-	run = pl_is_running(pl);
-	while (run && time < start + ms)
+	while (time < start + ms)
 	{
+		usleep(EXEC_INTERVAL);
 		time = pl_timestamp();
-		state = pl_get_state(pl);
-		if (state == PHILO_FULL || state == PHILO_DEAD)
-			return (0);
-		if (pl->last_meal > 0 && pl->last_meal + pl->mon->tt.die < time)
+		is_dead = pl->last_meal > 0 && pl->last_meal + pl->mon->tt.die < time;
+		if (is_dead)
 		{
-			pl_set_state(pl, PHILO_DEAD);
+			pl_set_dead(pl->mon, pl);
+			pl_set_run(pl, 0);
 			return (0);
 		}
-		run = pl_is_running(pl);
+		if (pl->mon->max_eat && pl->max_eat >= pl->mon->max_eat)
+		{
+			pl_set_state(pl, PHILO_FULL);
+			return (0);
+		}
 	}
-	return (run);
+	return (1);
 }

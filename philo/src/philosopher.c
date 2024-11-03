@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/01 20:55:50 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/03 22:23:49 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@ static int	nobodys_dead(t_monitor *mon)
 	t_state	state;
 	t_philo	*pl;
 
+	pl = pl_get_dead(mon);
+	if (pl)
+	{
+		pl_msg(pl, "died");
+		return (0);
+	}
 	i = 0;
 	mon->nbr_ate = 0;
 	while (i < mon->length)
 	{
 		pl = &mon->philos[i++];
 		state = pl_get_state(pl);
-		if (state == PHILO_DEAD)
-		{
-			pl_set_dead(mon, pl);
-			pl_msg(pl, "died");
-			return (0);
-		}
 		if (state == PHILO_FULL)
 			mon->nbr_ate++;
 	}
@@ -63,14 +63,8 @@ static int	nobodys_dead(t_monitor *mon)
 static void	*monitoring(void *self)
 {
 	t_monitor	*mon;
-	int			i;
 
 	mon = (t_monitor *)self;
-	while (!pl_is_ready(mon))
-		usleep(MONITOR_WAIT);
-	i = 0;
-	while (i < mon->length)
-		pl_set_run(&mon->philos[i++], 1);
 	while (nobodys_dead(mon))
 		usleep(MONITOR_WAIT);
 	pl_end(mon);

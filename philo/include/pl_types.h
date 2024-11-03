@@ -63,13 +63,11 @@ struct						s_monitor
 	t_sync					self_lock;
 	t_sync					dead_lock;
 	t_sync					print_lock;
-	t_sync					ready_lock;
 	t_sync					*forks;
 	t_philo					*philos;
 	t_philo					*dead;
 	int						length;
 	int						max_eat;
-	int						is_ready;
 	int						nbr_ate;
 	long					start;
 	t_time					tt;

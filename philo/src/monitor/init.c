@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/31 20:25:22 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/03 21:40:04 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	init_monitor(t_monitor *mon, int length)
 {
 	pthread_mutex_init(&mon->dead_lock, 0);
 	pthread_mutex_init(&mon->print_lock, 0);
-	pthread_mutex_init(&mon->ready_lock, 0);
 	mon->philos = (t_philo *)malloc(sizeof(t_philo) * length);
 	mon->forks = (t_sync *)malloc(sizeof(t_sync) * length);
 	if (!mon->philos || !mon->forks)
@@ -65,6 +64,5 @@ void	init_monitor(t_monitor *mon, int length)
 	mon->tt.sleep = 0;
 	mon->tt.think = 0;
 	mon->dead = 0;
-	mon->is_ready = 0;
 	init_vars(mon);
 }
