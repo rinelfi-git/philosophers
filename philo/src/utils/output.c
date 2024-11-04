@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:56:41 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/03 21:59:01 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:18:00 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,10 @@ int	pl_error(char *msg, int code)
 void	pl_msg(t_philo *pl, char *state)
 {
 	t_monitor	*mon;
-	long		time;
 
 	mon = pl->mon;
-	time = pl_timestamp();
 	pthread_mutex_lock(&mon->print_lock);
-	pl_putnbr(time - pl->mon->start);
+	pl_putnbr(pl_timestamp() - pl->mon->start);
 	pl_putchar(' ');
 	pl_putnbr(pl->rank);
 	pl_putchar(' ');
