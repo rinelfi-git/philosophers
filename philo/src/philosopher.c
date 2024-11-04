@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 20:40:22 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 21:36:07 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static int	nobodys_dead(t_monitor *mon)
 		{
 			pl_set_run(pl, 0);
 			pl_set_dead(mon, pl);
-			pl_msg(pl, "died");
 			return (0);
 		}
 	}

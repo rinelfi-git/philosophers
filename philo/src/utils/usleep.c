@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:25:16 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 19:12:44 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 21:44:45 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ int	pl_usleep(t_philo *pl, long ms)
 	run = pl_is_running(pl);
 	while (run && pl_timestamp() < start + ms)
 	{
-		usleep(EXEC_INTERVAL);
 		run = pl_is_running(pl);
-		if (!run)
+		if (!run || pl_get_dead(pl->mon))
 			return (0);
 	}
 	return (1);

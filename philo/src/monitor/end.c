@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 20:40:00 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 21:54:37 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	pl_end(t_monitor *mon)
 		pl = &mon->philos[i++];
 		pl_set_run(pl, 0);
 	}
+	pl = pl_get_dead(mon);
+	if (pl)
+		pl_msg(pl, "died");
 }
 
 static void	mutex_table_destroy(t_monitor *tab)

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:43:44 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 20:40:30 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 22:33:19 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ static void	take(t_philo *pl, t_sync *fk)
 {
 	if (pthread_mutex_lock(fk) == 0)
 	{
+		if (pl_get_dead(pl->mon))
+		{
+			pthread_mutex_unlock(fk);
+			return ;
+		}
 		pl_msg(pl, "has taken a fork");
 		pl->taken_fork++;
 	}
