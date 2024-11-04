@@ -6,12 +6,12 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 17:29:47 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:49:24 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PL_TABLE_H
-# define PL_TABLE_H
+#ifndef PL_MONITOR_H
+# define PL_MONITOR_H
 # include "pl_types.h"
 
 void		init_monitor(t_monitor *mon, int length);

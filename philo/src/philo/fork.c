@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:43:44 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 19:33:35 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:50:35 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "pl_utils.h"
 #include <unistd.h>
 
-static void take(t_philo *pl, t_sync *fk)
+static void	take(t_philo *pl, t_sync *fk)
 {
 	if (pthread_mutex_lock(fk) == 0)
 	{
@@ -23,7 +23,7 @@ static void take(t_philo *pl, t_sync *fk)
 	}
 }
 
-int pl_take_fork(t_philo *pl)
+int	pl_take_fork(t_philo *pl)
 {
 	if (pl->mon->max_eat && pl->max_eat >= pl->mon->max_eat)
 	{
@@ -47,7 +47,7 @@ int pl_take_fork(t_philo *pl)
 	return (pl->taken_fork == 2);
 }
 
-void pl_free_fork(t_philo *pl)
+void	pl_free_fork(t_philo *pl)
 {
 	if (pl->rank % 2 == 0)
 	{

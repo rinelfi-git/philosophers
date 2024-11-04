@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 23:26:24 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:34:36 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:50:57 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ long	pl_atoi(const char *str)
 	}
 	return (ret * sign);
 }
+
 int	pl_isnumber(char *str)
 {
 	if (!str)

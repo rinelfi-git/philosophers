@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/10/27 23:33:23 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:49:49 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static int	is_arg_correct(int ac, char **av)
 int	main(int ac, char **av)
 {
 	t_monitor	tab;
-	int		times[3];
-	int		size;
+	int			times[3];
+	int			size;
 
 	if (!is_arg_correct(ac, av))
 		return (1);
