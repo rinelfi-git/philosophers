@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/03 22:54:29 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:39:12 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	pl_eating(t_philo *pl)
 		return (0);
 	mon = pl->mon;
 	pl->max_eat++;
-	pl->last_meal = pl_timestamp();
+	pl_update_last_meal(pl);
 	pl_msg(pl, "is eating");
 	out = pl_usleep(pl, mon->tt.eat);
 	pl_free_fork(pl);

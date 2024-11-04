@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/03 23:01:22 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:43:00 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,17 @@ static int	nobodys_dead(t_monitor *mon)
 	int		i;
 	t_state	state;
 	t_philo	*pl;
-	long	time;
+	long	times[2];
 
 	i = 0;
 	mon->nbr_ate = 0;
-	time = pl_timestamp();
+	times[0] = pl_timestamp();
 	while (i < mon->length)
 	{
 		pl = &mon->philos[i++];
 		state = pl_get_state(pl);
-		if (pl->last_meal > 0 && pl->last_meal + mon->tt.die < time)
+		times[1] = pl_get_last_meal(pl);
+		if (times[1] > 0 && times[1] + mon->tt.die <= times[0])
 		{
 			pl_set_dead(mon, pl);
 			pl_msg(pl, "died");

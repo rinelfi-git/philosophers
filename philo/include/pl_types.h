@@ -12,7 +12,7 @@
 
 #ifndef PL_TYPES_H
 # define PL_TYPES_H
-# define EXEC_INTERVAL 50
+# define EXEC_INTERVAL 100
 # define EVEN_WAIT_START 30000
 # define MONITOR_WAIT 10
 # include <pthread.h>

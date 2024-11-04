@@ -6,6 +6,7 @@ SRCs = src/monitor/lock/dead.c \
 		src/monitor/end.c \
 		src/monitor/init.c \
 		src/monitor/use.c \
+		src/philo/lock/meal.c \
 		src/philo/lock/running.c \
 		src/philo/lock/state.c \
 		src/philo/fork.c \

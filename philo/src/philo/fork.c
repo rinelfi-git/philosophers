@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:43:44 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/03 22:58:37 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:42:36 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	pl_take_fork(t_philo *pl)
 		pl_set_state(pl, PHILO_FULL);
 		return (0);
 	}
+	pl_update_last_meal(pl);
 	if (pl->right)
 		took += take(pl, pl->right);
 	if (pl->left)
