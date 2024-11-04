@@ -6,11 +6,12 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:43:44 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 19:50:35 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 20:40:30 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_philo.h"
+#include "pl_monitor.h"
 #include "pl_utils.h"
 #include <unistd.h>
 

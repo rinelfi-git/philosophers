@@ -6,12 +6,14 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 19:03:39 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 20:40:00 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_types.h"
+#include "pl_monitor.h"
 #include "pl_utils.h"
+#include <unistd.h>
 
 void	pl_end(t_monitor *mon)
 {
