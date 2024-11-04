@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 16:36:04 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 17:47:07 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 19:08:16 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static int	nobodys_dead(t_monitor *mon)
 			mon->nbr_ate++;
 		else if (times[1] > 0 && times[1] + mon->tt.die <= times[0])
 		{
+			pl_set_run(pl, 0);
 			pl_set_dead(mon, pl);
 			pl_msg(pl, "died");
 			return (0);
