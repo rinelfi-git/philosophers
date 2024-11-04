@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 18:16:06 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:32:49 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	pl_stop(void *self)
 		return ;
 	pl = (t_philo *)self;
 	pl_set_run(pl, 0);
-	pl_free_fork(pl);
 }
 
 void	init_philo(t_philo *pl, int id, t_sync *left)

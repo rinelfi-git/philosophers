@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-CARG = -Werror -Wextra -Wall -fsanitize=thread -g
+CARG = -Werror -Wextra -Wall
 INCs = -Iinclude
 SRCs = src/monitor/lock/dead.c \
 		src/monitor/end.c \
