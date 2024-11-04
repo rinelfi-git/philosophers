@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/01 20:37:10 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:16:06 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	init_philo(t_philo *pl, int id, t_sync *left)
 	pl->is_running = 0;
 	pl->max_eat = 0;
 	pl->last_meal = 0;
+	pl->taken_fork = 0;
 	pl->state = PHILO_NONE;
 	pl->mon = 0;
 	pl->stop = pl_stop;

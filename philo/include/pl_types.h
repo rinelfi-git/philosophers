@@ -53,6 +53,7 @@ struct						s_philo
 	void					(*stop)(void *);
 	t_sync					*left;
 	t_sync					*right;
+	int						taken_fork;
 	t_state					state;
 	t_time					tt;
 	long					last_meal;

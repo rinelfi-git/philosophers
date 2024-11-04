@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 09:39:12 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 18:09:16 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	pl_eating(t_philo *pl)
 	if (!pl_is_running(pl))
 		return (0);
 	mon = pl->mon;
+	if (!pl_take_fork(pl))
+		return (0);
 	pl->max_eat++;
 	pl_update_last_meal(pl);
 	pl_msg(pl, "is eating");
@@ -60,8 +62,6 @@ void	*pl_routine(void *self)
 		usleep(EVEN_WAIT_START);
 	while (pl_is_running(pl))
 	{
-		if (!pl_take_fork(pl))
-			break ;
 		if (!pl_eating(pl))
 			break ;
 		if (!pl_sleeping(pl))

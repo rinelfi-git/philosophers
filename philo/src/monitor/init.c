@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/03 21:40:04 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/04 17:29:51 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 #include "pl_types.h"
 #include "pl_utils.h"
 #include "pl_philo.h"
-
-t_monitor	*to_monitor(void *obj)
-{
-	return ((t_monitor *) obj);
-}
 
 static void	init_vars(t_monitor *mon)
 {
