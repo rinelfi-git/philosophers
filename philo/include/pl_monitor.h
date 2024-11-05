@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 09:51:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 14:35:48 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:06:35 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 # define PL_MONITOR_H
 # include "pl_types.h"
 
-void		init_monitor(t_monitor *monitor, int size);
-void		pl_init_times(t_monitor *monitor, int *times);
-void		pl_free(t_monitor *monitor);
-void		pl_end(t_monitor *monitor);
-t_philo		*pl_get_dead(t_monitor *monitor);
-void		pl_set_dead(t_monitor *monitor, t_philo *philo);
+void		monitor_init(t_monitor *monitor, int size);
+void		free_ressources(t_monitor *monitor);
+void		stop_everything(t_monitor *monitor);
+t_philo		*monitor_get_dead(t_monitor *monitor);
+void		monitor_set_dead(t_monitor *monitor, t_philo *philo);
 #endif

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 15:49:22 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 14:36:30 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:10:47 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 # define PL_UTILS_H
 # include "pl_philo.h"
 
-long	pl_atoi(const char *str);
-int		pl_error(char *msg, int code);
-int		pl_isnumber(char *str);
-void	pl_utl_lst_foreach(t_monitor *tab, void (*call)());
-long	pl_timestamp(void);
-int		pl_isinteger(char *str);
-void	pl_msg(t_philo *pl, char *state);
-int		pl_usleep(t_philo *pl, long ms);
+long	ft_atoi(const char *str);
+int		print_error(char *msg, int code);
+int		ft_isnumber(char *str);
+void	list_foreach(t_monitor *monitor, void (*call)());
+long	get_timestamp(void);
+int		ft_isinteger(char *str);
+void	print_state(t_philo *pl, char *state);
+int		sleep_while(t_philo *pl, long ms);
 #endif

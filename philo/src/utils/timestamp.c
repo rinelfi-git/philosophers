@@ -6,13 +6,13 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:09:39 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/03 22:42:39 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:10:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
 
-long	pl_timestamp(void)
+long	get_timestamp(void)
 {
 	struct timeval	time;
 

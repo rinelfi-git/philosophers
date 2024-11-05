@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 23:26:24 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 19:50:57 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:10:27 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	char_to_digit(char c)
 	return (-1);
 }
 
-long	pl_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	long	ret;
 	int		sign;
@@ -40,7 +40,7 @@ long	pl_atoi(const char *str)
 	return (ret * sign);
 }
 
-int	pl_isnumber(char *str)
+int	ft_isnumber(char *str)
 {
 	if (!str)
 		return (0);
@@ -51,11 +51,11 @@ int	pl_isnumber(char *str)
 	return (*str == 0);
 }
 
-int	pl_isinteger(char *str)
+int	ft_isinteger(char *str)
 {
 	long	nbr;
 
-	nbr = pl_atoi(str);
+	nbr = ft_atoi(str);
 	if (nbr > (long) INT_MAX || nbr < (long) INT_MIN)
 		return (0);
 	return (1);

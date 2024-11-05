@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:56:41 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 14:35:06 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:10:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static void	pl_putnbr(long nbr)
 		pl_putchar('0' + nbr);
 }
 
-int	pl_error(char *msg, int code)
+int	print_error(char *msg, int code)
 {
 	while (*msg)
 		write(2, msg++, 1);
 	return (code);
 }
 
-void	pl_msg(t_philo *pl, char *state)
+void	print_state(t_philo *pl, char *state)
 {
 	t_monitor	*mon;
 
@@ -59,7 +59,7 @@ void	pl_msg(t_philo *pl, char *state)
 	}
 	mon = pl->monitor;
 	pthread_mutex_lock(&mon->print_lock);
-	pl_putnbr(pl_timestamp() - pl->monitor->start_time);
+	pl_putnbr(get_timestamp() - pl->monitor->start_time);
 	pl_putchar(' ');
 	pl_putnbr(pl->rank);
 	pl_putchar(' ');

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 14:43:09 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:10:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	init_vars(t_monitor *mon)
 		fk = &mon->fork_list[i];
 		pl = &mon->philosopher_list[i];
 		pthread_mutex_init(fk, 0);
-		init_philo(pl, i++, fk);
+		philosopher_init(pl, i++, fk);
 		pl->monitor = mon;
 	}
 	i = 0;
@@ -43,7 +43,7 @@ static void	init_vars(t_monitor *mon)
 	}
 }
 
-void	init_monitor(t_monitor *mon, int length)
+void	monitor_init(t_monitor *mon, int length)
 {
 	pthread_mutex_init(&mon->dead_lock, 0);
 	pthread_mutex_init(&mon->print_lock, 0);
@@ -52,7 +52,7 @@ void	init_monitor(t_monitor *mon, int length)
 	if (!mon->philosopher_list || !mon->fork_list)
 		return ;
 	mon->size = length;
-	mon->start_time = pl_timestamp();
+	mon->start_time = get_timestamp();
 	mon->eat_limit = 0;
 	mon->time_to.die = 0;
 	mon->time_to.eat = 0;

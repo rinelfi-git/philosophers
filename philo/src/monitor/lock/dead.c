@@ -6,14 +6,14 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:28:05 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 14:37:24 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:07:50 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_types.h"
 #include "pl_philo.h"
 
-t_philo	*pl_get_dead(t_monitor *monitor)
+t_philo	*monitor_get_dead(t_monitor *monitor)
 {
 	t_philo	*philo;
 
@@ -24,10 +24,10 @@ t_philo	*pl_get_dead(t_monitor *monitor)
 	return (philo);
 }
 
-void	pl_set_dead(t_monitor *monitor, t_philo *philo)
+void	monitor_set_dead(t_monitor *monitor, t_philo *philo)
 {
 	pthread_mutex_lock(&monitor->dead_lock);
 	monitor->dead = philo;
 	pthread_mutex_unlock(&monitor->dead_lock);
-	pl_set_state(philo, PHILO_DEAD);
+	set_philo_state(philo, PHILO_DEAD);
 }

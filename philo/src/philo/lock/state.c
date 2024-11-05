@@ -6,13 +6,13 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 19:23:47 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 17:49:46 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 15:07:50 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pl_types.h"
 
-t_state	pl_get_state(t_philo *pl)
+t_state	get_philo_state(t_philo *pl)
 {
 	t_state	state;
 
@@ -22,7 +22,7 @@ t_state	pl_get_state(t_philo *pl)
 	return (state);
 }
 
-void	pl_set_state(t_philo *pl, t_state state)
+void	set_philo_state(t_philo *pl, t_state state)
 {
 	pthread_mutex_lock(&pl->state_lock);
 	pl->state = state;

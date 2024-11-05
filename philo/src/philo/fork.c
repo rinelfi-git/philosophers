@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:43:44 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 14:54:28 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:20:44 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,47 +28,54 @@ static void	take(t_philo *philo, t_sync *fork)
 		return ;
 	if (pthread_mutex_lock(fork) == 0)
 	{
-		if (pl_get_dead(philo->monitor))
+		if (monitor_get_dead(philo->monitor))
 		{
 			put_back(fork);
 			return ;
 		}
-		pl_msg(philo, "has taken a fork");
+		print_state(philo, "has taken a fork");
 		philo->taken_fork++;
 	}
 }
 
-int	pl_take_fork(t_philo *pl)
+int	do_take_fork(t_philo *philo)
 {
-	if (pl->monitor->eat_limit && pl->eat_times >= pl->monitor->eat_limit)
+	int		eat_limit;
+
+	eat_limit = philo->monitor->eat_limit;
+	if (eat_limit && philo->eat_times >= eat_limit)
 	{
-		pl_set_state(pl, PHILO_FULL);
+		set_philo_state(philo, PHILO_FULL);
 		return (0);
 	}
-	if (pl->rank % 2 == 0)
+	if (philo->rank % 2 == 0)
 	{
-		take(pl, pl->left_fork);
-		take(pl, pl->right_fork);
+		take(philo, philo->left_fork);
+		take(philo, philo->right_fork);
+		if (philo->taken_fork == 1)
+			put_back(philo->left_fork);
 	}
 	else
 	{
-		take(pl, pl->right_fork);
-		take(pl, pl->left_fork);
+		take(philo, philo->right_fork);
+		take(philo, philo->left_fork);
+		if (philo->taken_fork == 1)
+			put_back(philo->right_fork);
 	}
-	return (pl->taken_fork == 2);
+	return (philo->taken_fork == 2);
 }
 
-void	pl_free_fork(t_philo *pl)
+void	do_free_fork(t_philo *pl)
 {
 	if (pl->rank % 2 == 0)
 	{
-		put_back(pl->right_fork);
 		put_back(pl->left_fork);
+		put_back(pl->right_fork);
 	}
 	else
 	{
-		put_back(pl->left_fork);
 		put_back(pl->right_fork);
+		put_back(pl->left_fork);
 	}
 	pl->taken_fork = 0;
 }
