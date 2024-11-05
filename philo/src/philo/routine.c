@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 15:16:14 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 22:34:10 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 12:12:43 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,61 +16,66 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static int	pl_eating(t_philo *pl)
+static int	pl_eating(t_philo *philo)
 {
-	t_monitor	*mon;
+	t_monitor	*monitor;
 	int			out;
 
-	mon = pl->mon;
-	if (!pl_is_running(pl))
+	monitor = philo->monitor;
+	if (!pl_is_running(philo))
 		return (0);
-	if (mon->length == 1)
-		pl_update_last_meal(pl);
-	if (!pl_take_fork(pl))
+	if (monitor->length == 1)
+		pl_update_last_meal(philo);
+	if (!pl_take_fork(philo))
 		return (0);
-	pl->max_eat++;
-	pl_msg(pl, "is eating");
-	pl_update_last_meal(pl);
-	out = pl_usleep(pl, mon->tt.eat);
-	pl_free_fork(pl);
+	philo->max_eat++;
+	pl_msg(philo, "is eating");
+	pl_update_last_meal(philo);
+	out = pl_usleep(philo, monitor->tt.eat);
+	pl_free_fork(philo);
 	return (out);
 }
 
-static int	pl_sleeping(t_philo *pl)
+static int	pl_sleeping(t_philo *philo)
 {
-	t_monitor	*mon;
+	t_monitor	*monitor;
 
-	if (!pl_is_running(pl))
+	if (!pl_is_running(philo))
 		return (0);
-	mon = pl->mon;
-	pl_msg(pl, "is sleeping");
-	return (pl_usleep(pl, mon->tt.sleep));
+	monitor = philo->monitor;
+	pl_msg(philo, "is sleeping");
+	return (pl_usleep(philo, monitor->tt.sleep));
 }
 
-static int	pl_thinking(t_philo *pl)
+static int	pl_thinking(t_philo *philo)
 {
-	if (!pl_is_running(pl))
+	int			interval;
+	t_monitor	*monitor;
+
+	monitor = philo->monitor;
+	if (!pl_is_running(philo))
 		return (0);
-	pl_msg(pl, "is thinking");
-	return (pl_usleep(pl, 2));
+	pl_msg(philo, "is thinking");
+	interval = (monitor->tt.die - (monitor->tt.sleep + monitor->tt.eat)) / 2;
+	return (pl_usleep(philo, interval));
 }
 
 void	*pl_routine(void *self)
 {
-	t_philo	*pl;
+	t_philo	*philo;
 
-	pl = (t_philo *)self;
-	if (pl->rank % 2 == 0)
+	philo = (t_philo *)self;
+	if (philo->rank % 2 == 0)
 		usleep(EVEN_WAIT_START);
-	while (pl_is_running(pl))
+	while (pl_is_running(philo))
 	{
-		if (!pl_eating(pl))
+		if (!pl_eating(philo))
 			break ;
-		if (!pl_sleeping(pl))
+		if (!pl_sleeping(philo))
 			break ;
-		if (!pl_thinking(pl))
+		if (!pl_thinking(philo))
 			break ;
 	}
-	pl->stop(pl);
+	philo->stop(philo);
 	return (0);
 }

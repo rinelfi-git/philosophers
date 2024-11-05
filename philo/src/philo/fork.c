@@ -6,49 +6,55 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:43:44 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 22:33:19 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 12:09:22 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pl_philo.h"
 #include "pl_monitor.h"
+#include "pl_philo.h"
 #include "pl_utils.h"
 #include <unistd.h>
 
-static void	take(t_philo *pl, t_sync *fk)
+static void	put_back(t_sync *fork)
 {
-	if (pthread_mutex_lock(fk) == 0)
+	
+	if (!fork)
+		return ;
+	pthread_mutex_unlock(fork);
+}
+
+static void	take(t_philo *philo, t_sync *fork)
+{
+	if (!philo || !fork)
+		return ;
+	if (pthread_mutex_lock(fork) == 0)
 	{
-		if (pl_get_dead(pl->mon))
+		if (pl_get_dead(philo->monitor))
 		{
-			pthread_mutex_unlock(fk);
+			put_back(fork);
 			return ;
 		}
-		pl_msg(pl, "has taken a fork");
-		pl->taken_fork++;
+		pl_msg(philo, "has taken a fork");
+		philo->taken_fork++;
 	}
 }
 
 int	pl_take_fork(t_philo *pl)
 {
-	if (pl->mon->max_eat && pl->max_eat >= pl->mon->max_eat)
+	if (pl->monitor->max_eat && pl->max_eat >= pl->monitor->max_eat)
 	{
 		pl_set_state(pl, PHILO_FULL);
 		return (0);
 	}
 	if (pl->rank % 2 == 0)
 	{
-		if (pl->left)
-			take(pl, pl->left);
-		if (pl->right)
-			take(pl, pl->right);
+		take(pl, pl->left);
+		take(pl, pl->right);
 	}
 	else
 	{
-		if (pl->right)
-			take(pl, pl->right);
-		if (pl->left)
-			take(pl, pl->left);
+		take(pl, pl->right);
+		take(pl, pl->left);
 	}
 	return (pl->taken_fork == 2);
 }
@@ -57,17 +63,13 @@ void	pl_free_fork(t_philo *pl)
 {
 	if (pl->rank % 2 == 0)
 	{
-		if (pl->right)
-			pthread_mutex_unlock(pl->right);
-		if (pl->left)
-			pthread_mutex_unlock(pl->left);
+		put_back(pl->right);
+		put_back(pl->left);
 	}
 	else
 	{
-		if (pl->left)
-			pthread_mutex_unlock(pl->left);
-		if (pl->right)
-			pthread_mutex_unlock(pl->right);
+		put_back(pl->left);
+		put_back(pl->right);
 	}
 	pl->taken_fork = 0;
 }

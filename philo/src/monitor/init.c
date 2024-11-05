@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 17:29:51 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 12:08:50 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	init_vars(t_monitor *mon)
 		pl = &mon->philos[i];
 		pthread_mutex_init(fk, 0);
 		init_philo(pl, i++, fk);
-		pl->mon = mon;
+		pl->monitor = mon;
 	}
 	i = 0;
 	while (i < mon->length)

@@ -57,7 +57,7 @@ struct						s_philo
 	t_state					state;
 	t_time					tt;
 	long					last_meal;
-	t_monitor				*mon;
+	t_monitor				*monitor;
 };
 struct						s_monitor
 {
