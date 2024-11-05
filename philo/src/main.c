@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 19:49:49 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:54:05 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int	is_arg_correct(int ac, char **av)
 	int	i;
 
 	if (ac < 5 || ac > 6)
-		return (pl_error("Error:\n > Format should "
-				"(./philo philo_nbr tt_die tt_eat tt_sleep [max_eat]).\n", 0));
+		return (pl_error("Error:\n > Format should be "
+				"(./philo size tt_die tt_eat tt_sleep [eat_limit]).\n", 0));
 	i = 1;
 	while (i < ac)
 		if (!pl_isnumber(av[i++]))
@@ -42,9 +42,16 @@ static int	is_arg_correct(int ac, char **av)
 	return (1);
 }
 
+void	init_times(t_monitor *tab, int *times)
+{
+	tab->time_to.die = times[0];
+	tab->time_to.eat = times[1];
+	tab->time_to.sleep = times[2];
+}
+
 int	main(int ac, char **av)
 {
-	t_monitor	tab;
+	t_monitor	monitor;
 	int			times[3];
 	int			size;
 
@@ -54,9 +61,9 @@ int	main(int ac, char **av)
 	times[0] = pl_atoi(av[2]);
 	times[1] = pl_atoi(av[3]);
 	times[2] = pl_atoi(av[4]);
-	init_monitor(&tab, size);
-	pl_init_times(&tab, times);
+	init_monitor(&monitor, size);
+	init_times(&monitor, times);
 	if (ac == 6)
-		tab.max_eat = pl_atoi(av[5]);
-	return (philosopher(&tab));
+		monitor.eat_limit = pl_atoi(av[5]);
+	return (philosopher(&monitor));
 }

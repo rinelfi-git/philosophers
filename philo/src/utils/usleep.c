@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:25:16 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 22:44:31 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:35:06 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 int	pl_usleep(t_philo *pl, long ms)
 {
-	long	start;
+	long	start_time;
 	int		run;
 
-	start = pl_timestamp();
+	start_time = pl_timestamp();
 	run = pl_is_running(pl);
-	while (run && pl_timestamp() < start + ms)
+	while (run && pl_timestamp() < start_time + ms)
 	{
 		run = pl_is_running(pl);
 		if (!run)

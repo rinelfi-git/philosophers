@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:56:41 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 12:08:50 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:35:06 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	pl_msg(t_philo *pl, char *state)
 	}
 	mon = pl->monitor;
 	pthread_mutex_lock(&mon->print_lock);
-	pl_putnbr(pl_timestamp() - pl->monitor->start);
+	pl_putnbr(pl_timestamp() - pl->monitor->start_time);
 	pl_putchar(' ');
 	pl_putnbr(pl->rank);
 	pl_putchar(' ');

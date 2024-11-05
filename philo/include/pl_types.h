@@ -27,7 +27,6 @@ typedef pthread_mutex_t		t_sync;
 enum						e_state
 {
 	PHILO_NONE,
-	PHILO_STOP,
 	PHILO_FULL,
 	PHILO_DEAD,
 };
@@ -36,41 +35,35 @@ struct						s_times
 	long					die;
 	long					eat;
 	long					sleep;
-	long					think;
-	long					start;
 };
 struct						s_philo
 {
 	pthread_t				thread;
-	t_sync					self_lock;
 	t_sync					state_lock;
 	t_sync					run_lock;
 	t_sync					last_meal_lock;
 	int						rank;
 	int						is_running;
-	int						max_eat;
-	long					start;
-	void					(*stop)(void *);
-	t_sync					*left;
-	t_sync					*right;
+	int						eat_times;
+	void					(*stop_job)(void *);
+	t_sync					*left_fork;
+	t_sync					*right_fork;
 	int						taken_fork;
 	t_state					state;
-	t_time					tt;
 	long					last_meal;
 	t_monitor				*monitor;
 };
 struct						s_monitor
 {
-	t_sync					self_lock;
 	t_sync					dead_lock;
 	t_sync					print_lock;
-	t_sync					*forks;
-	t_philo					*philos;
+	t_sync					*fork_list;
+	t_philo					*philosopher_list;
 	t_philo					*dead;
-	int						length;
-	int						max_eat;
-	int						nbr_ate;
-	long					start;
-	t_time					tt;
+	int						size;
+	int						eat_limit;
+	int						ate_number;
+	long					start_time;
+	t_time					time_to;
 };
 #endif

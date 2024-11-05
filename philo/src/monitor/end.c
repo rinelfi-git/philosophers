@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 16:06:03 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/04 21:54:37 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:50:11 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,50 @@
 #include "pl_utils.h"
 #include <unistd.h>
 
-void	pl_end(t_monitor *mon)
+void	pl_end(t_monitor *monitor)
 {
 	int		i;
-	t_philo	*pl;
+	t_philo	*philo;
 
 	i = 0;
-	while (i < mon->length)
+	while (i < monitor->size)
 	{
-		pl = &mon->philos[i++];
-		pl_set_run(pl, 0);
+		philo = &monitor->philosopher_list[i++];
+		pl_set_run(philo, 0);
 	}
-	pl = pl_get_dead(mon);
-	if (pl)
-		pl_msg(pl, "died");
+	philo = pl_get_dead(monitor);
+	if (philo)
+		pl_msg(philo, "died");
 }
 
-static void	mutex_table_destroy(t_monitor *tab)
+static void	mutex_monitor_destroy(t_monitor *monitor)
 {
-	pthread_mutex_destroy(&tab->dead_lock);
+	pthread_mutex_destroy(&monitor->dead_lock);
+	pthread_mutex_destroy(&monitor->print_lock);
 }
 
-void	pl_free(t_monitor *tab)
+static void	mutex_philosopher_destroy(t_philo *philo)
+{
+	pthread_mutex_destroy(&philo->state_lock);
+	pthread_mutex_destroy(&philo->run_lock);
+	pthread_mutex_destroy(&philo->last_meal_lock);
+}
+
+void	pl_free(t_monitor *monitor)
 {
 	int		i;
-	t_sync	*fk;
+	t_sync	*fork;
+	t_philo	*philo;
 
 	i = 0;
-	while (i < tab->length)
+	while (i < monitor->size)
 	{
-		fk = &tab->forks[i++];
-		pthread_mutex_destroy(fk);
+		philo = &monitor->philosopher_list[i];
+		fork = &monitor->fork_list[i++];
+		mutex_philosopher_destroy(philo);
+		pthread_mutex_destroy(fork);
 	}
-	mutex_table_destroy(tab);
-	free(tab->forks);
-	free(tab->philos);
+	mutex_monitor_destroy(monitor);
+	free(monitor->fork_list);
+	free(monitor->philosopher_list);
 }

@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 12:08:50 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:44:44 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,13 @@ void	init_philo(t_philo *pl, int id, t_sync *left)
 	pthread_mutex_init(&pl->run_lock, 0);
 	pthread_mutex_init(&pl->last_meal_lock, 0);
 	pl->rank = id + 1;
-	pl->tt.die = 1;
-	pl->tt.eat = 1;
-	pl->tt.sleep = 1;
-	pl->left = left;
-	pl->right = 0;
+	pl->left_fork = left;
+	pl->right_fork = 0;
 	pl->is_running = 0;
-	pl->max_eat = 0;
+	pl->eat_times = 0;
 	pl->last_meal = 0;
 	pl->taken_fork = 0;
 	pl->state = PHILO_NONE;
 	pl->monitor = 0;
-	pl->stop = pl_stop;
+	pl->stop_job = pl_stop;
 }

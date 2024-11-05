@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 09:54:30 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 12:08:50 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/05 14:43:09 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ static void	init_vars(t_monitor *mon)
 	if (!mon)
 		return ;
 	i = 0;
-	while (i < mon->length)
+	while (i < mon->size)
 	{
-		fk = &mon->forks[i];
-		pl = &mon->philos[i];
+		fk = &mon->fork_list[i];
+		pl = &mon->philosopher_list[i];
 		pthread_mutex_init(fk, 0);
 		init_philo(pl, i++, fk);
 		pl->monitor = mon;
 	}
 	i = 0;
-	while (i < mon->length)
+	while (i < mon->size)
 	{
-		pl = &mon->philos[i];
-		fk = &mon->forks[(i + 1) % mon->length];
-		if (pl->left != fk)
-			pl->right = fk;
+		pl = &mon->philosopher_list[i];
+		fk = &mon->fork_list[(i + 1) % mon->size];
+		if (pl->left_fork != fk)
+			pl->right_fork = fk;
 		i++;
 	}
 }
@@ -47,17 +47,16 @@ void	init_monitor(t_monitor *mon, int length)
 {
 	pthread_mutex_init(&mon->dead_lock, 0);
 	pthread_mutex_init(&mon->print_lock, 0);
-	mon->philos = (t_philo *)malloc(sizeof(t_philo) * length);
-	mon->forks = (t_sync *)malloc(sizeof(t_sync) * length);
-	if (!mon->philos || !mon->forks)
+	mon->philosopher_list = (t_philo *)malloc(sizeof(t_philo) * length);
+	mon->fork_list = (t_sync *)malloc(sizeof(t_sync) * length);
+	if (!mon->philosopher_list || !mon->fork_list)
 		return ;
-	mon->length = length;
-	mon->start = pl_timestamp();
-	mon->max_eat = 0;
-	mon->tt.die = 0;
-	mon->tt.eat = 0;
-	mon->tt.sleep = 0;
-	mon->tt.think = 0;
+	mon->size = length;
+	mon->start_time = pl_timestamp();
+	mon->eat_limit = 0;
+	mon->time_to.die = 0;
+	mon->time_to.eat = 0;
+	mon->time_to.sleep = 0;
 	mon->dead = 0;
 	init_vars(mon);
 }
