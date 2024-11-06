@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pl_types.h                                        :+:      :+:    :+:   */
+/*   pl_types.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 12:18:15 by erijania          #+#    #+#             */
-/*   Updated: 2024/09/21 12:33:01 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/06 18:19:31 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PL_TYPES_H
 # define PL_TYPES_H
-# define EXEC_INTERVAL 50
+# define EXEC_INTERVAL 100
 # define EVEN_WAIT_START 15000
-# define MONITOR_WAIT 5
+# define MONITOR_WAIT 10
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>

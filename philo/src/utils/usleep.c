@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 16:25:16 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 15:10:45 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/06 18:17:03 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	sleep_while(t_philo *pl, long ms)
 	run = philosopher_get_run(pl);
 	while (run && get_timestamp() < start_time + ms)
 	{
+		usleep(EXEC_INTERVAL);
 		run = philosopher_get_run(pl);
 		if (!run)
 			return (0);
