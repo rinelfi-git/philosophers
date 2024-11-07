@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:56:41 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/06 18:09:08 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:19:51 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,22 @@ int	print_error(char *msg, int code)
 	return (code);
 }
 
-void	print_state(t_philo *pl, char *state)
+void	print_state(t_philo *philo, char *state)
 {
 	t_monitor	*mon;
 	long		time;
 
-	if (!pl)
+	if (!philo)
 	{
 		pl_putstr(state);
 		return ;
 	}
-	mon = pl->monitor;
+	mon = philo->monitor;
 	time = get_timestamp();
 	pthread_mutex_lock(&mon->print_lock);
-	pl_putnbr(time - pl->monitor->start_time);
+	pl_putnbr(time - philo->monitor->start_time);
 	pl_putchar(' ');
-	pl_putnbr(pl->rank);
+	pl_putnbr(philo->rank);
 	pl_putchar(' ');
 	pl_putstr(state);
 	pl_putchar('\n');

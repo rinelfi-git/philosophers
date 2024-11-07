@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:43:44 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 16:20:44 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:22:04 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	do_take_fork(t_philo *philo)
 		set_philo_state(philo, PHILO_FULL);
 		return (0);
 	}
-	if (philo->rank % 2 == 0)
+	if (philo->rank % 2)
 	{
 		take(philo, philo->left_fork);
 		take(philo, philo->right_fork);
@@ -65,17 +65,17 @@ int	do_take_fork(t_philo *philo)
 	return (philo->taken_fork == 2);
 }
 
-void	do_free_fork(t_philo *pl)
+void	do_free_fork(t_philo *philo)
 {
-	if (pl->rank % 2 == 0)
+	if (philo->rank % 2)
 	{
-		put_back(pl->left_fork);
-		put_back(pl->right_fork);
+		put_back(philo->left_fork);
+		put_back(philo->right_fork);
 	}
 	else
 	{
-		put_back(pl->right_fork);
-		put_back(pl->left_fork);
+		put_back(philo->right_fork);
+		put_back(philo->left_fork);
 	}
-	pl->taken_fork = 0;
+	philo->taken_fork = 0;
 }

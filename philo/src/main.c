@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:55 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 15:10:27 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:20:15 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ static int	is_arg_correct(int ac, char **av)
 	return (1);
 }
 
-void	init_times(t_monitor *tab, int *times)
+void	init_times(t_monitor *monitor, int *times)
 {
-	tab->time_to.die = times[0];
-	tab->time_to.eat = times[1];
-	tab->time_to.sleep = times[2];
+	monitor->time_to.die = times[0];
+	monitor->time_to.eat = times[1];
+	monitor->time_to.sleep = times[2];
 }
 
 int	main(int ac, char **av)

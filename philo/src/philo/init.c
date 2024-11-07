@@ -6,7 +6,7 @@
 /*   By: erijania <erijania@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:30:51 by erijania          #+#    #+#             */
-/*   Updated: 2024/11/05 16:18:21 by erijania         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:19:02 by erijania         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,27 @@
 
 static void	stop_job(void *self)
 {
-	t_philo	*pl;
+	t_philo	*philo;
 
 	if (!self)
 		return ;
-	pl = (t_philo *)self;
-	philosopher_set_run(pl, 0);
+	philo = (t_philo *)self;
+	philosopher_set_run(philo, 0);
 }
 
-void	philosopher_init(t_philo *pl, int id, t_sync *left)
+void	philosopher_init(t_philo *philo, int id, t_sync *left)
 {
-	pthread_mutex_init(&pl->state_lock, 0);
-	pthread_mutex_init(&pl->run_lock, 0);
-	pthread_mutex_init(&pl->last_meal_lock, 0);
-	pl->rank = id + 1;
-	pl->left_fork = left;
-	pl->right_fork = 0;
-	pl->is_running = 0;
-	pl->eat_times = 0;
-	pl->last_meal = 0;
-	pl->taken_fork = 0;
-	pl->state = PHILO_NONE;
-	pl->monitor = 0;
-	pl->stop_job = stop_job;
+	pthread_mutex_init(&philo->state_lock, 0);
+	pthread_mutex_init(&philo->run_lock, 0);
+	pthread_mutex_init(&philo->last_meal_lock, 0);
+	philo->rank = id + 1;
+	philo->left_fork = left;
+	philo->right_fork = 0;
+	philo->is_running = 0;
+	philo->eat_times = 0;
+	philo->last_meal = 0;
+	philo->taken_fork = 0;
+	philo->state = PHILO_NONE;
+	philo->monitor = 0;
+	philo->stop_job = stop_job;
 }
