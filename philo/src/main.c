@@ -20,25 +20,21 @@ static int	is_arg_correct(int ac, char **av)
 	int	i;
 
 	if (ac < 5 || ac > 6)
-		return (print_error("Error:\n > Format should be "
-				"(./philo size tt_die tt_eat tt_sleep [eat_limit]).\n", 0));
+		return (print_error("Error:\n> Format error\n", 0));
 	i = 1;
 	while (i < ac)
 		if (!ft_isnumber(av[i++]))
-			return (print_error("Error:\n > Arguments must be numbers.\n", 0));
+			return (print_error("Error:\n > Type numbers.\n", 0));
 	i = 1;
 	while (i < ac)
 		if (!ft_isinteger(av[i++]))
-			return (print_error("Error:\n"
-					"> Integer values only [-2147483648, 2147483647].\n", 0));
+			return (print_error("Error:\n > [0 > value > 2147483647].\n", 0));
 	i = 1;
 	while (i < ac)
 		if (ft_atoi(av[i++]) <= 0)
-			return (print_error(
-					"Error:\n > Numbers must be greater than zero.\n", 0));
+			return (print_error("Error:\n > Negative or null value(s).\n", 0));
 	if (ft_atoi(av[1]) > 200)
-		return (print_error("Warning:\n > "
-				"It's too much of philosophers.\n", 0));
+		return (print_error("Warning:\n > Max 200 philosophers.\n", 0));
 	return (1);
 }
 
